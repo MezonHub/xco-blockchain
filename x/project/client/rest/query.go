@@ -9,9 +9,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/gorilla/mux"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	"github.com/ixofoundation/ixo-blockchain/x/project/keeper"
-	"github.com/ixofoundation/ixo-blockchain/x/project/types"
+	didexported "github.com/furylockerroom/xco-blockchain/lib/legacydid"
+	"github.com/furylockerroom/xco-blockchain/x/project/keeper"
+	"github.com/furylockerroom/xco-blockchain/x/project/types"
 )
 
 type AccDetails struct {

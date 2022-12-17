@@ -10,11 +10,11 @@ import (
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	didtypes "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	paymentskeeper "github.com/ixofoundation/ixo-blockchain/x/payments/keeper"
-	"github.com/ixofoundation/ixo-blockchain/x/project/types"
+	didexported "github.com/furylockerroom/xco-blockchain/lib/legacydid"
+	didtypes "github.com/furylockerroom/xco-blockchain/lib/legacydid"
+	iidkeeper "github.com/furylockerroom/xco-blockchain/x/iid/keeper"
+	paymentskeeper "github.com/furylockerroom/xco-blockchain/x/payments/keeper"
+	"github.com/furylockerroom/xco-blockchain/x/project/types"
 )
 
 type Keeper struct {

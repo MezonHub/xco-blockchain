@@ -11,7 +11,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	govcli "github.com/cosmos/cosmos-sdk/x/gov/client/cli"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/ixofoundation/ixo-blockchain/x/entity/types"
+	"github.com/furylockerroom/xco-blockchain/x/entity/types"
 	"github.com/spf13/cobra"
 )
 
@@ -117,13 +117,13 @@ func NewCmdCreateEntity() *cobra.Command {
 
 // func NewCmdUpdateProjectStatus() *cobra.Command {
 // cmd := &cobra.Command{
-// 	Use:   "update-project-status [sender-did] [status] [ixo-did]",
-// 	Short: "Update the status of a project signed by the ixoDid of the project",
+// 	Use:   "update-project-status [sender-did] [status] [xco-did]",
+// 	Short: "Update the status of a project signed by the xcodid of the project",
 // 	Args:  cobra.ExactArgs(3),
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		senderDid := args[0]
 // 		status := args[1]
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[2])
+// 		xcodid, err := didtypes.Unmarshalxcodid(args[2])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -146,15 +146,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		if err != nil {
 // 			return err
 // 		}
-// 		clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 		clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 		msg := types.NewMsgUpdateProjectStatus(senderDid, updateProjectStatusDoc, ixoDid.Did)
+// 		msg := types.NewMsgUpdateProjectStatus(senderDid, updateProjectStatusDoc, xcodid.Did)
 // 		err = msg.ValidateBasic()
 // 		if err != nil {
 // 			return err
 // 		}
 
-// 		return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 		return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 	},
 // }
 
@@ -166,7 +166,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // cmd := &cobra.Command{
 // 	Use: "create-agent [tx-hash] [sender-did] [agent-did] " +
 // 		"[role] [project-did]",
-// 	Short: "Create a new agent on a project signed by the ixoDid of the project",
+// 	Short: "Create a new agent on a project signed by the xcodid of the project",
 // 	Args:  cobra.ExactArgs(5),
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		txHash := args[0]
@@ -179,7 +179,7 @@ func NewCmdCreateEntity() *cobra.Command {
 
 // 		createAgentDoc := types.NewCreateAgentDoc(agentDid, role)
 
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+// 		xcodid, err := didtypes.Unmarshalxcodid(args[4])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -188,15 +188,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		if err != nil {
 // 			return err
 // 		}
-// 		clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 		clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 		msg := types.NewMsgCreateAgent(txHash, senderDid, createAgentDoc, ixoDid.Did)
+// 		msg := types.NewMsgCreateAgent(txHash, senderDid, createAgentDoc, xcodid.Did)
 // 		err = msg.ValidateBasic()
 // 		if err != nil {
 // 			return err
 // 		}
 
-// 		return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 		return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 	},
 // }
 
@@ -207,8 +207,8 @@ func NewCmdCreateEntity() *cobra.Command {
 // func NewCmdUpdateAgent() *cobra.Command {
 // cmd := &cobra.Command{
 // 	Use: "update-agent [tx-hash] [sender-did] [agent-did] " +
-// 		"[status] [ixo-did]",
-// 	Short: "Update the status of an agent on a project signed by the ixoDid of the project",
+// 		"[status] [xco-did]",
+// 	Short: "Update the status of an agent on a project signed by the xcodid of the project",
 // 	Args:  cobra.ExactArgs(6),
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		txHash := args[0]
@@ -223,7 +223,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		updateAgentDoc := types.NewUpdateAgentDoc(
 // 			agentDid, agentStatus, agentRole)
 
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[5])
+// 		xcodid, err := didtypes.Unmarshalxcodid(args[5])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -232,15 +232,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		if err != nil {
 // 			return err
 // 		}
-// 		clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 		clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 		msg := types.NewMsgUpdateAgent(txHash, senderDid, updateAgentDoc, ixoDid.Did)
+// 		msg := types.NewMsgUpdateAgent(txHash, senderDid, updateAgentDoc, xcodid.Did)
 // 		err = msg.ValidateBasic()
 // 		if err != nil {
 // 			return err
 // 		}
 
-// 		return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 		return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 	},
 // }
 
@@ -250,8 +250,8 @@ func NewCmdCreateEntity() *cobra.Command {
 
 // func NewCmdCreateClaim() *cobra.Command {
 // cmd := &cobra.Command{
-// 	Use:   "create-claim [tx-hash] [sender-did] [claim-id] [claim-template-id] [ixo-did]",
-// 	Short: "Create a new claim on a project signed by the ixoDid of the project",
+// 	Use:   "create-claim [tx-hash] [sender-did] [claim-id] [claim-template-id] [xco-did]",
+// 	Short: "Create a new claim on a project signed by the xcodid of the project",
 // 	Args:  cobra.ExactArgs(5),
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		txHash := args[0]
@@ -260,7 +260,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		claimTemplateId := args[3]
 // 		createClaimDoc := types.NewCreateClaimDoc(claimId, claimTemplateId)
 
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+// 		xcodid, err := didtypes.Unmarshalxcodid(args[4])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -269,15 +269,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		if err != nil {
 // 			return err
 // 		}
-// 		clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 		clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 		msg := types.NewMsgCreateClaim(txHash, senderDid, createClaimDoc, ixoDid.Did)
+// 		msg := types.NewMsgCreateClaim(txHash, senderDid, createClaimDoc, xcodid.Did)
 // 		err = msg.ValidateBasic()
 // 		if err != nil {
 // 			return err
 // 		}
 
-// 		return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 		return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 	},
 // }
 
@@ -288,8 +288,8 @@ func NewCmdCreateEntity() *cobra.Command {
 // func NewCmdCreateEvaluation() *cobra.Command {
 // 	cmd := &cobra.Command{
 // 		Use: "create-evaluation [tx-hash] [sender-did] [claim-id] " +
-// 			"[status] [ixo-did]",
-// 		Short: "Create a new claim evaluation on a project signed by the ixoDid of the project",
+// 			"[status] [xco-did]",
+// 		Short: "Create a new claim evaluation on a project signed by the xcodid of the project",
 // 		Args:  cobra.ExactArgs(5),
 // 		RunE: func(cmd *cobra.Command, args []string) error {
 // 			txHash := args[0]
@@ -303,7 +303,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 			createEvaluationDoc := types.NewCreateEvaluationDoc(
 // 				claimId, claimStatus)
 
-// 			ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+// 			xcodid, err := didtypes.Unmarshalxcodid(args[4])
 // 			if err != nil {
 // 				return err
 // 			}
@@ -312,15 +312,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 			if err != nil {
 // 				return err
 // 			}
-// 			clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 			clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 			msg := types.NewMsgCreateEvaluation(txHash, senderDid, createEvaluationDoc, ixoDid.Did)
+// 			msg := types.NewMsgCreateEvaluation(txHash, senderDid, createEvaluationDoc, xcodid.Did)
 // 			err = msg.ValidateBasic()
 // 			if err != nil {
 // 				return err
 // 			}
 
-// 			return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 			return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 		},
 // 	}
 
@@ -334,7 +334,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		Short: "Withdraw funds.",
 // 		Args:  cobra.ExactArgs(2),
 // 		RunE: func(cmd *cobra.Command, args []string) error {
-// 			ixoDid, err := didtypes.UnmarshalIxoDid(args[0])
+// 			xcodid, err := didtypes.Unmarshalxcodid(args[0])
 // 			if err != nil {
 // 				return err
 // 			}
@@ -349,15 +349,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 			if err != nil {
 // 				return err
 // 			}
-// 			clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 			clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 			msg := types.NewMsgWithdrawFunds(ixoDid.Did, data)
+// 			msg := types.NewMsgWithdrawFunds(xcodid.Did, data)
 // 			err = msg.ValidateBasic()
 // 			if err != nil {
 // 				return err
 // 			}
 
-// 			return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 			return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 		},
 // 	}
 
@@ -367,13 +367,13 @@ func NewCmdCreateEntity() *cobra.Command {
 
 // func NewCmdUpdateProjectDoc() *cobra.Command {
 // cmd := &cobra.Command{
-// 	Use:   "update-project-doc [sender-did] [project-iid-json] [ixo-did]",
-// 	Short: "Update a project's iid signed by the ixoDid of the project",
+// 	Use:   "update-project-doc [sender-did] [project-iid-json] [xco-did]",
+// 	Short: "Update a project's iid signed by the xcodid of the project",
 // 	Args:  cobra.ExactArgs(3),
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		senderDid := args[0]
 // 		projectDataStr := args[1]
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[2])
+// 		xcodid, err := didtypes.Unmarshalxcodid(args[2])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -382,15 +382,15 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		if err != nil {
 // 			return err
 // 		}
-// 		clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+// 		clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
-// 		msg := types.NewMsgUpdateProjectDoc(senderDid, json.RawMessage(projectDataStr), ixoDid.Did)
+// 		msg := types.NewMsgUpdateProjectDoc(senderDid, json.RawMessage(projectDataStr), xcodid.Did)
 // 		err = msg.ValidateBasic()
 // 		if err != nil {
 // 			return err
 // 		}
 
-// 		return ixotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+// 		return xcotypes.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 // 	},
 // }
 

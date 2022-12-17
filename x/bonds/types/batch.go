@@ -2,8 +2,8 @@ package types
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	didexported "github.com/furylockerroom/xco-blockchain/lib/legacydid"
+	iidtypes "github.com/furylockerroom/xco-blockchain/x/iid/types"
 )
 
 func (b Batch) MoreBuysThanSells() bool { return b.TotalSellAmount.IsLT(b.TotalBuyAmount) }

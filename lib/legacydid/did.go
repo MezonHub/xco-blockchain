@@ -28,37 +28,37 @@ var (
 	// IsValidDid adapted from the above link but assumes no sub-namespaces
 	// TODO: ValidDid needs to be updated once we no longer want to be able
 	//   to consider project accounts as DIDs (especially in treasury module),
-	//   possibly should just be `^did:(ixo:|sov:)([a-zA-Z0-9]){21,22}$`.
+	//   possibly should just be `^did:(xco:|sov:)([a-zA-Z0-9]){21,22}$`.
 )
 
-var DidPrefix = "did:ixo:"
+var DidPrefix = "did:xco:"
 
 type Did = string
 
-func fromJsonString(jsonIxoDid string) (IxoDid, error) {
-	var did IxoDid
-	err := json.Unmarshal([]byte(jsonIxoDid), &did)
+func fromJsonString(jsonxcodid string) (xcodid, error) {
+	var did xcodid
+	err := json.Unmarshal([]byte(jsonxcodid), &did)
 	if err != nil {
 		err := fmt.Errorf("could not unmarshal did into struct due to error: %s", err.Error())
-		return IxoDid{}, err
+		return xcodid{}, err
 	}
 
 	return did, nil
 }
 
-func UnmarshalIxoDid(jsonIxoDid string) (IxoDid, error) {
-	return fromJsonString(jsonIxoDid)
+func Unmarshalxcodid(jsonxcodid string) (xcodid, error) {
+	return fromJsonString(jsonxcodid)
 }
 
 func UnprefixedDid(did Did) string {
 	// Assumes that DID is valid (check IsValidDid regex)
-	// Removes 8 characters (for did:ixo: or did:sov:)
+	// Removes 8 characters (for did:xco: or did:sov:)
 	return did[8:]
 }
 
 func UnprefixedDidFromPubKey(pubKey string) string {
 	// Assumes that PubKey is valid (check IsValidPubKey regex)
-	// Since result is not prefixed (did:ixo:), string returned rather than DID
+	// Since result is not prefixed (did:xco:), string returned rather than DID
 	pubKeyBz := base58.Decode(pubKey)
 	return base58.Encode(pubKeyBz[:16])
 }
@@ -87,7 +87,7 @@ func (s Secret) Equals(other Secret) bool {
 		s.EncryptionPrivateKey == other.EncryptionPrivateKey
 }
 
-// Above IxoDid modelled after Sovrin documents
+// Above xcodid modelled after Sovrin documents
 // Ref: https://www.npmjs.com/package/sovrin-did
 // {
 //    did: "<base58 did>",
@@ -101,8 +101,8 @@ func (s Secret) Equals(other Secret) bool {
 //    }
 // }
 
-func NewIxoDid(did, verifyKey, encryptionPublicKey string, secret Secret) IxoDid {
-	return IxoDid{
+func Newxcodid(did, verifyKey, encryptionPublicKey string, secret Secret) xcodid {
+	return xcodid{
 		Did:                 did,
 		VerifyKey:           verifyKey,
 		EncryptionPublicKey: encryptionPublicKey,
@@ -110,7 +110,7 @@ func NewIxoDid(did, verifyKey, encryptionPublicKey string, secret Secret) IxoDid
 	}
 }
 
-func (id IxoDid) Equals(other IxoDid) bool {
+func (id xcodid) Equals(other xcodid) bool {
 	return id.Did == other.Did &&
 		id.VerifyKey == other.VerifyKey &&
 		id.EncryptionPublicKey == other.EncryptionPublicKey &&
@@ -126,7 +126,7 @@ func VerifyKeyToAddr(verifyKey string) sdk.AccAddress {
 	return sdk.AccAddress(pubKey.Address())
 }
 
-func (id IxoDid) Address() sdk.AccAddress {
+func (id xcodid) Address() sdk.AccAddress {
 	return VerifyKeyToAddr(id.VerifyKey)
 }
 
@@ -138,7 +138,7 @@ func GenerateMnemonic() (string, error) {
 	return bip39.NewMnemonic(entropy)
 }
 
-func FromMnemonic(mnemonic string) (IxoDid, error) {
+func FromMnemonic(mnemonic string) (xcodid, error) {
 	seed := sha256.New()
 	seed.Write([]byte(mnemonic))
 
@@ -148,19 +148,19 @@ func FromMnemonic(mnemonic string) (IxoDid, error) {
 	return FromSeed(seed32)
 }
 
-func Gen() (IxoDid, error) {
+func Gen() (xcodid, error) {
 	var seed [32]byte
 	_, err := io.ReadFull(cryptoRand.Reader, seed[:])
 	if err != nil {
-		return IxoDid{}, err
+		return xcodid{}, err
 	}
 	return FromSeed(seed)
 }
 
-func FromSeed(seed [32]byte) (IxoDid, error) {
+func FromSeed(seed [32]byte) (xcodid, error) {
 	publicKeyBytes, privateKeyBytes, err := ed25519Local.GenerateKey(bytes.NewReader(seed[0:32]))
 	if err != nil {
-		return IxoDid{}, err
+		return xcodid{}, err
 	}
 	publicKey := []byte(publicKeyBytes)
 	privateKey := []byte(privateKeyBytes)
@@ -168,10 +168,10 @@ func FromSeed(seed [32]byte) (IxoDid, error) {
 	signKey := base58.Encode(privateKey[:32])
 	keyPairPublicKey, keyPairPrivateKey, err := naclBox.GenerateKey(bytes.NewReader(privateKey[:]))
 	if err != nil {
-		return IxoDid{}, err
+		return xcodid{}, err
 	}
 
-	return IxoDid{
+	return xcodid{
 		Did:                 DidPrefix + base58.Encode(publicKey[:16]),
 		VerifyKey:           base58.Encode(publicKey),
 		EncryptionPublicKey: base58.Encode(keyPairPublicKey[:]),
@@ -183,14 +183,14 @@ func FromSeed(seed [32]byte) (IxoDid, error) {
 	}, nil
 }
 
-func (id IxoDid) SignMessage(msg []byte) ([]byte, error) {
+func (id xcodid) SignMessage(msg []byte) ([]byte, error) {
 	var privateKey ed25519.PrivKey
 	privateKey.Key = append(base58.Decode(id.Secret.SignKey), base58.Decode(id.VerifyKey)...)
 
 	return privateKey.Sign(msg)
 }
 
-func (id IxoDid) VerifySignedMessage(msg []byte, sig []byte) bool {
+func (id xcodid) VerifySignedMessage(msg []byte, sig []byte) bool {
 	var publicKey ed25519.PubKey
 	publicKey.Key = base58.Decode(id.VerifyKey)
 

@@ -4,9 +4,9 @@ import (
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	libixo "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	"github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	"github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	libxco "github.com/furylockerroom/xco-blockchain/lib/xco"
+	"github.com/furylockerroom/xco-blockchain/lib/legacydid"
+	"github.com/furylockerroom/xco-blockchain/x/iid/types"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := legacydid.UnmarshalIxoDid(args[0])
+			xcodid, err := legacydid.Unmarshalxcodid(args[0])
 			if err != nil {
 				return err
 			}
@@ -32,20 +32,20 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 			// 	return err
 			// }
 			// did
-			did := types.DID(ixoDid.Did)
+			did := types.DID(xcodid.Did)
 			// verification
 			// signer := clientCtx.GetFromAddress()
 			// pubkey
 
-			pubKey := ixoDid.VerifyKey
+			pubKey := xcodid.VerifyKey
 
-			clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+			clientCtx = clientCtx.WithFromAddress(xcodid.Address())
 
 			// understand the vmType
 
 			auth := types.NewVerification(
 				types.NewVerificationMethod(
-					ixoDid.Did,
+					xcodid.Did,
 					did,
 					types.NewPublicKeyMultibase(base58.Decode(pubKey), types.DIDVMethodTypeEd25519VerificationKey2018),
 				),
@@ -60,7 +60,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				types.AccordedRights{},
 				types.LinkedResources{},
 				types.LinkedEntities{},
-				ixoDid.Address().String(),
+				xcodid.Address().String(),
 				types.Contexts{},
 			)
 			// validate
@@ -68,7 +68,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				return err
 			}
 			// execute
-			return libixo.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+			return libxco.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcodid, msg)
 		},
 	}
 

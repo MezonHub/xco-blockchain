@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
+	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
 )
 
 var (

@@ -9,7 +9,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
+	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
 	didexported "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	didtypes "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	iidkeeper "github.com/furylockerroom/xco-blockchain/x/iid/keeper"

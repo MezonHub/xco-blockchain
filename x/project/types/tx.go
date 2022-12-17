@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
-	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
+	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
 	didexported "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	didtypes "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	iidtypes "github.com/furylockerroom/xco-blockchain/x/iid/types"

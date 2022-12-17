@@ -19,7 +19,7 @@ import (
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	"github.com/furylockerroom/xco-blockchain/x/project/types"
 
-	libxco "github.com/furylockerroom/xco-blockchain/lib/xco"
+	libxco "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 
 	iidkeeper "github.com/furylockerroom/xco-blockchain/x/iid/keeper"
 	iidutil "github.com/furylockerroom/xco-blockchain/x/iid/util"

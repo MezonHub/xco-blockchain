@@ -90,7 +90,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/furylockerroom/xco-blockchain/app/params"
 	"github.com/furylockerroom/xco-blockchain/client/tx"
-	libxco "github.com/furylockerroom/xco-blockchain/lib/xco"
+	libxco "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 	"github.com/furylockerroom/xco-blockchain/x/bonds"
 	bondskeeper "github.com/furylockerroom/xco-blockchain/x/bonds/keeper"
 	bondstypes "github.com/furylockerroom/xco-blockchain/x/bonds/types"

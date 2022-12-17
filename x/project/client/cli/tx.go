@@ -5,7 +5,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
+	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 	didtypes "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	iidtypes "github.com/furylockerroom/xco-blockchain/x/iid/types"
 	"github.com/furylockerroom/xco-blockchain/x/project/types"

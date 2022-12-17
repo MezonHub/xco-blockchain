@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
+	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	params "github.com/cosmos/cosmos-sdk/x/params/types"

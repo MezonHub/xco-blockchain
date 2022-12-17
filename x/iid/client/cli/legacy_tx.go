@@ -4,7 +4,7 @@ import (
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	libxco "github.com/furylockerroom/xco-blockchain/lib/xco"
+	libxco "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 	"github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	"github.com/furylockerroom/xco-blockchain/x/iid/types"
 	"github.com/spf13/cobra"

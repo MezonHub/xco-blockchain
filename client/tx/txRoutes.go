@@ -13,7 +13,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
 	"github.com/gorilla/mux"
 	"github.com/furylockerroom/xco-blockchain/compatibility"
-	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
+	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 	didexported "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	projecttypes "github.com/furylockerroom/xco-blockchain/x/project/types"
 )

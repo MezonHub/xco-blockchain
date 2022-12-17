@@ -10,7 +10,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	xcotypes "github.com/furylockerroom/xco-blockchain/lib/xco"
+	xcotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
 	didtypes "github.com/furylockerroom/xco-blockchain/lib/legacydid"
 	bondsclient "github.com/furylockerroom/xco-blockchain/x/bonds/client"
 	"github.com/furylockerroom/xco-blockchain/x/bonds/types"

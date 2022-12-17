@@ -36,8 +36,8 @@ template: |
   ## Quick Start
   ### Homebrew
   ```
-  brew tap furylockerroom/xco
-  brew install xco-blockchain@$MAJOR.$MINOR
+  brew tap ixofoundation/ixo
+  brew install ixo-blockchain@$MAJOR.$MINOR
   ```
 
   ### Docker
@@ -46,6 +46,6 @@ template: |
     --name xco-blockchain \
     -p 1317:1317 \
     -p 26657:26657 \
-    ghcr.io/furylockerroom/xco-blockchain:v$RESOLVED_VERSION \
+    ghcr.io/ixofoundation/ixo-blockchain:v$RESOLVED_VERSION \
     start
   ```

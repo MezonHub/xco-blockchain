@@ -4,7 +4,7 @@ import (
 	fmt "fmt"
 
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	types "github.com/xcohub/xco-blockchain/x/iid/types"
 )
 
 var (

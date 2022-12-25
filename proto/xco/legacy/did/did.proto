@@ -3,7 +3,7 @@ package legacydid;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/ixofoundation/ixo-blockchain/lib/legacydid";
+option go_package = "github.com/xcohub/xco-blockchain/lib/legacydid";
 
 // Digital identity credential issued to an ixo DID
 message DidCredential {
@@ -20,7 +20,7 @@ message Claim {
 }
 
 // An ixo DID with public and private keys, based on the Sovrin DID spec
-message IxoDid {
+message XcoDid {
   string did                   = 1 [(gogoproto.moretags) = "yaml:\"did\""];
   string verify_key            = 2 [(gogoproto.jsontag) = "verifyKey", (gogoproto.moretags) = "yaml:\"verifyKey\""];
   string encryption_public_key = 3 [(gogoproto.jsontag) = "encryptionPublicKey", (gogoproto.moretags) = "yaml:\"encryptionPublicKey\""];

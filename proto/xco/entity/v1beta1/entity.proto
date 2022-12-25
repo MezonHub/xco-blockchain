@@ -3,7 +3,7 @@ package ixo.entity.v1beta1;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/ixofoundation/ixo-blockchain/x/entity/types";
+option go_package = "github.com/xcohub/xco-blockchain/x/entity/types";
 
 message Params {
   string NftContractAddress = 1 [(gogoproto.jsontag) = "NftContractAddress", (gogoproto.moretags) = "yaml:\"NftContractAddress\""];

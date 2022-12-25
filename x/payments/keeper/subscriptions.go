@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/ixofoundation/ixo-blockchain/x/payments/types"
+	"github.com/xcohub/xco-blockchain/x/payments/types"
 )
 
 // -------------------------------------------------------- Subscriptions Get/Set

@@ -7,7 +7,7 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	"github.com/ixofoundation/ixo-blockchain/x/payments/types"
+	"github.com/xcohub/xco-blockchain/x/payments/types"
 )
 
 // -------------------------------------------------------- PaymentTemplates Get/Set

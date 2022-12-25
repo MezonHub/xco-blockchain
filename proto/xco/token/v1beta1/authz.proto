@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 import "cosmos_proto/cosmos.proto";
 
 
-option go_package = "github.com/ixofoundation/ixo-blockchain/x/token/types";
+option go_package = "github.com/xcohub/xco-blockchain/x/token/types";
 
 
 message Cw20Constraints {
@@ -35,6 +35,6 @@ message MintConstraints {
 message MintAuthorization {
   option (cosmos_proto.implements_interface) = "Authorization";
 
-  string minterDid = 1 [(gogoproto.casttype) = "github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment", (gogoproto.jsontag) = "minter_did", (gogoproto.moretags) = "yaml:\"minter_did\""];
+  string minterDid = 1 [(gogoproto.casttype) = "github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment", (gogoproto.jsontag) = "minter_did", (gogoproto.moretags) = "yaml:\"minter_did\""];
   repeated MintConstraints constraints = 2 [(gogoproto.jsontag) = "cw20_limits", (gogoproto.moretags) = "yaml:\"cw20_limits\""];
 }

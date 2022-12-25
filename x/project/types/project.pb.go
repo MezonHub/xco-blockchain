@@ -10,7 +10,7 @@ import (
 	types "github.com/cosmos/cosmos-sdk/types"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/xcohub/xco-blockchain/x/iid/types"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -82,7 +82,7 @@ func (m *UpdateProjectStatusDoc) GetEthFundingTxnId() string {
 
 // CreateAgentDoc contains details required to create an agent.
 type CreateAgentDoc struct {
-	AgentDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=agent_did,json=agentDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"did" yaml:"did"`
+	AgentDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=agent_did,json=agentDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"did" yaml:"did"`
 	Role     string                                                          `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty" yaml:"role"`
 }
 
@@ -303,7 +303,7 @@ func (m *CreateEvaluationDoc) GetStatus() string {
 // WithdrawFundsDoc contains details required to withdraw funds from a specific project.
 type WithdrawFundsDoc struct {
 	ProjectDid   string                                                          `protobuf:"bytes,1,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
-	RecipientDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=recipient_did,json=recipientDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"recipientDid" yaml:"recipientDid"`
+	RecipientDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=recipient_did,json=recipientDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"recipientDid" yaml:"recipientDid"`
 	Amount       github_com_cosmos_cosmos_sdk_types.Int                          `protobuf:"bytes,3,opt,name=amount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"amount" yaml:"amount"`
 	IsRefund     bool                                                            `protobuf:"varint,4,opt,name=is_refund,json=isRefund,proto3" json:"isRefund" yaml:"isRefund"`
 }
@@ -366,7 +366,7 @@ func (m *WithdrawFundsDoc) GetIsRefund() bool {
 type ProjectDoc struct {
 	TxHash     string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
 	ProjectDid string                                                          `protobuf:"bytes,2,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
-	SenderDid  github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,3,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid  github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,3,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	PubKey     string                                                          `protobuf:"bytes,4,opt,name=pub_key,json=pubKey,proto3" json:"pubKey" yaml:"pubKey"`
 	Status     string                                                          `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty" yaml:"status"`
 	Data       encoding_json.RawMessage                                        `protobuf:"bytes,6,opt,name=data,proto3,casttype=encoding/json.RawMessage" json:"data,omitempty" yaml:"iid"`
@@ -450,7 +450,7 @@ func (m *ProjectDoc) GetData() encoding_json.RawMessage {
 // WithdrawalInfoDoc contains details required to withdraw from a specific project.
 type WithdrawalInfoDoc struct {
 	ProjectDid   string                                                          `protobuf:"bytes,1,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
-	RecipientDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=recipient_did,json=recipientDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"recipientDid" yaml:"recipientDid"`
+	RecipientDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=recipient_did,json=recipientDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"recipientDid" yaml:"recipientDid"`
 	Amount       types.Coin                                                      `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount" yaml:"amount"`
 }
 
@@ -510,7 +510,7 @@ func (m *WithdrawalInfoDoc) GetAmount() types.Coin {
 
 // Params defines the parameters for the project module.
 type Params struct {
-	IxoDid                       string                                   `protobuf:"bytes,1,opt,name=ixo_did,json=ixoDid,proto3" json:"ixo_did,omitempty" yaml:"ixo_did"`
+	XcoDid                       string                                   `protobuf:"bytes,1,opt,name=ixo_did,json=ixoDid,proto3" json:"ixo_did,omitempty" yaml:"ixo_did"`
 	ProjectMinimumInitialFunding github_com_cosmos_cosmos_sdk_types.Coins `protobuf:"bytes,2,rep,name=project_minimum_initial_funding,json=projectMinimumInitialFunding,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.Coins" json:"project_minimum_initial_funding" yaml:"project_minimum_initial_funding"`
 	OracleFeePercentage          github_com_cosmos_cosmos_sdk_types.Dec   `protobuf:"bytes,3,opt,name=oracle_fee_percentage,json=oracleFeePercentage,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"oracle_fee_percentage" yaml:"oracle_fee_percentage"`
 	NodeFeePercentage            github_com_cosmos_cosmos_sdk_types.Dec   `protobuf:"bytes,4,opt,name=node_fee_percentage,json=nodeFeePercentage,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"node_fee_percentage" yaml:"node_fee_percentage"`
@@ -549,9 +549,9 @@ func (m *Params) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Params proto.InternalMessageInfo
 
-func (m *Params) GetIxoDid() string {
+func (m *Params) GetXcoDid() string {
 	if m != nil {
-		return m.IxoDid
+		return m.XcoDid
 	}
 	return ""
 }
@@ -567,7 +567,7 @@ func (m *Params) GetProjectMinimumInitialFunding() github_com_cosmos_cosmos_sdk_
 type Claim struct {
 	Id         string                                                          `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" yaml:"id"`
 	TemplateId string                                                          `protobuf:"bytes,2,opt,name=template_id,json=templateId,proto3" json:"template_id,omitempty" yaml:"template_id"`
-	ClaimerDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,3,opt,name=claimer_did,json=claimerDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"claimer_did,omitempty" yaml:"claimer_did"`
+	ClaimerDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,3,opt,name=claimer_did,json=claimerDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"claimer_did,omitempty" yaml:"claimer_did"`
 	Status     string                                                          `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty" yaml:"status"`
 }
 
@@ -1329,10 +1329,10 @@ func (m *Params) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x12
 		}
 	}
-	if len(m.IxoDid) > 0 {
-		i -= len(m.IxoDid)
-		copy(dAtA[i:], m.IxoDid)
-		i = encodeVarintProject(dAtA, i, uint64(len(m.IxoDid)))
+	if len(m.XcoDid) > 0 {
+		i -= len(m.XcoDid)
+		copy(dAtA[i:], m.XcoDid)
+		i = encodeVarintProject(dAtA, i, uint64(len(m.XcoDid)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1728,7 +1728,7 @@ func (m *Params) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.IxoDid)
+	l = len(m.XcoDid)
 	if l > 0 {
 		n += 1 + l + sovProject(uint64(l))
 	}
@@ -3032,7 +3032,7 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IxoDid", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field XcoDid", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -3060,7 +3060,7 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.IxoDid = string(dAtA[iNdEx:postIndex])
+			m.XcoDid = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {

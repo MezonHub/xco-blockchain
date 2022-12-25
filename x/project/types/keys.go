@@ -1,6 +1,6 @@
 package types
 
-import didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
+import didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
 
 const (
 	ModuleName        = "project"

@@ -1,3 +1,3 @@
 package ixo
 
-const IxoNativeToken = "uixo"
+const XcoNativeToken = "uxco"

@@ -9,14 +9,14 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	didtypes "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	paymentskeeper "github.com/ixofoundation/ixo-blockchain/x/payments/keeper"
-	paymentstypes "github.com/ixofoundation/ixo-blockchain/x/payments/types"
-	"github.com/ixofoundation/ixo-blockchain/x/project/types"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
+	didtypes "github.com/xcohub/xco-blockchain/lib/legacydid"
+	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
+	paymentskeeper "github.com/xcohub/xco-blockchain/x/payments/keeper"
+	paymentstypes "github.com/xcohub/xco-blockchain/x/payments/types"
+	"github.com/xcohub/xco-blockchain/x/project/types"
 )
 
 type msgServer struct {
@@ -26,8 +26,8 @@ type msgServer struct {
 }
 
 const (
-	IxoAccountFeesId               types.InternalAccountID = "IxoFees"
-	IxoAccountPayFeesId            types.InternalAccountID = "IxoPayFees"
+	XcoAccountFeesId               types.InternalAccountID = "XcoFees"
+	XcoAccountPayFeesId            types.InternalAccountID = "XcoPayFees"
 	InitiatingNodeAccountPayFeesId types.InternalAccountID = "InitiatingNodePayFees"
 )
 
@@ -61,10 +61,10 @@ func (s msgServer) CreateProject(goCtx context.Context, msg *types.MsgCreateProj
 	}
 
 	// Create all necessary initial project accounts
-	if _, err = createAccountInProjectAccounts(ctx, k, msg.ProjectDid, IxoAccountFeesId); err != nil {
+	if _, err = createAccountInProjectAccounts(ctx, k, msg.ProjectDid, XcoAccountFeesId); err != nil {
 		return nil, err
 	}
-	if _, err = createAccountInProjectAccounts(ctx, k, msg.ProjectDid, IxoAccountPayFeesId); err != nil {
+	if _, err = createAccountInProjectAccounts(ctx, k, msg.ProjectDid, XcoAccountPayFeesId); err != nil {
 		return nil, err
 	}
 	if _, err = createAccountInProjectAccounts(ctx, k, msg.ProjectDid, InitiatingNodeAccountPayFeesId); err != nil {
@@ -202,19 +202,19 @@ func (s msgServer) UpdateProjectStatus(goCtx context.Context, msg *types.MsgUpda
 
 func payoutFees(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid didexported.Did) error {
 
-	_, err := payAllFeesToAddress(ctx, k, bk, projectDid, IxoAccountPayFeesId, IxoAccountFeesId)
+	_, err := payAllFeesToAddress(ctx, k, bk, projectDid, XcoAccountPayFeesId, XcoAccountFeesId)
 	if err != nil {
 		return err
 	}
 
-	_, err = payAllFeesToAddress(ctx, k, bk, projectDid, InitiatingNodeAccountPayFeesId, IxoAccountFeesId)
+	_, err = payAllFeesToAddress(ctx, k, bk, projectDid, InitiatingNodeAccountPayFeesId, XcoAccountFeesId)
 	if err != nil {
 		return err
 	}
 
-	ixoDid := k.GetParams(ctx).IxoDid
-	amount := getIxoAmount(ctx, k, bk, projectDid, IxoAccountFeesId)
-	err = payoutAndRecon(ctx, k, bk, projectDid, IxoAccountFeesId, iidtypes.DIDFragment(ixoDid), amount)
+	ixoDid := k.GetParams(ctx).XcoDid
+	amount := getXcoAmount(ctx, k, bk, projectDid, XcoAccountFeesId)
+	err = payoutAndRecon(ctx, k, bk, projectDid, XcoAccountFeesId, iidtypes.DIDFragment(ixoDid), amount)
 	if err != nil {
 		return err
 	}
@@ -224,7 +224,7 @@ func payoutFees(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid dide
 
 func payAllFeesToAddress(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid didexported.Did,
 	sendingAddress types.InternalAccountID, receivingAddress types.InternalAccountID) (*sdk.Result, error) {
-	feesToPay := getIxoAmount(ctx, k, bk, projectDid, sendingAddress)
+	feesToPay := getXcoAmount(ctx, k, bk, projectDid, sendingAddress)
 
 	if feesToPay.Amount.LT(sdk.ZeroInt()) {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "negative fee to pay")
@@ -242,14 +242,14 @@ func payAllFeesToAddress(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projec
 	return nil, bk.SendCoins(ctx, sendingAccount, receivingAccount, sdk.Coins{feesToPay})
 }
 
-func getIxoAmount(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid didexported.Did, accountID types.InternalAccountID) sdk.Coin {
+func getXcoAmount(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid didexported.Did, accountID types.InternalAccountID) sdk.Coin {
 	found := checkAccountInProjectAccounts(ctx, k, projectDid, accountID)
 	if found {
 		accAddr, _ := getAccountInProjectAccounts(ctx, k, projectDid, accountID)
 		coins := bk.GetAllBalances(ctx, accAddr)
-		return sdk.NewCoin(ixotypes.IxoNativeToken, coins.AmountOf(ixotypes.IxoNativeToken))
+		return sdk.NewCoin(ixotypes.XcoNativeToken, coins.AmountOf(ixotypes.XcoNativeToken))
 	}
-	return sdk.NewCoin(ixotypes.IxoNativeToken, sdk.ZeroInt())
+	return sdk.NewCoin(ixotypes.XcoNativeToken, sdk.ZeroInt())
 }
 
 func (s msgServer) CreateAgent(goCtx context.Context, msg *types.MsgCreateAgent) (*types.MsgCreateAgentResponse, error) {
@@ -407,7 +407,7 @@ func (s msgServer) CreateEvaluation(goCtx context.Context, msg *types.MsgCreateE
 	if err == nil {
 		// Get ixo address
 		ixoAddr, err := getAccountInProjectAccounts(ctx, k, msg.ProjectDid,
-			IxoAccountPayFeesId)
+			XcoAccountPayFeesId)
 		if err != nil {
 			return nil, err
 		}
@@ -527,7 +527,7 @@ func (s msgServer) WithdrawFunds(goCtx context.Context, msg *types.MsgWithdrawFu
 		fromAccountId = types.InternalAccountID(recipientDid)
 	}
 
-	amountCoin := sdk.NewCoin(ixotypes.IxoNativeToken, amount)
+	amountCoin := sdk.NewCoin(ixotypes.XcoNativeToken, amount)
 	err = payoutAndRecon(ctx, k, bk, projectDid, fromAccountId, recipientDid, amountCoin)
 	if err != nil {
 		return nil, err
@@ -606,7 +606,7 @@ func payoutAndRecon(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid 
 		return nil
 	}
 
-	ixoBalance := getIxoAmount(ctx, k, bk, projectDid, fromAccountId)
+	ixoBalance := getXcoAmount(ctx, k, bk, projectDid, fromAccountId)
 	if ixoBalance.IsLT(amount) {
 		return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, "insufficient funds in specified account")
 	}

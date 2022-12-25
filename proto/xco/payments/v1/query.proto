@@ -5,7 +5,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "ixo/payments/v1/payments.proto";
 
-option go_package = "github.com/ixofoundation/ixo-blockchain/x/payments/types";
+option go_package = "github.com/xcohub/xco-blockchain/x/payments/types";
 
 // Query defines the gRPC querier service.
 service Query {

@@ -7,8 +7,8 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	_ "github.com/xcohub/xco-blockchain/x/iid/types"
+	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/xcohub/xco-blockchain/x/iid/types"
 	_ "github.com/regen-network/cosmos-proto"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	io "io"
@@ -266,7 +266,7 @@ func (*MintConstraints) XXX_OneofWrappers() []interface{} {
 }
 
 type MintAuthorization struct {
-	MinterDid   github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=minterDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
+	MinterDid   github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=minterDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
 	Constraints []*MintConstraints                                              `protobuf:"bytes,2,rep,name=constraints,proto3" json:"cw20_limits" yaml:"cw20_limits"`
 }
 

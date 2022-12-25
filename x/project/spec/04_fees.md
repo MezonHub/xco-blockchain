@@ -96,10 +96,10 @@ The payment contract's ID is contructed on-the-fly using the below template. Thi
 
 Thus, if a new and unique set of the above 4 values is encountered, a new payment contract is created. Otherwise, the existing payment contract is fetched. This means that the project contract can (and is) used to persist information between two or more payments of the same type.
 
-An example use case is when we want to specify a maximum payment. Consider a contract created based on a payment template that specifies a pay amount of 100IXO and a maximum of 300IXO.
-1. In the first `processPay()` call, a new payment contract is created and immediately effected (cumulative pay: `100IXO`)
-2. In the second `processPay()` call, the payment contract already exists and is fetched and the payment is effected (cumulative pay: `200IXO`).
-3. In the third `processPay()` call, the cumulative pay will have reached the maximum `300IXO`.
+An example use case is when we want to specify a maximum payment. Consider a contract created based on a payment template that specifies a pay amount of 100XCO and a maximum of 300XCO.
+1. In the first `processPay()` call, a new payment contract is created and immediately effected (cumulative pay: `100XCO`)
+2. In the second `processPay()` call, the payment contract already exists and is fetched and the payment is effected (cumulative pay: `200XCO`).
+3. In the third `processPay()` call, the cumulative pay will have reached the maximum `300XCO`.
 4. If a fourth `processPay()` call comes through, no further payment is effected, given that the contract cannot be effected due to the maximum being reached.
 
 If the project does not have enough funds to effect the payment contract, an error is returned by the function. An error is also returned if the payment contract payment cannot be effected.

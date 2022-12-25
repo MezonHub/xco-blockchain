@@ -13,7 +13,7 @@ func NewSetTokenContract(cw20Code, cw721Code, ixo1155Code uint64) SetTokenContra
 	return SetTokenContractCodes{
 		Cw20ContractCode:    cw20Code,
 		Cw721ContractCode:   cw721Code,
-		Ixo1155ContractCode: ixo1155Code,
+		Xco1155ContractCode: ixo1155Code,
 	}
 }
 

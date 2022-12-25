@@ -10,11 +10,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	didtypes "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	bondsclient "github.com/ixofoundation/ixo-blockchain/x/bonds/client"
-	"github.com/ixofoundation/ixo-blockchain/x/bonds/types"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	didtypes "github.com/xcohub/xco-blockchain/lib/legacydid"
+	bondsclient "github.com/xcohub/xco-blockchain/x/bonds/client"
+	"github.com/xcohub/xco-blockchain/x/bonds/types"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
 )
 
 func NewTxCmd() *cobra.Command {
@@ -135,7 +135,7 @@ func NewCmdCreateBond() *cobra.Command {
 			}
 
 			// Parse creator's ixo DID
-			creatorDid, err := didtypes.UnmarshalIxoDid(_creatorDid)
+			creatorDid, err := didtypes.UnmarshalXcoDid(_creatorDid)
 			if err != nil {
 				return err
 			}
@@ -215,7 +215,7 @@ func NewCmdEditBond() *cobra.Command {
 			_editorDid, _ := cmd.Flags().GetString(FlagEditorDid)
 
 			// Parse editor's ixo DID
-			editorDid, err := didtypes.UnmarshalIxoDid(_editorDid)
+			editorDid, err := didtypes.UnmarshalXcoDid(_editorDid)
 			if err != nil {
 				return err
 			}
@@ -264,7 +264,7 @@ func NewCmdSetNextAlpha() *cobra.Command {
 			}
 
 			// Parse editor's ixo DID
-			editorDid, err := didtypes.UnmarshalIxoDid(_editorDid)
+			editorDid, err := didtypes.UnmarshalXcoDid(_editorDid)
 			if err != nil {
 				return err
 			}
@@ -301,7 +301,7 @@ func NewCmdUpdateBondState() *cobra.Command {
 			_editorDid := args[2]
 
 			// Parse editor's ixo DID
-			editorDid, err := didtypes.UnmarshalIxoDid(_editorDid)
+			editorDid, err := didtypes.UnmarshalXcoDid(_editorDid)
 			if err != nil {
 				return err
 			}
@@ -347,7 +347,7 @@ func NewCmdBuy() *cobra.Command {
 			}
 
 			// Parse buyer's ixo DID
-			buyerDid, err := didtypes.UnmarshalIxoDid(args[3])
+			buyerDid, err := didtypes.UnmarshalXcoDid(args[3])
 			if err != nil {
 				return err
 			}
@@ -387,7 +387,7 @@ func NewCmdSell() *cobra.Command {
 			}
 
 			// Parse seller's ixo DID
-			sellerDid, err := didtypes.UnmarshalIxoDid(args[2])
+			sellerDid, err := didtypes.UnmarshalXcoDid(args[2])
 			if err != nil {
 				return err
 			}
@@ -429,7 +429,7 @@ func NewCmdSwap() *cobra.Command {
 			}
 
 			// Parse swapper's ixo DID
-			swapperDid, err := didtypes.UnmarshalIxoDid(args[4])
+			swapperDid, err := didtypes.UnmarshalXcoDid(args[4])
 			if err != nil {
 				return err
 			}
@@ -468,7 +468,7 @@ func NewCmdMakeOutcomePayment() *cobra.Command {
 			}
 
 			// Parse sender's ixo DID
-			sender, err := didtypes.UnmarshalIxoDid(args[2])
+			sender, err := didtypes.UnmarshalXcoDid(args[2])
 			if err != nil {
 				return err
 			}
@@ -502,7 +502,7 @@ func NewCmdWithdrawShare() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			// Parse recipient's ixo DID
-			recipientDid, err := didtypes.UnmarshalIxoDid(args[1])
+			recipientDid, err := didtypes.UnmarshalXcoDid(args[1])
 			if err != nil {
 				return err
 			}
@@ -541,7 +541,7 @@ func NewCmdWithdrawReserve() *cobra.Command {
 			}
 
 			// Parse withdrawer's ixo DID
-			withdrawerDid, err := didtypes.UnmarshalIxoDid(args[2])
+			withdrawerDid, err := didtypes.UnmarshalXcoDid(args[2])
 			if err != nil {
 				return err
 			}

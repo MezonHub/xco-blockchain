@@ -4,11 +4,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	iidante "github.com/ixofoundation/ixo-blockchain/x/iid/ante"
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	projectante "github.com/ixofoundation/ixo-blockchain/x/project/ante"
-	projectkeeper "github.com/ixofoundation/ixo-blockchain/x/project/keeper"
-	projecttypes "github.com/ixofoundation/ixo-blockchain/x/project/types"
+	iidante "github.com/xcohub/xco-blockchain/x/iid/ante"
+	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	projectante "github.com/xcohub/xco-blockchain/x/project/ante"
+	projectkeeper "github.com/xcohub/xco-blockchain/x/project/keeper"
+	projecttypes "github.com/xcohub/xco-blockchain/x/project/types"
 
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
@@ -28,7 +28,7 @@ import (
 // NewAnteHandler returns an AnteHandler that checks and increments sequence
 // numbers, checks signatures & account numbers, and deducts fees from the first
 // signer.
-// func IxoAnteHandler(
+// func XcoAnteHandler(
 // 	ak authante.AccountKeeper,
 // 	bankKeeper authtypes.BankKeeper,
 // 	feeGrantKeeper authante.FeegrantKeeper,
@@ -77,7 +77,7 @@ func checkForCreateProjectMessages(tx sdk.Tx) bool {
 	return false
 }
 
-func IxoAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
+func XcoAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
 	if options.AccountKeeper == nil {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrLogic, "account keeper is required for ante builder")
 	}

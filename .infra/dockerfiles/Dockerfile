@@ -41,13 +41,13 @@ ENTRYPOINT [ "starport", "chain", "serve" ]
 FROM --platform=linux/amd64 build-dependencies AS build-binary
 COPY ./ ./
 
-ENV IXOD_HOME="/home/ixo/"
-RUN mkdir -p ${IXOD_HOME}/iid
+ENV XCOD_HOME="/home/ixo/"
+RUN mkdir -p ${XCOD_HOME}/iid
 
 RUN go mod tidy && go mod vendor
 RUN make install
 
-# RUN tar -xzf /dist/app/ixo-blockchain_linux_amd64.tar.gz -C /dist/app/
+# RUN tar -xzf /dist/app/xco-blockchain_linux_amd64.tar.gz -C /dist/app/
 
 # FROM ubuntu:latest AS setup-genisis
 # COPY ./.infra/dockerfiles/setups/setup-genisis.sh /setup/setup-genisis.sh
@@ -55,7 +55,7 @@ RUN make install
 
 # RUN curl https://raw.githubusercontent.com/ixofoundation/genesis/master/pandora-4/genesis.json
 
-ENTRYPOINT ["ixod", "start"]
+ENTRYPOINT ["xcod", "start"]
 
 ##
 ## Build Distrubutiable Blockchain
@@ -63,12 +63,12 @@ ENTRYPOINT ["ixod", "start"]
 
 FROM --platform=linux/amd64 ubuntu:latest  as distributable
 
-COPY --from=build-binary /go/bin/ixod /app/ixod
+COPY --from=build-binary /go/bin/xcod /app/xcod
 COPY --from=build-binary /go/pkg/mod/github.com/!cosm!wasm/wasmvm@v1.1.1/internal/api/ /go/pkg/mod/github.com/!cosm!wasm/wasmvm@v1.1.1/internal/api/
 COPY ./.infra/dockerfiles/setups/setup-devnet.sh /root/setup-devnet.sh
 
 ENV HOME=/root/
-RUN rm -rf /root/.ixod/ && chmod +x /root/setup-devnet.sh
+RUN rm -rf /root/.xcod/ && chmod +x /root/setup-devnet.sh
 
 ONBUILD LABEL world.ixo.blockchain.image.authors="willem.mouton@ixo.world"
 
@@ -77,7 +77,7 @@ ONBUILD WORKDIR /app
 ONBUILD EXPOSE 1317
 ONBUILD EXPOSE 26657
 
-# ONBUILD ENTRYPOINT ["/app/ixod", "start", "--rpc.laddr", "tcp://0.0.0.0:26657"]
+# ONBUILD ENTRYPOINT ["/app/xcod", "start", "--rpc.laddr", "tcp://0.0.0.0:26657"]
 
 FROM distributable AS dist-devel
 # RUN echo "Fetch genisis file"

@@ -11,7 +11,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	govcli "github.com/cosmos/cosmos-sdk/x/gov/client/cli"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	"github.com/ixofoundation/ixo-blockchain/x/entity/types"
+	"github.com/xcohub/xco-blockchain/x/entity/types"
 	"github.com/spf13/cobra"
 )
 
@@ -123,7 +123,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		senderDid := args[0]
 // 		status := args[1]
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[2])
+// 		ixoDid, err := didtypes.UnmarshalXcoDid(args[2])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -179,7 +179,7 @@ func NewCmdCreateEntity() *cobra.Command {
 
 // 		createAgentDoc := types.NewCreateAgentDoc(agentDid, role)
 
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+// 		ixoDid, err := didtypes.UnmarshalXcoDid(args[4])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -223,7 +223,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		updateAgentDoc := types.NewUpdateAgentDoc(
 // 			agentDid, agentStatus, agentRole)
 
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[5])
+// 		ixoDid, err := didtypes.UnmarshalXcoDid(args[5])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -260,7 +260,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		claimTemplateId := args[3]
 // 		createClaimDoc := types.NewCreateClaimDoc(claimId, claimTemplateId)
 
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+// 		ixoDid, err := didtypes.UnmarshalXcoDid(args[4])
 // 		if err != nil {
 // 			return err
 // 		}
@@ -303,7 +303,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 			createEvaluationDoc := types.NewCreateEvaluationDoc(
 // 				claimId, claimStatus)
 
-// 			ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+// 			ixoDid, err := didtypes.UnmarshalXcoDid(args[4])
 // 			if err != nil {
 // 				return err
 // 			}
@@ -334,7 +334,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 		Short: "Withdraw funds.",
 // 		Args:  cobra.ExactArgs(2),
 // 		RunE: func(cmd *cobra.Command, args []string) error {
-// 			ixoDid, err := didtypes.UnmarshalIxoDid(args[0])
+// 			ixoDid, err := didtypes.UnmarshalXcoDid(args[0])
 // 			if err != nil {
 // 				return err
 // 			}
@@ -373,7 +373,7 @@ func NewCmdCreateEntity() *cobra.Command {
 // 	RunE: func(cmd *cobra.Command, args []string) error {
 // 		senderDid := args[0]
 // 		projectDataStr := args[1]
-// 		ixoDid, err := didtypes.UnmarshalIxoDid(args[2])
+// 		ixoDid, err := didtypes.UnmarshalXcoDid(args[2])
 // 		if err != nil {
 // 			return err
 // 		}

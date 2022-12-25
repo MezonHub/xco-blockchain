@@ -20,14 +20,14 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	exported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
+	exported "github.com/xcohub/xco-blockchain/lib/legacydid"
 	"github.com/spf13/pflag"
 )
 
 var (
-	expectedMinGasPrices       = "0.025" + IxoNativeToken
+	expectedMinGasPrices       = "0.025" + XcoNativeToken
 	approximationGasAdjustment = float64(1.5)
-	fees                       = "1000000" + IxoNativeToken
+	fees                       = "1000000" + XcoNativeToken
 	// TODO: parameterise (or remove) hard-coded gas prices and adjustments
 
 	// simulation signature values used to estimate gas consumption
@@ -41,7 +41,7 @@ func init() {
 	copy(simEd25519Pubkey.Key[:], bz)
 }
 
-type PubKeyGetter func(ctx sdk.Context, msg IxoMsg, sigs []signing.SignatureV2) (cryptotypes.PubKey, error)
+type PubKeyGetter func(ctx sdk.Context, msg XcoMsg, sigs []signing.SignatureV2) (cryptotypes.PubKey, error)
 
 // func NewDefaultAnteHandler(
 // 	ak authkeeper.AccountKeeper,
@@ -64,7 +64,7 @@ type PubKeyGetter func(ctx sdk.Context, msg IxoMsg, sigs []signing.SignatureV2) 
 // 	// Below we present the differences in the customised decorators.
 // 	//
 // 	// In general:
-// 	// - Enforces messages to be of type IxoMsg, to be used with pubKeyGetter.
+// 	// - Enforces messages to be of type XcoMsg, to be used with pubKeyGetter.
 // 	// - Does not allow for multiple messages (to be added in the future).
 // 	// - Does not allow for multiple signatures (to be added in the future).
 // 	//
@@ -108,12 +108,12 @@ type PubKeyGetter func(ctx sdk.Context, msg IxoMsg, sigs []signing.SignatureV2) 
 // 	)
 // }
 
-func GenerateOrBroadcastTxCLI(clientCtx client.Context, flagSet *pflag.FlagSet, ixoDid exported.IxoDid, msg sdk.Msg) error {
+func GenerateOrBroadcastTxCLI(clientCtx client.Context, flagSet *pflag.FlagSet, ixoDid exported.XcoDid, msg sdk.Msg) error {
 	txf := tx.NewFactoryCLI(clientCtx, flagSet)
 	return GenerateOrBroadcastTxWithFactory(clientCtx, txf, ixoDid, msg)
 }
 
-func GenerateOrBroadcastTxWithFactory(clientCtx client.Context, txf tx.Factory, ixoDid exported.IxoDid, msg sdk.Msg) error {
+func GenerateOrBroadcastTxWithFactory(clientCtx client.Context, txf tx.Factory, ixoDid exported.XcoDid, msg sdk.Msg) error {
 	if clientCtx.GenerateOnly {
 		return tx.GenerateTx(clientCtx, txf, msg) // like old PrintUnsignedStdTx
 	}
@@ -121,7 +121,7 @@ func GenerateOrBroadcastTxWithFactory(clientCtx client.Context, txf tx.Factory, 
 	return BroadcastTx(clientCtx, txf, ixoDid, msg)
 }
 
-func BroadcastTx(clientCtx client.Context, txf tx.Factory, ixoDid exported.IxoDid, msg sdk.Msg) error {
+func BroadcastTx(clientCtx client.Context, txf tx.Factory, ixoDid exported.XcoDid, msg sdk.Msg) error {
 	txf, err := prepareFactory(clientCtx, txf)
 	if err != nil {
 		return err
@@ -190,7 +190,7 @@ func checkMultipleSigners(mode signing.SignMode, tx authsigning.Tx) error {
 	return nil
 }
 
-func Sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, overwriteSig bool, ixoDid exported.IxoDid) error {
+func Sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, overwriteSig bool, ixoDid exported.XcoDid) error {
 	var privateKey ed25519.PrivKey
 	privateKey.Key = append(base58.Decode(ixoDid.Secret.SignKey), base58.Decode(ixoDid.VerifyKey)...)
 
@@ -267,7 +267,7 @@ func Sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, 
 }
 
 // Identical to DefaultSigVerificationGasConsumer, but with ed25519 allowed
-func IxoSigVerificationGasConsumer(
+func XcoSigVerificationGasConsumer(
 	meter sdk.GasMeter, sig signing.SignatureV2, params authtypes.Params,
 ) error {
 	pubkey := sig.PubKey
@@ -297,7 +297,7 @@ func IxoSigVerificationGasConsumer(
 }
 
 func SignAndBroadcastTxFromStdSignMsg(clientCtx client.Context,
-	msg sdk.Msg, ixoDid exported.IxoDid, flagSet *pflag.FlagSet) (*sdk.TxResponse, error) {
+	msg sdk.Msg, ixoDid exported.XcoDid, flagSet *pflag.FlagSet) (*sdk.TxResponse, error) {
 
 	txf := tx.NewFactoryCLI(clientCtx, flagSet)
 	txf = txf.WithFees(fees).WithGasPrices("").WithGas(0)

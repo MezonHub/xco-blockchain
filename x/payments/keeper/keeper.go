@@ -7,8 +7,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	"github.com/ixofoundation/ixo-blockchain/x/payments/types"
+	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	"github.com/xcohub/xco-blockchain/x/payments/types"
 )
 
 type Keeper struct {

@@ -2,7 +2,7 @@ package types
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
 )
 
 //	func didToAddressSplitter(did string) (sdk.AccAddress, error) {

@@ -77,7 +77,7 @@ jobs:
 
           - name: Build debian package
             os: ubuntu-latest
-            artifact: "ixod"
+            artifact: "xcod"
             enabled: false
             docker:
               file: .infra/dockerfiles/Dockerfile

@@ -10,8 +10,8 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	_ "github.com/xcohub/xco-blockchain/x/iid/types"
+	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/xcohub/xco-blockchain/x/iid/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -347,7 +347,7 @@ func (m *SetupCw1155) XXX_DiscardUnknown() {
 var xxx_messageInfo_SetupCw1155 proto.InternalMessageInfo
 
 type MsgSetupMinter struct {
-	MinterDid     github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=minterDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
+	MinterDid     github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=minterDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
 	MinterAddress string                                                          `protobuf:"bytes,2,opt,name=minterAddress,proto3" json:"minter_address" yaml:"minter_address"`
 	Name          string                                                          `protobuf:"bytes,4,opt,name=name,proto3" json:"name" yaml:"name"`
 	Description   string                                                          `protobuf:"bytes,5,opt,name=description,proto3" json:"description" yaml:"description"`
@@ -731,10 +731,10 @@ func (*MintCw1155) XXX_OneofWrappers() []interface{} {
 }
 
 type MsgMint struct {
-	MinterDid       github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=minterDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
+	MinterDid       github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=minterDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
 	MinterAddress   string                                                          `protobuf:"bytes,2,opt,name=minterAddress,proto3" json:"minter_address" yaml:"minter_address"`
 	ContractAddress string                                                          `protobuf:"bytes,3,opt,name=contractAddress,proto3" json:"contract_address" yaml:"contract_address"`
-	OwnerDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,4,opt,name=ownerDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
+	OwnerDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,4,opt,name=ownerDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"minter_did" yaml:"minter_did"`
 	// Types that are valid to be assigned to MintContract:
 	//	*MsgMint_Cw20
 	//	*MsgMint_Cw721

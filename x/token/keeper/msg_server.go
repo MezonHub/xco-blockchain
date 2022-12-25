@@ -7,11 +7,11 @@ import (
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	"github.com/ixofoundation/ixo-blockchain/x/token/types"
-	"github.com/ixofoundation/ixo-blockchain/x/token/types/contracts/cw20"
-	"github.com/ixofoundation/ixo-blockchain/x/token/types/contracts/cw721"
-	"github.com/ixofoundation/ixo-blockchain/x/token/types/contracts/ixo1155"
+	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	"github.com/xcohub/xco-blockchain/x/token/types"
+	"github.com/xcohub/xco-blockchain/x/token/types/contracts/cw20"
+	"github.com/xcohub/xco-blockchain/x/token/types/contracts/cw721"
+	"github.com/xcohub/xco-blockchain/x/token/types/contracts/ixo1155"
 )
 
 type msgServer struct {
@@ -81,9 +81,9 @@ func (s msgServer) SetupMinter(goCtx context.Context, msg *types.MsgSetupMinter)
 		}.Marshal()
 
 	case *types.MsgSetupMinter_Cw1155:
-		codeId = params.GetIxo1155ContractCode()
+		codeId = params.GetXco1155ContractCode()
 		label = fmt.Sprintf("%s-cw1155-contract", msg.MinterDid.String())
-		contractType = types.ContractType_IXO1155
+		contractType = types.ContractType_XCO1155
 		encodedInitiateMessage, err = ixo1155.InstantiateMsg{
 			Minter: minterAddress.String(),
 		}.Marshal()
@@ -103,7 +103,7 @@ func (s msgServer) SetupMinter(goCtx context.Context, msg *types.MsgSetupMinter)
 		minterAddress,
 		encodedInitiateMessage,
 		label,
-		sdk.NewCoins(sdk.NewCoin("uixo", sdk.ZeroInt())),
+		sdk.NewCoins(sdk.NewCoin("uxco", sdk.ZeroInt())),
 	)
 
 	if err != nil {
@@ -192,7 +192,7 @@ func (s msgServer) MintToken(goCtx context.Context, msg *types.MsgMint) (*types.
 		}.Marshal()
 
 	case *types.MsgMint_Cw1155:
-		if tokenMinter.ContractType != types.ContractType_IXO1155 {
+		if tokenMinter.ContractType != types.ContractType_XCO1155 {
 			return &types.MsgMintResponse{}, sdkerrors.ErrInvalidType.Wrap("selected contract is not a cw1155 contract type")
 		}
 		encodedMintMessage, err = ixo1155.Mint{
@@ -221,7 +221,7 @@ func (s msgServer) MintToken(goCtx context.Context, msg *types.MsgMint) (*types.
 		contractAddressBytes,
 		minterAddress,
 		encodedMintMessage,
-		sdk.NewCoins(sdk.NewCoin("uixo", sdk.ZeroInt())),
+		sdk.NewCoins(sdk.NewCoin("uxco", sdk.ZeroInt())),
 	)
 
 	return &types.MsgMintResponse{}, nil

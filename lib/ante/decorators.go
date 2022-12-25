@@ -10,7 +10,7 @@ package ante
 // 	authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 // 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 // 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-// 	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
+// 	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
 // )
 
 // type CheckTxForIncompatibleMsgsDecorator struct {
@@ -21,7 +21,7 @@ package ante
 // }
 
 // func (dec CheckTxForIncompatibleMsgsDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
-// 	// feeTx, ok := tx.(IxoFeeTx)
+// 	// feeTx, ok := tx.(XcoFeeTx)
 
 // 	//Check if feegranter is set. or if not ixoFeeTx
 // 	// if !ok || feeTx.FeeGranter() != nil {
@@ -37,15 +37,15 @@ package ante
 // 	return next(ctx, tx, simulate)
 // }
 
-// type IxoFeeHandlerDecorator struct {
+// type XcoFeeHandlerDecorator struct {
 // 	iidKeeper         iidkeeper.Keeper
 // 	accountKeeper     authante.AccountKeeper
 // 	bankKeeper        bankkeeper.Keeper
 // 	defaultFeeHandler authante.DeductFeeDecorator
 // }
 
-// func NewIxoFeeHandlerDecorator(iidKeeper iidkeeper.Keeper, accountKeeper authante.AccountKeeper, bankKeeper bankkeeper.Keeper, defaultFeeHandler authante.DeductFeeDecorator) sdk.AnteDecorator {
-// 	return IxoFeeHandlerDecorator{
+// func NewXcoFeeHandlerDecorator(iidKeeper iidkeeper.Keeper, accountKeeper authante.AccountKeeper, bankKeeper bankkeeper.Keeper, defaultFeeHandler authante.DeductFeeDecorator) sdk.AnteDecorator {
+// 	return XcoFeeHandlerDecorator{
 // 		iidKeeper:         iidKeeper,
 // 		accountKeeper:     accountKeeper,
 // 		bankKeeper:        bankKeeper,
@@ -53,8 +53,8 @@ package ante
 // 	}
 // }
 
-// func (dec IxoFeeHandlerDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
-// 	feeTx, ok := tx.(IxoFeeTx)
+// func (dec XcoFeeHandlerDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
+// 	feeTx, ok := tx.(XcoFeeTx)
 
 // 	//Check if feegranter is set. or if not ixoFeeTx
 // 	if !ok || feeTx.FeeGranter() != nil {

@@ -10,10 +10,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	didtypes "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	"github.com/ixofoundation/ixo-blockchain/x/payments/types"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	didtypes "github.com/xcohub/xco-blockchain/lib/legacydid"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
+	"github.com/xcohub/xco-blockchain/x/payments/types"
 	"github.com/spf13/cobra"
 )
 
@@ -86,7 +86,7 @@ func NewCmdCreatePaymentTemplate() *cobra.Command {
 			templateJsonStr := args[0]
 			ixoDidStr := args[1]
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -144,7 +144,7 @@ func NewCmdCreatePaymentContract() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -192,7 +192,7 @@ func NewCmdCreateSubscription() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -253,7 +253,7 @@ func NewCmdSetPaymentContractAuthorisation() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -298,7 +298,7 @@ func NewCmdGrantPaymentDiscount() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -340,7 +340,7 @@ func NewCmdRevokePaymentDiscount() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -376,7 +376,7 @@ func NewCmdEffectPayment() *cobra.Command {
 			contractIdStr := args[0]
 			ixoDidStr := args[1]
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}

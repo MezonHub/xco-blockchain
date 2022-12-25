@@ -12,7 +12,7 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/xcohub/xco-blockchain/x/iid/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -35,7 +35,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // MsgSetPaymentContractAuthorisation defines a message for authorising or deauthorising a payment contract.
 type MsgSetPaymentContractAuthorisation struct {
 	PaymentContractId string                                                          `protobuf:"bytes,1,opt,name=payment_contract_id,json=paymentContractId,proto3" json:"payment_contract_id,omitempty" yaml:"payment_contract_id"`
-	PayerDid          github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=payer_did,json=payerDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"payer_did,omitempty" yaml:"payer_did"`
+	PayerDid          github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=payer_did,json=payerDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"payer_did,omitempty" yaml:"payer_did"`
 	Authorised        bool                                                            `protobuf:"varint,3,opt,name=authorised,proto3" json:"authorised,omitempty" yaml:"authorised"`
 	PayerAddress      string                                                          `protobuf:"bytes,4,opt,name=payer_address,json=payerAddress,proto3" json:"payer_address" yaml:"payer_address"`
 }
@@ -143,7 +143,7 @@ var xxx_messageInfo_MsgSetPaymentContractAuthorisationResponse proto.InternalMes
 
 // MsgCreatePaymentTemplate defines a message for creating a payment template.
 type MsgCreatePaymentTemplate struct {
-	CreatorDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=creator_did,json=creatorDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"creator_did,omitempty" yaml:"creator_did"`
+	CreatorDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=creator_did,json=creatorDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"creator_did,omitempty" yaml:"creator_did"`
 	PaymentTemplate PaymentTemplate                                                 `protobuf:"bytes,2,opt,name=payment_template,json=paymentTemplate,proto3" json:"payment_template" yaml:"payment_template"`
 	CreatorAddress  string                                                          `protobuf:"bytes,3,opt,name=creator_address,json=creatorAddress,proto3" json:"creator_address" yaml:"creator_address"`
 }
@@ -240,7 +240,7 @@ var xxx_messageInfo_MsgCreatePaymentTemplateResponse proto.InternalMessageInfo
 
 // MsgCreatePaymentContract defines a message for creating a payment contract.
 type MsgCreatePaymentContract struct {
-	CreatorDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=creator_did,json=creatorDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"creator_did,omitempty" yaml:"creator_did"`
+	CreatorDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=creator_did,json=creatorDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"creator_did,omitempty" yaml:"creator_did"`
 	PaymentTemplateId string                                                          `protobuf:"bytes,2,opt,name=payment_template_id,json=paymentTemplateId,proto3" json:"payment_template_id,omitempty" yaml:"payment_template_id"`
 	PaymentContractId string                                                          `protobuf:"bytes,3,opt,name=payment_contract_id,json=paymentContractId,proto3" json:"payment_contract_id,omitempty" yaml:"payment_contract_id"`
 	Payer             string                                                          `protobuf:"bytes,4,opt,name=payer,proto3" json:"payer,omitempty" yaml:"payer"`
@@ -370,7 +370,7 @@ var xxx_messageInfo_MsgCreatePaymentContractResponse proto.InternalMessageInfo
 
 // MsgCreateSubscription defines a message for creating a subscription.
 type MsgCreateSubscription struct {
-	CreatorDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=creator_did,json=creatorDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"creator_did,omitempty" yaml:"creator_did"`
+	CreatorDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=creator_did,json=creatorDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"creator_did,omitempty" yaml:"creator_did"`
 	SubscriptionId    string                                                          `protobuf:"bytes,2,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty" yaml:"subscription_id"`
 	PaymentContractId string                                                          `protobuf:"bytes,3,opt,name=payment_contract_id,json=paymentContractId,proto3" json:"payment_contract_id,omitempty" yaml:"payment_contract_id"`
 	MaxPeriods        github_com_cosmos_cosmos_sdk_types.Uint                         `protobuf:"bytes,4,opt,name=max_periods,json=maxPeriods,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Uint" json:"max_periods" yaml:"max_periods"`
@@ -449,7 +449,7 @@ var xxx_messageInfo_MsgCreateSubscriptionResponse proto.InternalMessageInfo
 
 // MsgGrantDiscount defines a message for granting a discount to a payer on a specific payment contract.
 type MsgGrantDiscount struct {
-	SenderDid         github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"sender_did,omitempty" yaml:"sender_did"`
+	SenderDid         github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"sender_did,omitempty" yaml:"sender_did"`
 	PaymentContractId string                                                          `protobuf:"bytes,2,opt,name=payment_contract_id,json=paymentContractId,proto3" json:"payment_contract_id,omitempty" yaml:"payment_contract_id"`
 	DiscountId        github_com_cosmos_cosmos_sdk_types.Uint                         `protobuf:"bytes,3,opt,name=discount_id,json=discountId,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Uint" json:"discount_id" yaml:"discount_id"`
 	Recipient         string                                                          `protobuf:"bytes,4,opt,name=recipient,proto3" json:"recipient,omitempty" yaml:"recipient"`
@@ -555,7 +555,7 @@ var xxx_messageInfo_MsgGrantDiscountResponse proto.InternalMessageInfo
 
 // MsgRevokeDiscount defines a message for revoking a discount previously granted to a payer.
 type MsgRevokeDiscount struct {
-	SenderDid         github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"sender_did,omitempty" yaml:"sender_did"`
+	SenderDid         github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"sender_did,omitempty" yaml:"sender_did"`
 	PaymentContractId string                                                          `protobuf:"bytes,2,opt,name=payment_contract_id,json=paymentContractId,proto3" json:"payment_contract_id,omitempty" yaml:"payment_contract_id"`
 	Holder            string                                                          `protobuf:"bytes,3,opt,name=holder,proto3" json:"holder,omitempty" yaml:"holder"`
 	SenderAddress     string                                                          `protobuf:"bytes,4,opt,name=sender_address,json=senderAddress,proto3" json:"sender_address" yaml:"sender_address"`
@@ -660,7 +660,7 @@ var xxx_messageInfo_MsgRevokeDiscountResponse proto.InternalMessageInfo
 
 // MsgEffectPayment defines a message for putting a specific payment contract into effect.
 type MsgEffectPayment struct {
-	SenderDid            github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"sender_did,omitempty" yaml:"sender_did"`
+	SenderDid            github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"sender_did,omitempty" yaml:"sender_did"`
 	PaymentContractId    string                                                          `protobuf:"bytes,2,opt,name=payment_contract_id,json=paymentContractId,proto3" json:"payment_contract_id,omitempty" yaml:"payment_contract_id"`
 	PartialPaymentAmount github_com_cosmos_cosmos_sdk_types.Coins                        `protobuf:"bytes,6,rep,name=partial_payment_amount,json=partialPaymentAmount,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.Coins" json:"partial_payment_amount" yaml:"partial_payment_amount"`
 	SenderAddress        string                                                          `protobuf:"bytes,4,opt,name=sender_address,json=senderAddress,proto3" json:"sender_address" yaml:"sender_address"`

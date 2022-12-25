@@ -3,16 +3,16 @@ package types
 import (
 	"fmt"
 
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	params "github.com/cosmos/cosmos-sdk/x/params/types"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
+	didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
 )
 
 // Parameter store keys
 var (
-	KeyIxoDid                       = []byte("IxoDid")
+	KeyXcoDid                       = []byte("XcoDid")
 	KeyProjectMinimumInitialFunding = []byte("ProjectMinimumInitialFunding")
 	KeyOracleFeePercentage          = []byte("OracleFeePercentage")
 	KeyNodeFeePercentage            = []byte("NodeFeePercentage")
@@ -26,7 +26,7 @@ func ParamKeyTable() params.KeyTable {
 func NewParams(projectMinimumInitialFunding sdk.Coins, ixoDid didexported.Did,
 	oracleFeePercentage, nodeFeePercentage sdk.Dec) Params {
 	return Params{
-		IxoDid:                       ixoDid,
+		XcoDid:                       ixoDid,
 		ProjectMinimumInitialFunding: projectMinimumInitialFunding,
 		OracleFeePercentage:          oracleFeePercentage,
 		NodeFeePercentage:            nodeFeePercentage,
@@ -36,20 +36,20 @@ func NewParams(projectMinimumInitialFunding sdk.Coins, ixoDid didexported.Did,
 
 // default project module parameters
 func DefaultParams() Params {
-	defaultIxoDid := didexported.Did("did:ixo:U4tSpzzv91HHqWW1YmFkHJ")
+	defaultXcoDid := didexported.Did("did:ixo:U4tSpzzv91HHqWW1YmFkHJ")
 	defaultMinInitFunding := sdk.NewCoins(sdk.NewCoin(
-		ixotypes.IxoNativeToken, sdk.OneInt()))
+		ixotypes.XcoNativeToken, sdk.OneInt()))
 	tenPercentFee := sdk.NewDec(10)
 
 	return Params{
-		IxoDid:                       defaultIxoDid,         // invalid blank
-		ProjectMinimumInitialFunding: defaultMinInitFunding, // 1uixo
+		XcoDid:                       defaultXcoDid,         // invalid blank
+		ProjectMinimumInitialFunding: defaultMinInitFunding, // 1uxco
 		OracleFeePercentage:          tenPercentFee,         // 10.0 (10%)
 		NodeFeePercentage:            tenPercentFee,         // 10.0 (10%)
 	}
 }
 
-func validateIxoDid(i interface{}) error {
+func validateXcoDid(i interface{}) error {
 	v, ok := i.(didexported.Did)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
@@ -109,7 +109,7 @@ func validateNodeFeePercentage(i interface{}) error {
 // Implements params.ParamSet
 func (p *Params) ParamSetPairs() params.ParamSetPairs {
 	return params.ParamSetPairs{
-		{KeyIxoDid, &p.IxoDid, validateIxoDid},
+		{KeyXcoDid, &p.XcoDid, validateXcoDid},
 		{KeyProjectMinimumInitialFunding, &p.ProjectMinimumInitialFunding, validateProjectMinimumInitialFunding},
 		{KeyOracleFeePercentage, &p.OracleFeePercentage, validateOracleFeePercentage},
 		{KeyNodeFeePercentage, &p.NodeFeePercentage, validateNodeFeePercentage},

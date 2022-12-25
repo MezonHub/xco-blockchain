@@ -3,7 +3,7 @@
 wait() {
   echo "Waiting for chain to start..."
   while :; do
-    RET=$(ixod status 2>&1)
+    RET=$(xcod status 2>&1)
     if [[ ($RET == Error*) || ($RET == *'"latest_block_height":"0"'*) ]]; then
       sleep 1
     else
@@ -14,18 +14,18 @@ wait() {
   done
 }
 
-RET=$(ixod status 2>&1)
+RET=$(xcod status 2>&1)
 if [[ ($RET == Error*) || ($RET == *'"latest_block_height":"0"'*) ]]; then
   wait
 fi
 
 PASSWORD="12345678"
-GAS_PRICES="0.025uixo"
+GAS_PRICES="0.025uxco"
 CHAIN_ID="pandora-4"
-FEE=$(yes $PASSWORD | ixod keys show fee -a)
-RESERVE_OUT=$(yes $PASSWORD | ixod keys show reserveOut -a)
+FEE=$(yes $PASSWORD | xcod keys show fee -a)
+RESERVE_OUT=$(yes $PASSWORD | xcod keys show reserveOut -a)
 
-ixod_tx() {
+xcod_tx() {
   # Helper function to broadcast a transaction and supply the necessary args
 
   # Get module ($1) and specific tx ($1), which forms the tx command
@@ -34,7 +34,7 @@ ixod_tx() {
   shift
 
   # Broadcast the transaction
-  ixod tx $cmd \
+  xcod tx $cmd \
     --gas-prices="$GAS_PRICES" \
     --chain-id="$CHAIN_ID" \
     --broadcast-mode block \
@@ -43,8 +43,8 @@ ixod_tx() {
     # The $@ adds any extra arguments to the end
 }
 
-ixod_q() {
-  ixod q "$@" --output=json | jq .
+xcod_q() {
+  xcod q "$@" --output=json | jq .
 }
 
 BOND_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
@@ -96,11 +96,11 @@ SHAUN_DID_FULL='{
 
 # Ledger DIDs
 echo "Ledgering DID 1/3..."
-ixod_tx did add-did-doc "$MIGUEL_DID_FULL" 
+xcod_tx did add-did-doc "$MIGUEL_DID_FULL" 
 echo "Ledgering DID 2/3..."
-ixod_tx did add-did-doc "$FRANCESCO_DID_FULL" 
+xcod_tx did add-did-doc "$FRANCESCO_DID_FULL" 
 echo "Ledgering DID 3/3..."
-ixod_tx did add-did-doc "$SHAUN_DID_FULL" 
+xcod_tx did add-did-doc "$SHAUN_DID_FULL" 
 
 # d0 := 500.0   // initial raise (reserve)
 # p0 := 0.01    // initial price (reserve per token)
@@ -112,7 +112,7 @@ ixod_tx did add-did-doc "$SHAUN_DID_FULL"
 # V0 = 416666666666.667 // invariant
 
 echo "Creating bond..."
-ixod_tx bonds create-bond \
+xcod_tx bonds create-bond \
   --token=abc \
   --name="A B C" \
   --description="Description about A B C" \
@@ -135,30 +135,30 @@ ixod_tx bonds create-bond \
   --creator-did="$MIGUEL_DID_FULL" \
   --controller-did="$FRANCESCO_DID"
 echo "Created bond..."
-ixod_q bonds bond "$BOND_DID"
+xcod_q bonds bond "$BOND_DID"
 
 echo "Miguel buys 20000abc..."
-ixod_tx bonds buy 20000abc 100000res "$BOND_DID" "$MIGUEL_DID_FULL" 
+xcod_tx bonds buy 20000abc 100000res "$BOND_DID" "$MIGUEL_DID_FULL" 
 echo "Miguel's account..."
-ixod_q bank balances "$MIGUEL_ADDR"
+xcod_q bank balances "$MIGUEL_ADDR"
 
 echo "Francesco buys 20000abc..."
-ixod_tx bonds buy 20000abc 100000res "$BOND_DID" "$FRANCESCO_DID_FULL" 
+xcod_tx bonds buy 20000abc 100000res "$BOND_DID" "$FRANCESCO_DID_FULL" 
 echo "Francesco's account..."
-ixod_q bank balances "$FRANCESCO_ADDR"
+xcod_q bank balances "$FRANCESCO_ADDR"
 
 echo "Francesco updates the bond state to FAILED"
-ixod_tx bonds update-bond-state "FAILED" "$BOND_DID" "$FRANCESCO_DID_FULL"
+xcod_tx bonds update-bond-state "FAILED" "$BOND_DID" "$FRANCESCO_DID_FULL"
 
 echo "Miguel withdraws share..."
-ixod_tx bonds withdraw-share "$BOND_DID" "$MIGUEL_DID_FULL" 
+xcod_tx bonds withdraw-share "$BOND_DID" "$MIGUEL_DID_FULL" 
 echo "Miguel's account..."
-ixod_q bank balances "$MIGUEL_ADDR"
+xcod_q bank balances "$MIGUEL_ADDR"
 
 echo "Francesco withdraws share..."
-ixod_tx bonds withdraw-share "$BOND_DID" "$FRANCESCO_DID_FULL" 
+xcod_tx bonds withdraw-share "$BOND_DID" "$FRANCESCO_DID_FULL" 
 echo "Francesco's account..."
-ixod_q bank balances "$FRANCESCO_ADDR"
+xcod_q bank balances "$FRANCESCO_ADDR"
 
 echo "Bond reserve is now empty and supply is 0..."
-ixod_q bonds bond "$BOND_DID"
+xcod_q bonds bond "$BOND_DID"

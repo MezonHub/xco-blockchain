@@ -4,10 +4,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	exported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
+	exported "github.com/xcohub/xco-blockchain/lib/legacydid"
 )
 
-type IxoMsg interface {
+type XcoMsg interface {
 	sdk.Msg
 	GetSignerDid() exported.Did
 	Type() string

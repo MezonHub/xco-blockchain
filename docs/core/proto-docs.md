@@ -889,7 +889,7 @@
                 </li>
               
                 <li>
-                  <a href="#legacydid.IxoDid"><span class="badge">M</span>IxoDid</a>
+                  <a href="#legacydid.XcoDid"><span class="badge">M</span>XcoDid</a>
                 </li>
               
                 <li>
@@ -6764,7 +6764,7 @@ IidDocument iidDocument = 1  [(gogoproto.nullable) = false]; </p></td>
 
         
       
-        <h3 id="legacydid.IxoDid">IxoDid</h3>
+        <h3 id="legacydid.XcoDid">XcoDid</h3>
         <p>An ixo DID with public and private keys, based on the Sovrin DID spec</p>
 
         
@@ -9734,7 +9734,7 @@ IidDocument iidDocument = 1  [(gogoproto.nullable) = false]; </p></td>
               </tr>
             
               <tr>
-                <td>IXO1155</td>
+                <td>XCO1155</td>
                 <td>2</td>
                 <td><p></p></td>
               </tr>

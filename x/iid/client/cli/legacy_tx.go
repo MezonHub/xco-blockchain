@@ -4,9 +4,9 @@ import (
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	libixo "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	"github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	"github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	libixo "github.com/xcohub/xco-blockchain/lib/ixo"
+	"github.com/xcohub/xco-blockchain/lib/legacydid"
+	"github.com/xcohub/xco-blockchain/x/iid/types"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := legacydid.UnmarshalIxoDid(args[0])
+			ixoDid, err := legacydid.UnmarshalXcoDid(args[0])
 			if err != nil {
 				return err
 			}

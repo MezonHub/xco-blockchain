@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/authz"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
 )
 
 var (
@@ -18,7 +18,7 @@ func NewMintAuthorization(minterDid iidtypes.DIDFragment, cw20Limit, cw721Limit,
 		// MintLimit: &MintLimit{
 		// 	Cw20:    string(cw20Limit),
 		// 	Cw721:   string(cw721Limit),
-		// 	Ixo1155: string(ixo1155Limit),
+		// 	Xco1155: string(ixo1155Limit),
 		// },
 	}
 }
@@ -71,7 +71,7 @@ func (a MintAuthorization) Accept(ctx sdk.Context, msg sdk.Msg) (authz.AcceptRes
 	}
 	a.Constraints = updatedConstraints
 
-	// if a.MintLimit.Cw20 == 0 && a.MintLimit.Cw721 == 0 && a.MintLimit.Ixo1155 == 0 {
+	// if a.MintLimit.Cw20 == 0 && a.MintLimit.Cw721 == 0 && a.MintLimit.Xco1155 == 0 {
 	// 	return authz.AcceptResponse{Accept: true, Delete: true}, nil
 	// }
 

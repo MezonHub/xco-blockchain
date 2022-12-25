@@ -11,8 +11,8 @@ import (
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/xcohub/xco-blockchain/x/iid/types"
+	types "github.com/xcohub/xco-blockchain/x/iid/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -61,7 +61,7 @@ type MsgCreateEntity struct {
 	VerificationStatus string `protobuf:"bytes,15,opt,name=verificationStatus,proto3" json:"verification_status" yaml:"verification_status"`
 	// Content ID or Hash of public Verifiable Credentials associated with the  subject
 	VerifiableCredential []string                                                        `protobuf:"bytes,16,rep,name=verifiableCredential,proto3" json:"verifiable_credential" yaml:"verifiable_credential"`
-	OwnerDid             github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,17,opt,name=ownerDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"owner_did" yaml:"owner_did"`
+	OwnerDid             github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,17,opt,name=ownerDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"owner_did" yaml:"owner_did"`
 	OwnerAddress         string                                                          `protobuf:"bytes,18,opt,name=ownerAddress,proto3" json:"owner_address" yaml:"owner_address"`
 	Data                 encoding_json.RawMessage                                        `protobuf:"bytes,19,opt,name=data,proto3,casttype=encoding/json.RawMessage" json:"data,omitempty" yaml:"data"`
 }
@@ -174,7 +174,7 @@ type MsgUpdateEntity struct {
 	RelayerNode string `protobuf:"bytes,6,opt,name=relayerNode,proto3" json:"relayer_node" yaml:"relayer_node"`
 	// refer to iid module for more information
 	VerifiableCredential string                                                          `protobuf:"bytes,7,opt,name=verifiableCredential,proto3" json:"verifiable_credential" yaml:"verifiable_credential"`
-	ControllerDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,8,opt,name=controllerDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"controller_did" yaml:"controller_did"`
+	ControllerDid        github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,8,opt,name=controllerDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"controller_did" yaml:"controller_did"`
 	ControllerAddress    string                                                          `protobuf:"bytes,9,opt,name=controllerAddress,proto3" json:"controller_address" yaml:"controller_address"`
 }
 
@@ -250,9 +250,9 @@ var xxx_messageInfo_MsgUpdateEntityResponse proto.InternalMessageInfo
 
 type MsgTransferEntity struct {
 	EntityDid    string                                                          `protobuf:"bytes,1,opt,name=entityDid,proto3" json:"entity_did" yaml:"entity_did"`
-	OwnerDid     github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=ownerDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"owner_did" yaml:"owner_did"`
+	OwnerDid     github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=ownerDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"owner_did" yaml:"owner_did"`
 	OwnerAddress string                                                          `protobuf:"bytes,3,opt,name=ownerAddress,proto3" json:"owner_address" yaml:"owner_address"`
-	RecipientDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,4,opt,name=recipientDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"recipient_did" yaml:"recipient_did"`
+	RecipientDid github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,4,opt,name=recipientDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"recipient_did" yaml:"recipient_did"`
 }
 
 func (m *MsgTransferEntity) Reset()         { *m = MsgTransferEntity{} }

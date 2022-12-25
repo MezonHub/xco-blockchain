@@ -9,7 +9,7 @@ services:
     # volumes:
     #   - .infra/nginx/devel.conf:/etc/nginx/conf.d/devel.conf
     # links:
-    #   - ixo-blockchain
+    #   - xco-blockchain
     #   - ixo-swagger
 
   # ixo-swagger:
@@ -24,7 +24,7 @@ services:
   #   volumes:
   #     - "./docs/static/openapi.yml:/api-docs/swagger.yaml"
 
-  ixo-blockchain:
+  xco-blockchain:
     container_name: ixo_blockchain
     platform: linux/amd64
     build:

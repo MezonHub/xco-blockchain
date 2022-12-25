@@ -10,7 +10,7 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	github_com_ixofoundation_ixo_blockchain_x_iid_types "github.com/xcohub/xco-blockchain/x/iid/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -33,7 +33,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // MsgCreateProject defines a message for creating a project.
 type MsgCreateProject struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	PubKey         string                                                          `protobuf:"bytes,4,opt,name=pub_key,json=pubKey,proto3" json:"pubKey" yaml:"pubKey"`
 	Data           encoding_json.RawMessage                                        `protobuf:"bytes,5,opt,name=data,proto3,casttype=encoding/json.RawMessage" json:"data,omitempty" yaml:"iid"`
@@ -154,7 +154,7 @@ var xxx_messageInfo_MsgCreateProjectResponse proto.InternalMessageInfo
 // MsgUpdateProjectStatus defines a message for updating a project's current status.
 type MsgUpdateProjectStatus struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	Data           UpdateProjectStatusDoc                                          `protobuf:"bytes,4,opt,name=data,proto3" json:"data" yaml:"iid"`
 	ProjectAddress string                                                          `protobuf:"bytes,5,opt,name=project_address,json=projectAddress,proto3" json:"project_address" yaml:"project_address"`
@@ -268,7 +268,7 @@ var xxx_messageInfo_MsgUpdateProjectStatusResponse proto.InternalMessageInfo
 // MsgCreateAgent defines a message for creating an agent on a project.
 type MsgCreateAgent struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	Data           CreateAgentDoc                                                  `protobuf:"bytes,4,opt,name=data,proto3" json:"data" yaml:"iid"`
 	ProjectAddress string                                                          `protobuf:"bytes,5,opt,name=project_address,json=projectAddress,proto3" json:"project_address" yaml:"project_address"`
@@ -381,7 +381,7 @@ var xxx_messageInfo_MsgCreateAgentResponse proto.InternalMessageInfo
 // MsgUpdateAgent defines a message for updating an agent on a project.
 type MsgUpdateAgent struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	Data           UpdateAgentDoc                                                  `protobuf:"bytes,4,opt,name=data,proto3" json:"data" yaml:"iid"`
 	ProjectAddress string                                                          `protobuf:"bytes,5,opt,name=project_address,json=projectAddress,proto3" json:"sender_address" yaml:"sender_address"`
@@ -494,7 +494,7 @@ var xxx_messageInfo_MsgUpdateAgentResponse proto.InternalMessageInfo
 // MsgCreateClaim defines a message for creating a claim on a project.
 type MsgCreateClaim struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	Data           CreateClaimDoc                                                  `protobuf:"bytes,4,opt,name=data,proto3" json:"data" yaml:"iid"`
 	ProjectAddress string                                                          `protobuf:"bytes,5,opt,name=project_address,json=projectAddress,proto3" json:"project_address" yaml:"project_address"`
@@ -607,7 +607,7 @@ var xxx_messageInfo_MsgCreateClaimResponse proto.InternalMessageInfo
 // MsgCreateEvaluation defines a message for creating an evaluation for a specific claim on a project.
 type MsgCreateEvaluation struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	Data           CreateEvaluationDoc                                             `protobuf:"bytes,4,opt,name=data,proto3" json:"data" yaml:"iid"`
 	ProjectAddress string                                                          `protobuf:"bytes,5,opt,name=project_address,json=projectAddress,proto3" json:"project_address" yaml:"project_address"`
@@ -719,7 +719,7 @@ var xxx_messageInfo_MsgCreateEvaluationResponse proto.InternalMessageInfo
 
 // MsgWithdrawFunds defines a message for project agents to withdraw their funds from a project.
 type MsgWithdrawFunds struct {
-	SenderDid     github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid     github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,1,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	Data          WithdrawFundsDoc                                                `protobuf:"bytes,2,opt,name=data,proto3" json:"data" yaml:"iid"`
 	SenderAddress string                                                          `protobuf:"bytes,5,opt,name=sender_address,json=senderAddress,proto3" json:"sender_address" yaml:"sender_address"`
 }
@@ -817,7 +817,7 @@ var xxx_messageInfo_MsgWithdrawFundsResponse proto.InternalMessageInfo
 // MsgUpdateProjectDoc defines a message for updating a project's data.
 type MsgUpdateProjectDoc struct {
 	TxHash         string                                                          `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"txHash" yaml:"txHash"`
-	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/ixofoundation/ixo-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
+	SenderDid      github_com_ixofoundation_ixo_blockchain_x_iid_types.DIDFragment `protobuf:"bytes,2,opt,name=sender_did,json=senderDid,proto3,casttype=github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment" json:"senderDid" yaml:"senderDid"`
 	ProjectDid     string                                                          `protobuf:"bytes,3,opt,name=project_did,json=projectDid,proto3" json:"projectDid" yaml:"projectDid"`
 	Data           encoding_json.RawMessage                                        `protobuf:"bytes,4,opt,name=data,proto3,casttype=encoding/json.RawMessage" json:"data,omitempty" yaml:"iid"`
 	ProjectAddress string                                                          `protobuf:"bytes,5,opt,name=project_address,json=projectAddress,proto3" json:"project_address" yaml:"project_address"`

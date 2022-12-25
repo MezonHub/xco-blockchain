@@ -15,10 +15,10 @@ import (
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
-	"github.com/ixofoundation/ixo-blockchain/x/entity/types"
-	entitycontracts "github.com/ixofoundation/ixo-blockchain/x/entity/types/contracts"
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	"github.com/xcohub/xco-blockchain/x/entity/types"
+	entitycontracts "github.com/xcohub/xco-blockchain/x/entity/types/contracts"
+	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
 )
 
 type Keeper struct {
@@ -157,7 +157,7 @@ func (k Keeper) CreateEntity(ctx sdk.Context, msg *types.MsgCreateEntity) (types
 		return types.MsgCreateEntityResponse{}, err
 	}
 
-	_, err = k.WasmKeeper.Execute(ctx, nftContractAddress, address, finalMessage, sdk.NewCoins(sdk.NewCoin("uixo", sdk.ZeroInt())))
+	_, err = k.WasmKeeper.Execute(ctx, nftContractAddress, address, finalMessage, sdk.NewCoins(sdk.NewCoin("uxco", sdk.ZeroInt())))
 	if err != nil {
 		return types.MsgCreateEntityResponse{}, err
 	}
@@ -236,7 +236,7 @@ func (k Keeper) TransferEntity(ctx sdk.Context, msg *types.MsgTransferEntity) (*
 		return nil, err
 	}
 
-	_, err = k.WasmKeeper.Execute(ctx, nftContractAddress, controllerAddress, finalMessage, sdk.NewCoins(sdk.NewCoin("uixo", sdk.ZeroInt())))
+	_, err = k.WasmKeeper.Execute(ctx, nftContractAddress, controllerAddress, finalMessage, sdk.NewCoins(sdk.NewCoin("uxco", sdk.ZeroInt())))
 	if err != nil {
 		return nil, err
 	}

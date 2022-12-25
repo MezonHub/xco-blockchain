@@ -7,13 +7,13 @@ import (
 )
 
 func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
-	cdc.RegisterInterface((*IxoMsg)(nil), nil)
+	cdc.RegisterInterface((*XcoMsg)(nil), nil)
 }
 
 func RegisterInterfaces(registry types.InterfaceRegistry) {
 	registry.RegisterInterface(
-		"ixo.IxoMsg",
-		(*IxoMsg)(nil),
+		"ixo.XcoMsg",
+		(*XcoMsg)(nil),
 	)
 }
 

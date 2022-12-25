@@ -12,15 +12,15 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
 	"github.com/gorilla/mux"
-	"github.com/ixofoundation/ixo-blockchain/compatibility"
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	projecttypes "github.com/ixofoundation/ixo-blockchain/x/project/types"
+	"github.com/xcohub/xco-blockchain/compatibility"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
+	projecttypes "github.com/xcohub/xco-blockchain/x/project/types"
 )
 
 var (
 	approximationGasAdjustment = float64(1.5)
-	expectedMinGasPrices       = "0.025" + ixotypes.IxoNativeToken
+	expectedMinGasPrices       = "0.025" + ixotypes.XcoNativeToken
 )
 
 func RegisterTxRoutes(clientCtx client.Context, r *mux.Router) {
@@ -64,10 +64,10 @@ func SignDataRequest(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
-		// all messages must be of type ixo.IxoMsg
-		ixoMsg, ok := msg.(ixotypes.IxoMsg)
+		// all messages must be of type ixo.XcoMsg
+		ixoMsg, ok := msg.(ixotypes.XcoMsg)
 		if !ok {
-			rest.WriteErrorResponse(w, http.StatusBadRequest, "msg must be ixo.IxoMsg")
+			rest.WriteErrorResponse(w, http.StatusBadRequest, "msg must be ixo.XcoMsg")
 			return
 		}
 
@@ -89,7 +89,7 @@ func SignDataRequest(clientCtx client.Context) http.HandlerFunc {
 
 			// Set gas adjustment and fees
 			gasAdjustment := approximationGasAdjustment
-			fees := sdk.NewCoins(sdk.NewCoin(ixotypes.IxoNativeToken, sdk.OneInt()))
+			fees := sdk.NewCoins(sdk.NewCoin(ixotypes.XcoNativeToken, sdk.OneInt()))
 
 			chainId := clientCtx.ChainID
 			txf := clienttx.Factory{}.

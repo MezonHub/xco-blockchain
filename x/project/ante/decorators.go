@@ -17,13 +17,13 @@ import (
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	"github.com/ixofoundation/ixo-blockchain/x/project/types"
+	"github.com/xcohub/xco-blockchain/x/project/types"
 
-	libixo "github.com/ixofoundation/ixo-blockchain/lib/ixo"
+	libixo "github.com/xcohub/xco-blockchain/lib/ixo"
 
-	iidkeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	iidutil "github.com/ixofoundation/ixo-blockchain/x/iid/util"
-	projectkeeper "github.com/ixofoundation/ixo-blockchain/x/project/keeper"
+	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	iidutil "github.com/xcohub/xco-blockchain/x/iid/util"
+	projectkeeper "github.com/xcohub/xco-blockchain/x/project/keeper"
 	// issuerante "github.com/allinbits/cosmos-cash/v3/x/issuer/ante"
 	// issuerkeeper "github.com/allinbits/cosmos-cash/v3/x/issuer/keeper"
 	// vcskeeper "github.com/allinbits/cosmos-cash/v3/x/verifiable-credential/keeper"
@@ -43,7 +43,7 @@ func checkAllMsgs(tx sdk.Tx) (*types.MsgCreateProject, error) {
 }
 
 func pubKeyGetter(keeper projectkeeper.Keeper, iidKeeper iidkeeper.Keeper) libixo.PubKeyGetter {
-	return func(ctx sdk.Context, msg libixo.IxoMsg, sigs []signing.SignatureV2) (pubKey cryptotypes.PubKey, err error) {
+	return func(ctx sdk.Context, msg libixo.XcoMsg, sigs []signing.SignatureV2) (pubKey cryptotypes.PubKey, err error) {
 
 		// MsgCreateProject: pubkey from msg since project does not exist yet
 		// MsgWithdrawFunds: signer is user DID, so get pubkey from did module
@@ -268,14 +268,14 @@ func (dfd DeductFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bo
 
 	// confirm that fee is the exact amount expected
 	expectedTotalFee := sdk.NewCoins(sdk.NewCoin(
-		libixo.IxoNativeToken, sdk.NewInt(types.MsgCreateProjectTotalFee)))
+		libixo.XcoNativeToken, sdk.NewInt(types.MsgCreateProjectTotalFee)))
 	if !feeTx.GetFee().IsEqual(expectedTotalFee) {
 		return ctx, sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "invalid fee")
 	}
 
 	// Calculate transaction fee and project funding
 	transactionFee := sdk.NewCoins(sdk.NewCoin(
-		libixo.IxoNativeToken, sdk.NewInt(types.MsgCreateProjectTransactionFee)))
+		libixo.XcoNativeToken, sdk.NewInt(types.MsgCreateProjectTransactionFee)))
 	projectFunding := expectedTotalFee.Sub(transactionFee) // panics if negative result
 
 	// deduct the fees

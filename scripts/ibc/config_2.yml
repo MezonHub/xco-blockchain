@@ -15,7 +15,7 @@ faucet:
   coins: [ "100000uatom" ]
   port: 4502
 build:
-  binary: "ixod2"
+  binary: "xcod2"
 host:
   rpc: ":26661"
   p2p: ":26660"

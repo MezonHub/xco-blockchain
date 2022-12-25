@@ -6,10 +6,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	didexported "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	didtypes "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
+	didtypes "github.com/xcohub/xco-blockchain/lib/legacydid"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
 	"github.com/spf13/viper"
 )
 
@@ -31,14 +31,14 @@ const (
 )
 
 var (
-	_ ixotypes.IxoMsg = &MsgCreateProject{}
-	_ ixotypes.IxoMsg = &MsgUpdateProjectStatus{}
-	_ ixotypes.IxoMsg = &MsgCreateAgent{}
-	_ ixotypes.IxoMsg = &MsgUpdateAgent{}
-	_ ixotypes.IxoMsg = &MsgCreateClaim{}
-	_ ixotypes.IxoMsg = &MsgCreateEvaluation{}
-	_ ixotypes.IxoMsg = &MsgWithdrawFunds{}
-	_ ixotypes.IxoMsg = &MsgUpdateProjectDoc{}
+	_ ixotypes.XcoMsg = &MsgCreateProject{}
+	_ ixotypes.XcoMsg = &MsgUpdateProjectStatus{}
+	_ ixotypes.XcoMsg = &MsgCreateAgent{}
+	_ ixotypes.XcoMsg = &MsgUpdateAgent{}
+	_ ixotypes.XcoMsg = &MsgCreateClaim{}
+	_ ixotypes.XcoMsg = &MsgCreateEvaluation{}
+	_ ixotypes.XcoMsg = &MsgWithdrawFunds{}
+	_ ixotypes.XcoMsg = &MsgUpdateProjectDoc{}
 )
 
 func NewMsgCreateProject(senderDid iidtypes.DIDFragment, projectData json.RawMessage,
@@ -59,7 +59,7 @@ func (msg MsgCreateProject) GetIidController() iidtypes.DIDFragment {
 
 func (msg MsgCreateProject) ToStdSignMsg(fee int64) legacytx.StdSignMsg {
 	accNum, accSeq := uint64(0), uint64(0)
-	stdFee := legacytx.NewStdFee(0, sdk.NewCoins(sdk.NewCoin(ixotypes.IxoNativeToken, sdk.NewInt(fee))))
+	stdFee := legacytx.NewStdFee(0, sdk.NewCoins(sdk.NewCoin(ixotypes.XcoNativeToken, sdk.NewInt(fee))))
 	memo := viper.GetString(flagMemo)
 
 	return legacytx.StdSignMsg{

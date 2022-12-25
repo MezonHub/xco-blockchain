@@ -11,7 +11,7 @@ A [IidMetadata](02_state.md#iidmetadata) lifecycle follows the lifecycle of a  [
 
 ### Create
 
-[IidDocument](02_state.md#IidDocument) are created via the rpc method [CreateIidDocument](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L64) that accepts a [MsgCreateIidDocument](./04_messages.md#MsgCreateIidDocument) messages as parameter.
+[IidDocument](02_state.md#IidDocument) are created via the rpc method [CreateIidDocument](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L64) that accepts a [MsgCreateIidDocument](./04_messages.md#MsgCreateIidDocument) messages as parameter.
 
 The operation will fail if:
 - the signer account has insufficient funds 
@@ -102,12 +102,12 @@ CreateIidDocument(
 
 ##### Implementation Source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L28
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L68
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L28
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L68
 
 ### Resolve
 
-[IidDocument](02_state.md#iiddocument) are resolved via the rpc method [QueryIidDocument](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/query.proto#L31) that accepts a [QueryIidDocumentRequest](./04_messages.md#QueryIidDocumentRequest) messages as parameter.
+[IidDocument](02_state.md#iiddocument) are resolved via the rpc method [QueryIidDocument](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/query.proto#L31) that accepts a [QueryIidDocumentRequest](./04_messages.md#QueryIidDocumentRequest) messages as parameter.
 
 
 The operation will fail if:
@@ -126,27 +126,27 @@ QueryIidDocument(
 
 ##### Implementation Source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/grpc_query.go#L28
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/query.go#L69
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/grpc_query.go#L28
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/query.go#L69
 
 ### Update
 
 [IidDocument](02_state.md#iiddocument) are updated via the rpc methods:
 
-- [UpdateIidDocument](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L82)
-- [AddVerification](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L96)
-- [RevokeVerification](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L119)
-- [SetVerificationRelationships](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L107)
-- [AddService](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
-- [DeleteService](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
-- [AddController](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L161)
-- [DeleteController](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L172)
-- [AddLinkedResource](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
-- [DeleteLinkedResource](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
-- [AddLinkedEntity](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
-- [DeleteLinkedEntity](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
-- [AddAccordedRight](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
-- [DeleteAccordedRight](https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
+- [UpdateIidDocument](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L82)
+- [AddVerification](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L96)
+- [RevokeVerification](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L119)
+- [SetVerificationRelationships](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L107)
+- [AddService](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
+- [DeleteService](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
+- [AddController](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L161)
+- [DeleteController](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L172)
+- [AddLinkedResource](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
+- [DeleteLinkedResource](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
+- [AddLinkedEntity](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
+- [DeleteLinkedEntity](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
+- [AddAccordedRight](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L134)
+- [DeleteAccordedRight](https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/proto/iid/tx.proto#L145)
 
 
 All the operations will fail if:
@@ -178,8 +178,8 @@ UpdateIidDocument(
 
 ##### Implementation Source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L65
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L277
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L65
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L277
 
 #### AddVerification
 
@@ -215,8 +215,8 @@ AddVerification(
 
 ##### Implementation Source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L98
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L131
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L98
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L131
 
 #### RevokeVerification
 
@@ -241,8 +241,8 @@ RevokeVerification(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L304
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L233
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L304
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L233
 
 
 #### SetVerificationRelationships
@@ -272,8 +272,8 @@ SetVerificationRelationships(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L348
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L390
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L348
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L390
 
 
 #### AddService
@@ -304,8 +304,8 @@ AddService(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L116
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L193
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L116
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L193
 
 #### DeleteService
 
@@ -330,8 +330,8 @@ DeleteService(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L323
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L274
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L323
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L274
 
 #### AddLinkedResource
 
@@ -366,8 +366,8 @@ AddLinkedResource(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L134
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L445
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L134
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L445
 
 #### DeleteLinkedResource
 
@@ -392,8 +392,8 @@ DeleteLinkedResource(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L152
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L490
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L152
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L490
 
 #### AddAccordedRight
 
@@ -425,8 +425,8 @@ AddAccordedRight(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L218
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L527
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L218
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L527
 
 #### DeleteAccordedRight
 
@@ -451,8 +451,8 @@ DeleteAccordedRight(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L236
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L569
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L236
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L569
 
 
 #### AddLinkedEntity
@@ -482,8 +482,8 @@ AddLinkedEntity(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L176
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L726
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L176
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L726
 
 #### DeleteLinkedEntity
 
@@ -508,8 +508,8 @@ DeleteLinkedEntity(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L194
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L765
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L194
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L765
 
 #### AddController
 
@@ -537,8 +537,8 @@ AddController(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L367
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L312
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L367
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L312
 
 #### DeleteDeleteController
 
@@ -563,8 +563,8 @@ DeleteController(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L385
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L351
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L385
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L351
 
 #### AddController
 
@@ -593,8 +593,8 @@ AddIidContext(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L267
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L606
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L267
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L606
 
 #### DeleteDeleteController
 
@@ -619,5 +619,5 @@ DeleteIidContext(
 
 ##### Implementation source
 
-- server: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L279
-- client: https://github.com/ixofoundation/ixo-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L647
+- server: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/keeper/msg_server.go#L279
+- client: https://github.com/xcohub/xco-blockchain/blob/devel/iid-module/x/iid/client/cli/tx.go#L647

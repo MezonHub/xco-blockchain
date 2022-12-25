@@ -4,7 +4,7 @@ package ixo.payments.v1;
 import "gogoproto/gogo.proto";
 import "ixo/payments/v1/payments.proto";
 
-option go_package = "github.com/ixofoundation/ixo-blockchain/x/payments/types";
+option go_package = "github.com/xcohub/xco-blockchain/x/payments/types";
 
 // GenesisState defines the payments module's genesis state.
 message GenesisState {

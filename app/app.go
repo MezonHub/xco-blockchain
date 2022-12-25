@@ -88,33 +88,33 @@ import (
 	ibchost "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibckeeper "github.com/cosmos/ibc-go/v3/modules/core/keeper"
 	"github.com/gorilla/mux"
-	"github.com/ixofoundation/ixo-blockchain/app/params"
-	"github.com/ixofoundation/ixo-blockchain/client/tx"
-	libixo "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	"github.com/ixofoundation/ixo-blockchain/x/bonds"
-	bondskeeper "github.com/ixofoundation/ixo-blockchain/x/bonds/keeper"
-	bondstypes "github.com/ixofoundation/ixo-blockchain/x/bonds/types"
+	"github.com/xcohub/xco-blockchain/app/params"
+	"github.com/xcohub/xco-blockchain/client/tx"
+	libixo "github.com/xcohub/xco-blockchain/lib/ixo"
+	"github.com/xcohub/xco-blockchain/x/bonds"
+	bondskeeper "github.com/xcohub/xco-blockchain/x/bonds/keeper"
+	bondstypes "github.com/xcohub/xco-blockchain/x/bonds/types"
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
-	entitymodule "github.com/ixofoundation/ixo-blockchain/x/entity"
-	entityclient "github.com/ixofoundation/ixo-blockchain/x/entity/client"
-	entitykeeper "github.com/ixofoundation/ixo-blockchain/x/entity/keeper"
-	entitytypes "github.com/ixofoundation/ixo-blockchain/x/entity/types"
+	entitymodule "github.com/xcohub/xco-blockchain/x/entity"
+	entityclient "github.com/xcohub/xco-blockchain/x/entity/client"
+	entitykeeper "github.com/xcohub/xco-blockchain/x/entity/keeper"
+	entitytypes "github.com/xcohub/xco-blockchain/x/entity/types"
 
-	tokenmodule "github.com/ixofoundation/ixo-blockchain/x/token"
-	tokenclient "github.com/ixofoundation/ixo-blockchain/x/token/client"
-	tokenkeeper "github.com/ixofoundation/ixo-blockchain/x/token/keeper"
-	tokentypes "github.com/ixofoundation/ixo-blockchain/x/token/types"
+	tokenmodule "github.com/xcohub/xco-blockchain/x/token"
+	tokenclient "github.com/xcohub/xco-blockchain/x/token/client"
+	tokenkeeper "github.com/xcohub/xco-blockchain/x/token/keeper"
+	tokentypes "github.com/xcohub/xco-blockchain/x/token/types"
 
-	iidmodule "github.com/ixofoundation/ixo-blockchain/x/iid"
-	iidmodulekeeper "github.com/ixofoundation/ixo-blockchain/x/iid/keeper"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	"github.com/ixofoundation/ixo-blockchain/x/payments"
-	paymentskeeper "github.com/ixofoundation/ixo-blockchain/x/payments/keeper"
-	paymentstypes "github.com/ixofoundation/ixo-blockchain/x/payments/types"
-	"github.com/ixofoundation/ixo-blockchain/x/project"
-	projectkeeper "github.com/ixofoundation/ixo-blockchain/x/project/keeper"
-	projecttypes "github.com/ixofoundation/ixo-blockchain/x/project/types"
+	iidmodule "github.com/xcohub/xco-blockchain/x/iid"
+	iidmodulekeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
+	"github.com/xcohub/xco-blockchain/x/payments"
+	paymentskeeper "github.com/xcohub/xco-blockchain/x/payments/keeper"
+	paymentstypes "github.com/xcohub/xco-blockchain/x/payments/types"
+	"github.com/xcohub/xco-blockchain/x/project"
+	projectkeeper "github.com/xcohub/xco-blockchain/x/project/keeper"
+	projecttypes "github.com/xcohub/xco-blockchain/x/project/types"
 	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cast"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -126,7 +126,7 @@ import (
 )
 
 const (
-	appName              = "IxoApp"
+	appName              = "XcoApp"
 	Bech32MainPrefix     = "ixo"
 	Bech32PrefixAccAddr  = Bech32MainPrefix
 	Bech32PrefixAccPub   = Bech32MainPrefix + sdk.PrefixPublic
@@ -138,7 +138,7 @@ const (
 
 var (
 	// DefaultNodeHome default home directories for the application daemon
-	DefaultNodeHome = os.ExpandEnv("$HOME/.ixod")
+	DefaultNodeHome = os.ExpandEnv("$HOME/.xcod")
 
 	// ModuleBasics defines the module BasicManager which is in charge of setting up basic,
 	// non-dependant module elements, such as codec registration
@@ -216,7 +216,7 @@ var (
 )
 
 var (
-	//NodeDir      = ".ixod"
+	//NodeDir      = ".xcod"
 	//Bech32Prefix = "ixo"
 
 	// If EnabledSpecificProposals is "", and this is "true", then enable all x/wasm proposals.
@@ -229,8 +229,8 @@ var (
 )
 
 // Verify app interface at compile time
-var _ simapp.App = (*IxoApp)(nil)
-var _ servertypes.Application = (*IxoApp)(nil)
+var _ simapp.App = (*XcoApp)(nil)
+var _ servertypes.Application = (*XcoApp)(nil)
 
 func GetEnabledProposals() []wasm.ProposalType {
 	if EnableSpecificProposals == "" {
@@ -248,7 +248,7 @@ func GetEnabledProposals() []wasm.ProposalType {
 }
 
 // Extended ABCI application
-type IxoApp struct {
+type XcoApp struct {
 	*baseapp.BaseApp  `json:"_bam_base_app,omitempty"`
 	legacyAmino       *codec.LegacyAmino      `json:"legacy_amino,omitempty"`
 	appCodec          codec.Codec             `json:"app_codec,omitempty"`
@@ -302,12 +302,12 @@ type IxoApp struct {
 	sm *module.SimulationManager `json:"sm,omitempty"`
 }
 
-// NewIxoApp returns a reference to an initialized IxoApp.
-func NewIxoApp(
+// NewXcoApp returns a reference to an initialized XcoApp.
+func NewXcoApp(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest bool, skipUpgradeHeights map[int64]bool,
 	homePath string, invCheckPeriod uint, encodingConfig params.EncodingConfig, enabledProposals []wasm.ProposalType,
 	appOpts servertypes.AppOptions, wasmOpts []wasm.Option, baseAppOptions ...func(*baseapp.BaseApp),
-) *IxoApp {
+) *XcoApp {
 
 	appCodec := encodingConfig.Marshaler
 	legacyAmino := encodingConfig.Amino
@@ -337,7 +337,7 @@ func NewIxoApp(
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
 
-	app := &IxoApp{
+	app := &XcoApp{
 		BaseApp:           bApp,
 		legacyAmino:       legacyAmino,
 		appCodec:          appCodec,
@@ -657,7 +657,7 @@ func NewIxoApp(
 	app.MountMemoryStores(memKeys)
 
 	// initialize BaseApp
-	ixoAnteHandler, err := IxoAnteHandler(HandlerOptions{
+	ixoAnteHandler, err := XcoAnteHandler(HandlerOptions{
 		AccountKeeper:     app.AccountKeeper,
 		BankKeeper:        app.BankKeeper,
 		FeegrantKeeper:    app.FeeGrantKeeper,
@@ -667,7 +667,7 @@ func NewIxoApp(
 		txCounterStoreKey: keys[wasm.StoreKey],
 
 		SignModeHandler: encodingConfig.TxConfig.SignModeHandler(),
-		SigGasConsumer:  libixo.IxoSigVerificationGasConsumer,
+		SigGasConsumer:  libixo.XcoSigVerificationGasConsumer,
 	})
 	if err != nil {
 		panic(err)
@@ -711,20 +711,20 @@ func MakeCodecs() (codec.Codec, *codec.LegacyAmino) {
 }
 
 // Name returns the name of the App
-func (app *IxoApp) Name() string { return app.BaseApp.Name() }
+func (app *XcoApp) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker application updates every begin block
-func (app *IxoApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+func (app *XcoApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
 	return app.mm.BeginBlock(ctx, req)
 }
 
 // EndBlocker application updates every end block
-func (app *IxoApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+func (app *XcoApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
 	return app.mm.EndBlock(ctx, req)
 }
 
 // InitChainer application update at chain initialization
-func (app *IxoApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *XcoApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
 	var genesisState GenesisState
 	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
@@ -733,12 +733,12 @@ func (app *IxoApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.
 }
 
 // LoadHeight loads a particular height
-func (app *IxoApp) LoadHeight(height int64) error {
+func (app *XcoApp) LoadHeight(height int64) error {
 	return app.LoadVersion(height)
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
-func (app *IxoApp) ModuleAccountAddrs() map[string]bool {
+func (app *XcoApp) ModuleAccountAddrs() map[string]bool {
 	modAccAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		modAccAddrs[authtypes.NewModuleAddress(acc).String()] = true
@@ -748,7 +748,7 @@ func (app *IxoApp) ModuleAccountAddrs() map[string]bool {
 }
 
 // BlockedAddrs returns all the app's module account addresses black listed for receiving tokens.
-func (app *IxoApp) BlockedAddrs() map[string]bool {
+func (app *XcoApp) BlockedAddrs() map[string]bool {
 	blockedAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		blockedAddrs[authtypes.NewModuleAddress(acc).String()] = !allowedReceivingModAcc[acc]
@@ -757,64 +757,64 @@ func (app *IxoApp) BlockedAddrs() map[string]bool {
 	return blockedAddrs
 }
 
-// LegacyAmino returns IxoApp's amino codec.
+// LegacyAmino returns XcoApp's amino codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *IxoApp) LegacyAmino() *codec.LegacyAmino {
+func (app *XcoApp) LegacyAmino() *codec.LegacyAmino {
 	return app.legacyAmino
 }
 
-// AppCodec returns IxoApp's app codec.
+// AppCodec returns XcoApp's app codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *IxoApp) AppCodec() codec.Codec {
+func (app *XcoApp) AppCodec() codec.Codec {
 	return app.appCodec
 }
 
-// InterfaceRegistry returns IxoApp's InterfaceRegistry
-func (app *IxoApp) InterfaceRegistry() types.InterfaceRegistry {
+// InterfaceRegistry returns XcoApp's InterfaceRegistry
+func (app *XcoApp) InterfaceRegistry() types.InterfaceRegistry {
 	return app.interfaceRegistry
 }
 
 // GetKey returns the KVStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *IxoApp) GetKey(storeKey string) *sdk.KVStoreKey {
+func (app *XcoApp) GetKey(storeKey string) *sdk.KVStoreKey {
 	return app.keys[storeKey]
 }
 
 // GetTKey returns the TransientStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *IxoApp) GetTKey(storeKey string) *sdk.TransientStoreKey {
+func (app *XcoApp) GetTKey(storeKey string) *sdk.TransientStoreKey {
 	return app.tkeys[storeKey]
 }
 
 // GetMemKey returns the MemStoreKey for the provided mem key.
 //
 // NOTE: This is solely used for testing purposes.
-func (app *IxoApp) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
+func (app *XcoApp) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
 	return app.memKeys[storeKey]
 }
 
 // GetSubspace returns a param subspace for a given module name.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *IxoApp) GetSubspace(moduleName string) paramstypes.Subspace {
+func (app *XcoApp) GetSubspace(moduleName string) paramstypes.Subspace {
 	subspace, _ := app.ParamsKeeper.GetSubspace(moduleName)
 	return subspace
 }
 
 // SimulationManager implements the SimulationApp interface
-func (app *IxoApp) SimulationManager() *module.SimulationManager {
+func (app *XcoApp) SimulationManager() *module.SimulationManager {
 	return app.sm
 }
 
 // RegisterAPIRoutes registers all application module routes with the provided
 // API server.
-func (app *IxoApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig srvconfig.APIConfig) {
+func (app *XcoApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig srvconfig.APIConfig) {
 	//panic("implement me")
 
 	clientCtx := apiSvr.ClientCtx
@@ -839,12 +839,12 @@ func (app *IxoApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig srvconfig.API
 }
 
 // RegisterTxService implements the Application.RegisterTxService method.
-func (app *IxoApp) RegisterTxService(clientCtx client.Context) {
+func (app *XcoApp) RegisterTxService(clientCtx client.Context) {
 	authtx.RegisterTxService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.BaseApp.Simulate, app.interfaceRegistry)
 }
 
 // RegisterTendermintService implements the Application.RegisterTendermintService method.
-func (app *IxoApp) RegisterTendermintService(clientCtx client.Context) {
+func (app *XcoApp) RegisterTendermintService(clientCtx client.Context) {
 	tmservice.RegisterTendermintService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.interfaceRegistry)
 }
 
@@ -872,7 +872,7 @@ type KVStoreKey struct {
 	name string
 }
 
-// func NewIxoAnteHandler(app *IxoApp, encodingConfig params.EncodingConfig, wasmConfig WasmTypes.WasmConfig, key sdk.StoreKey) sdk.AnteHandler {
+// func NewXcoAnteHandler(app *XcoApp, encodingConfig params.EncodingConfig, wasmConfig WasmTypes.WasmConfig, key sdk.StoreKey) sdk.AnteHandler {
 
 // 	// The AnteHandler needs to get the signer's pubkey to verify signatures,
 // 	// charge gas fees (to the corresponding address), and for other purposes.
@@ -910,22 +910,22 @@ type KVStoreKey struct {
 // 	// ixo AnteHandler (ixo.NewDefaultAnteHandler) for all three pubkey getters
 // 	// instead of having to implement three unique AnteHandlers.
 
-// 	defaultIxoAnteHandler := ixotypes.NewDefaultAnteHandler(
-// 		app.AccountKeeper, app.BankKeeper, ixotypes.IxoSigVerificationGasConsumer,
+// 	defaultXcoAnteHandler := ixotypes.NewDefaultAnteHandler(
+// 		app.AccountKeeper, app.BankKeeper, ixotypes.XcoSigVerificationGasConsumer,
 // 		defaultPubKeyGetter, encodingConfig.TxConfig.SignModeHandler(), key, app.IBCKeeper,
 // 		wasmConfig)
 // 	iidAnteHandler := ixotypes.NewDefaultAnteHandler(
-// 		app.AccountKeeper, app.BankKeeper, ixotypes.IxoSigVerificationGasConsumer,
+// 		app.AccountKeeper, app.BankKeeper, ixotypes.XcoSigVerificationGasConsumer,
 // 		iidPubKeyGetter, encodingConfig.TxConfig.SignModeHandler(), key, app.IBCKeeper,
 // 		wasmConfig)
 // 	projectAnteHandler := ixotypes.NewDefaultAnteHandler(
-// 		app.AccountKeeper, app.BankKeeper, ixotypes.IxoSigVerificationGasConsumer,
+// 		app.AccountKeeper, app.BankKeeper, ixotypes.XcoSigVerificationGasConsumer,
 // 		projectPubKeyGetter, encodingConfig.TxConfig.SignModeHandler(), key, app.IBCKeeper,
 // 		wasmConfig)
 
 // 	// The default Cosmos AnteHandler is still used for standard Cosmos messages
 // 	// implemented in standard Cosmos modules (bank, gov, etc.). The only change
-// 	// is that we use an IxoSigVerificationGasConsumer instead of the default
+// 	// is that we use an XcoSigVerificationGasConsumer instead of the default
 // 	// one, since the default does not allow ED25519 signatures. Thus, like this
 // 	// we enable ED25519 (as well as Secp) signing of standard Cosmos messages.
 
@@ -934,7 +934,7 @@ type KVStoreKey struct {
 // 		BankKeeper:      app.BankKeeper,
 // 		FeegrantKeeper:  app.FeeGrantKeeper,
 // 		SignModeHandler: encodingConfig.TxConfig.SignModeHandler(),
-// 		SigGasConsumer:  ixotypes.IxoSigVerificationGasConsumer,
+// 		SigGasConsumer:  ixotypes.XcoSigVerificationGasConsumer,
 // 	}
 
 // 	cosmosAnteHandler, err := authante.NewAnteHandler(options)
@@ -982,7 +982,7 @@ type KVStoreKey struct {
 // 		case bondstypes.RouterKey:
 // 			fallthrough
 // 		case paymentstypes.RouterKey:
-// 			return defaultIxoAnteHandler(ctx, tx, simulate)
+// 			return defaultXcoAnteHandler(ctx, tx, simulate)
 // 		default:
 // 			return cosmosAnteHandler(ctx, tx, simulate)
 // 		}

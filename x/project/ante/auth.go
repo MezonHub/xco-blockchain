@@ -22,7 +22,7 @@ func init() {
 }
 
 // func NewDefaultPubKeyGetter(keeper keeper.Keeper) ixotypes.PubKeyGetter {
-// 	return func(ctx sdk.Context, msg ixotypes.IxoMsg) (pubKey cryptotypes.PubKey, err error) {
+// 	return func(ctx sdk.Context, msg ixotypes.XcoMsg) (pubKey cryptotypes.PubKey, err error) {
 
 // 		projectDidDoc, err := keeper.GetProjectDoc(ctx, msg.GetSignerDid())
 // 		if err != nil {
@@ -36,7 +36,7 @@ func init() {
 // }
 
 // func NewModulePubKeyGetter(keeper keeper.Keeper, didKeeper didkeeper.Keeper) ixotypes.PubKeyGetter {
-// 	return func(ctx sdk.Context, msg ixotypes.IxoMsg) (pubKey cryptotypes.PubKey, err error) {
+// 	return func(ctx sdk.Context, msg ixotypes.XcoMsg) (pubKey cryptotypes.PubKey, err error) {
 
 // 		// MsgCreateProject: pubkey from msg since project does not exist yet
 // 		// MsgWithdrawFunds: signer is user DID, so get pubkey from did module

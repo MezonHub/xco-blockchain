@@ -3867,7 +3867,7 @@ definitions:
     properties:
       sign_bytes:
         type: string
-        example: "{\"account_number\":\"5\",\"chain_id\":\"pandora-4\",\"fee\":{\"amount\":[{\"amount\":\"2319\",\"denom\":\"uixo\"}],\"gas\":\"92757\"},\"memo\":\"\",\"msgs\":[{\"type\":\"did/AddDid\",\"value\":{\"did\":\"did:ixo:U4tSpzzv91HHqWW1YmFkHJ\",\"pubKey\":\"FkeDue5it82taeheMprdaPrctfK3DeVV9NnEPYDgwwRG\"}}],\"sequence\":\"0\"}"
+        example: "{\"account_number\":\"5\",\"chain_id\":\"pandora-4\",\"fee\":{\"amount\":[{\"amount\":\"2319\",\"denom\":\"uxco\"}],\"gas\":\"92757\"},\"memo\":\"\",\"msgs\":[{\"type\":\"did/AddDid\",\"value\":{\"did\":\"did:ixo:U4tSpzzv91HHqWW1YmFkHJ\",\"pubKey\":\"FkeDue5it82taeheMprdaPrctfK3DeVV9NnEPYDgwwRG\"}}],\"sequence\":\"0\"}"
       fee:
         type: object
         properties:
@@ -3878,7 +3878,7 @@ definitions:
               properties:
                 denom:
                   type: string
-                  example: "uixo"
+                  example: "uxco"
                 amount:
                   type: string
                   example: "2319"

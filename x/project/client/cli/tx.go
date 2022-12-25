@@ -5,10 +5,10 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	ixotypes "github.com/ixofoundation/ixo-blockchain/lib/ixo"
-	didtypes "github.com/ixofoundation/ixo-blockchain/lib/legacydid"
-	iidtypes "github.com/ixofoundation/ixo-blockchain/x/iid/types"
-	"github.com/ixofoundation/ixo-blockchain/x/project/types"
+	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	didtypes "github.com/xcohub/xco-blockchain/lib/legacydid"
+	iidtypes "github.com/xcohub/xco-blockchain/x/iid/types"
+	"github.com/xcohub/xco-blockchain/x/project/types"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
@@ -46,7 +46,7 @@ func NewCmdCreateProject() *cobra.Command {
 			projectDataStr := args[1]
 			ixoDidStr := args[2]
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(ixoDidStr)
+			ixoDid, err := didtypes.UnmarshalXcoDid(ixoDidStr)
 			if err != nil {
 				return err
 			}
@@ -86,7 +86,7 @@ func NewCmdUpdateProjectStatus() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			senderDid := args[0]
 			status := args[1]
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[2])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[2])
 			if err != nil {
 				return err
 			}
@@ -143,7 +143,7 @@ func NewCmdCreateAgent() *cobra.Command {
 
 			createAgentDoc := types.NewCreateAgentDoc(agentDid, role)
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[4])
 			if err != nil {
 				return err
 			}
@@ -188,7 +188,7 @@ func NewCmdUpdateAgent() *cobra.Command {
 			updateAgentDoc := types.NewUpdateAgentDoc(
 				agentDid, agentStatus, agentRole)
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[5])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[5])
 			if err != nil {
 				return err
 			}
@@ -226,7 +226,7 @@ func NewCmdCreateClaim() *cobra.Command {
 			claimTemplateId := args[3]
 			createClaimDoc := types.NewCreateClaimDoc(claimId, claimTemplateId)
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[4])
 			if err != nil {
 				return err
 			}
@@ -270,7 +270,7 @@ func NewCmdCreateEvaluation() *cobra.Command {
 			createEvaluationDoc := types.NewCreateEvaluationDoc(
 				claimId, claimStatus)
 
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[4])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[4])
 			if err != nil {
 				return err
 			}
@@ -302,7 +302,7 @@ func NewCmdWithdrawFunds() *cobra.Command {
 		Short: "Withdraw funds.",
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[0])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[0])
 			if err != nil {
 				return err
 			}
@@ -342,7 +342,7 @@ func NewCmdUpdateProjectDoc() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			senderDid := args[0]
 			projectDataStr := args[1]
-			ixoDid, err := didtypes.UnmarshalIxoDid(args[2])
+			ixoDid, err := didtypes.UnmarshalXcoDid(args[2])
 			if err != nil {
 				return err
 			}

@@ -110,9 +110,9 @@ func preSignCmd(cmd *cobra.Command, _ []string) {
 	}
 }
 
-func sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, overwriteSig bool, ixoDid didtypes.XcoDid) error {
+func sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, overwriteSig bool, xcoDid didtypes.XcoDid) error {
 	var privateKey ed25519.PrivKey
-	privateKey.Key = append(base58.Decode(ixoDid.Secret.SignKey), base58.Decode(ixoDid.VerifyKey)...)
+	privateKey.Key = append(base58.Decode(xcoDid.Secret.SignKey), base58.Decode(xcoDid.VerifyKey)...)
 
 	signMode := txf.SignMode()
 	if signMode == signing.SignMode_SIGN_MODE_UNSPECIFIED {

@@ -42,7 +42,7 @@ func setup(withGenesis bool, invCheckPeriod uint) (*XcoApp, GenesisState) {
 }
 
 func Setup(isCheckTx bool) *XcoApp {
-	ixoApp, genesisState := setup(!isCheckTx, 5)
+	xcoApp, genesisState := setup(!isCheckTx, 5)
 	if !isCheckTx {
 		// init chain must be called to stop deliverState from being nil
 		stateBytes, err := json.MarshalIndent(genesisState, "", " ")
@@ -51,7 +51,7 @@ func Setup(isCheckTx bool) *XcoApp {
 		}
 
 		// Initialize the chain
-		ixoApp.InitChain(
+		xcoApp.InitChain(
 			abci.RequestInitChain{
 				Validators:      []abci.ValidatorUpdate{},
 				ConsensusParams: DefaultConsensusParams,
@@ -60,7 +60,7 @@ func Setup(isCheckTx bool) *XcoApp {
 		)
 	}
 
-	return ixoApp
+	return xcoApp
 }
 
 func createTestApp(isCheckTx bool) (*XcoApp, sdk.Context) {

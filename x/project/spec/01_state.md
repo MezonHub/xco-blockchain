@@ -27,7 +27,7 @@ project creator's DID, the project's public key (associated with the project's
 DID), the project's current status, and other user-specified data associated to
 the project.
 
-**TxHash**: a value usually set by ixo-cellnode if it is the component that is
+**TxHash**: a value usually set by xco-cellnode if it is the component that is
 creating the project. If creating a project using `xcod`, the value of this
 field is not very relevant.
 
@@ -167,7 +167,7 @@ project.
 
 **TemplateId**: indicates the ID of the claim template that the claim is based
 on. More information about schema templates (and specifically claim templates)
-in [this repository](https://github.com/ixofoundation/schema).
+in [this repository](https://github.com/xcofoundation/schema).
 
 **Status**: indicates the claim's current status, which can be one of three:
 

@@ -1,10 +1,10 @@
 syntax = "proto3";
-package ixo.entity.v1beta1;
+package xco.entity.v1beta1;
 
 import "gogoproto/gogo.proto";
-import "ixo/iid/v1beta1/iid.proto";
-import "ixo/iid/v1beta1/tx.proto";
-import "ixo/entity/v1beta1/entity.proto";
+import "xco/iid/v1beta1/iid.proto";
+import "xco/iid/v1beta1/tx.proto";
+import "xco/entity/v1beta1/entity.proto";
 import "google/protobuf/timestamp.proto";
 
 
@@ -34,12 +34,12 @@ message MsgCreateEntity {
   int32 entityStatus        = 2 [(gogoproto.jsontag) = "entity_status", (gogoproto.moretags) = "yaml:\"entity_status\""];
   // the list of controller DIDs
   repeated string controller   = 3 [(gogoproto.jsontag) = "controller", (gogoproto.moretags) = "yaml:\"controller\""]; 
-  repeated ixo.iid.v1beta1.Context context        = 4 [(gogoproto.jsontag) = "context", (gogoproto.moretags) = "yaml:\"context\""]; // JSON-LD contexts
-  repeated ixo.iid.v1beta1.Verification verification = 5 [(gogoproto.jsontag) = "verification", (gogoproto.moretags) = "yaml:\"verification\""]; // Verification Methods and Verification Relationships
-  repeated ixo.iid.v1beta1.Service service      = 6 [(gogoproto.jsontag) = "service", (gogoproto.moretags) = "yaml:\"service\""]; // Service endpoints
-  repeated ixo.iid.v1beta1.AccordedRight accordedRight = 7 [(gogoproto.jsontag) = "accorded_right", (gogoproto.moretags) = "yaml:\"accorded_right\""]; // Legal or Electronic Rights and associated Object Capabilities
-  repeated ixo.iid.v1beta1.LinkedResource linkedResource = 8 [(gogoproto.jsontag) = "linked_resource", (gogoproto.moretags) = "yaml:\"linked_resource\""]; // Digital resources associated with the Subject
-  repeated ixo.iid.v1beta1.LinkedEntity linkedEntity = 9 [(gogoproto.jsontag) = "linked_entity", (gogoproto.moretags) = "yaml:\"linked_entity\""]; // DID of a linked Entity and its relationship with the Subject
+  repeated xco.iid.v1beta1.Context context        = 4 [(gogoproto.jsontag) = "context", (gogoproto.moretags) = "yaml:\"context\""]; // JSON-LD contexts
+  repeated xco.iid.v1beta1.Verification verification = 5 [(gogoproto.jsontag) = "verification", (gogoproto.moretags) = "yaml:\"verification\""]; // Verification Methods and Verification Relationships
+  repeated xco.iid.v1beta1.Service service      = 6 [(gogoproto.jsontag) = "service", (gogoproto.moretags) = "yaml:\"service\""]; // Service endpoints
+  repeated xco.iid.v1beta1.AccordedRight accordedRight = 7 [(gogoproto.jsontag) = "accorded_right", (gogoproto.moretags) = "yaml:\"accorded_right\""]; // Legal or Electronic Rights and associated Object Capabilities
+  repeated xco.iid.v1beta1.LinkedResource linkedResource = 8 [(gogoproto.jsontag) = "linked_resource", (gogoproto.moretags) = "yaml:\"linked_resource\""]; // Digital resources associated with the Subject
+  repeated xco.iid.v1beta1.LinkedEntity linkedEntity = 9 [(gogoproto.jsontag) = "linked_entity", (gogoproto.moretags) = "yaml:\"linked_entity\""]; // DID of a linked Entity and its relationship with the Subject
   bool deactivated = 10 [(gogoproto.jsontag) = "deactivated", (gogoproto.moretags) = "yaml:\"deactivated\""]; // Operational status of the Entity
   // Start Date of the Entity as defined by the implementer and interpreted by Client applications
   google.protobuf.Timestamp startDate = 11 [(gogoproto.stdtime) = true, (gogoproto.jsontag) = "start_date", (gogoproto.moretags) = "yaml:\"start_date\""]; // address of the account signing the message

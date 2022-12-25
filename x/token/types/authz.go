@@ -12,13 +12,13 @@ var (
 )
 
 // NewMintAuthorization creates a new MintAuthorization object.
-func NewMintAuthorization(minterDid iidtypes.DIDFragment, cw20Limit, cw721Limit, ixo1155Limit int64) *MintAuthorization {
+func NewMintAuthorization(minterDid iidtypes.DIDFragment, cw20Limit, cw721Limit, xco1155Limit int64) *MintAuthorization {
 	return &MintAuthorization{
 		MinterDid: minterDid,
 		// MintLimit: &MintLimit{
 		// 	Cw20:    string(cw20Limit),
 		// 	Cw721:   string(cw721Limit),
-		// 	Xco1155: string(ixo1155Limit),
+		// 	Xco1155: string(xco1155Limit),
 		// },
 	}
 }

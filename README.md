@@ -1,4 +1,4 @@
-# ixo Blockchain SDK
+# xco Blockchain SDK
 
 [![version](https://img.shields.io/github/tag/xcohub/xco-blockchain.svg)](https://github.com/xcohub/xco-blockchain/releases/latest)
 [![Go Report Card](https://goreportcard.com/badge/github.com/xcohub/xco-blockchain)](https://goreportcard.com/report/github.com/xcohub/xco-blockchain)
@@ -10,10 +10,10 @@ This is the official repository for the Impact Hub (ImpactHub)
 The XCO team is in the process of upgrading this repository better align with our new standards and goals. Exciting things will soon come, but not without first making some fundamental and overdue changes.
 
 ## Hosted Blockchain endpoints
-- Testnet RPC:https://testnet.ixo.world/rpc/
-- Testnet Rest:https://testnet.ixo.world/rest/
-- Mainnet RPC:https://impacthub.ixo.world/rpc/
-- Mainnet Rest:https://impacthub.ixo.world/rest/
+- Testnet RPC:https://testnet.xco.world/rpc/
+- Testnet Rest:https://testnet.xco.world/rest/
+- Mainnet RPC:https://impacthub.xco.world/rpc/
+- Mainnet Rest:https://impacthub.xco.world/rest/
 
 ### Mini Changelog
 - Upgraded to cosmos-sdk 0.45
@@ -27,9 +27,9 @@ The XCO team is in the process of upgrading this repository better align with ou
 > This document will have all details necessary to help getting started with ImpactHub
 
 ## Documentation
-- Guide for setting up a Validator on the Pandora test network and Internet of Impact Hub main network: [here](https://github.com/ixofoundation/genesis)
-- Swagger API documentation for ixo modules gRPC endpoints can be found at [client/docs/swagger-ui/swagger.yaml](client/docs/swagger-ui/swagger.yaml)
-- Swagger API documentation for ixo modules legacy endpoints can be found at [client/docs/swagger-ui-legacy/swagger.yaml](client/docs/swagger-ui-legacy/swagger.yaml)
+- Guide for setting up a Validator on the Pandora test network and Internet of Impact Hub main network: [here](https://github.com/xcofoundation/genesis)
+- Swagger API documentation for xco modules gRPC endpoints can be found at [client/docs/swagger-ui/swagger.yaml](client/docs/swagger-ui/swagger.yaml)
+- Swagger API documentation for xco modules legacy endpoints can be found at [client/docs/swagger-ui-legacy/swagger.yaml](client/docs/swagger-ui-legacy/swagger.yaml)
 - Blockchain Module Specifications can be found under `x/<module>/spec`
 
 ## Building and Running

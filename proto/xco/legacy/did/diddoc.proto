@@ -2,7 +2,7 @@ syntax = "proto3";
 package legacydid;
 
 import "gogoproto/gogo.proto";
-import "ixo/legacy/did/did.proto";
+import "xco/legacy/did/did.proto";
 
 option go_package = "github.com/xcohub/xco-blockchain/lib/legacydid";
 

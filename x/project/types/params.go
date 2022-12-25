@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	xcotypes "github.com/xcohub/xco-blockchain/lib/xco"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	params "github.com/cosmos/cosmos-sdk/x/params/types"
@@ -23,10 +23,10 @@ func ParamKeyTable() params.KeyTable {
 	return params.NewKeyTable().RegisterParamSet(&Params{})
 }
 
-func NewParams(projectMinimumInitialFunding sdk.Coins, ixoDid didexported.Did,
+func NewParams(projectMinimumInitialFunding sdk.Coins, xcoDid didexported.Did,
 	oracleFeePercentage, nodeFeePercentage sdk.Dec) Params {
 	return Params{
-		XcoDid:                       ixoDid,
+		XcoDid:                       xcoDid,
 		ProjectMinimumInitialFunding: projectMinimumInitialFunding,
 		OracleFeePercentage:          oracleFeePercentage,
 		NodeFeePercentage:            nodeFeePercentage,
@@ -36,9 +36,9 @@ func NewParams(projectMinimumInitialFunding sdk.Coins, ixoDid didexported.Did,
 
 // default project module parameters
 func DefaultParams() Params {
-	defaultXcoDid := didexported.Did("did:ixo:U4tSpzzv91HHqWW1YmFkHJ")
+	defaultXcoDid := didexported.Did("did:xco:U4tSpzzv91HHqWW1YmFkHJ")
 	defaultMinInitFunding := sdk.NewCoins(sdk.NewCoin(
-		ixotypes.XcoNativeToken, sdk.OneInt()))
+		xcotypes.XcoNativeToken, sdk.OneInt()))
 	tenPercentFee := sdk.NewDec(10)
 
 	return Params{
@@ -56,7 +56,7 @@ func validateXcoDid(i interface{}) error {
 	}
 
 	if len(v) == 0 {
-		return fmt.Errorf("ixo did cannot be empty")
+		return fmt.Errorf("xco did cannot be empty")
 	}
 
 	return nil

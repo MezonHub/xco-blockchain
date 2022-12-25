@@ -1,4 +1,4 @@
-package ixo
+package xco
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -12,7 +12,7 @@ func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 
 func RegisterInterfaces(registry types.InterfaceRegistry) {
 	registry.RegisterInterface(
-		"ixo.XcoMsg",
+		"xco.XcoMsg",
 		(*XcoMsg)(nil),
 	)
 }
@@ -20,7 +20,7 @@ func RegisterInterfaces(registry types.InterfaceRegistry) {
 var (
 	amino = codec.NewLegacyAmino()
 
-	// ModuleCdc references the global x/ixo module codec. Note, the codec should
+	// ModuleCdc references the global x/xco module codec. Note, the codec should
 	// ONLY be used in certain instances of tests and for JSON encoding as Amino is
 	// still used for that purpose.
 	//

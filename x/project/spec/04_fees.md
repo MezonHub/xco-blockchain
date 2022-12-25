@@ -92,7 +92,7 @@ The following are some key points about the above code:
 The payment contract's ID is contructed on-the-fly using the below template. This means that the payment contract created is unique to the projects module, project, sender address, and fee type.
 
 - Template: `payment:contract:<moduleName>:<projectDid>:<senderAddr>:<feeType>`
-- Example: `payment:contract:project:did:ixo:U7G...J8c:ixo107...0vx:OracleFee`
+- Example: `payment:contract:project:did:xco:U7G...J8c:xco107...0vx:OracleFee`
 
 Thus, if a new and unique set of the above 4 values is encountered, a new payment contract is created. Otherwise, the existing payment contract is fetched. This means that the project contract can (and is) used to persist information between two or more payments of the same type.
 
@@ -114,16 +114,16 @@ The following is the logic used to calculate how the payment is distributed betw
 
 - The oracle (service provider) share is `100% - OracleFeePercentage`
 - The node share is `OracleFeePercentage x (NodeFeePercentage)`
-- The ixo.world share is `OracleFeePercentage x (100% - NodeFeePercentage)`
+- The xco.world share is `OracleFeePercentage x (100% - NodeFeePercentage)`
 
 For example, if `OracleFeePercentage=20%` and `NodeFeePercentage=50%`:
 
 - The oracle (service provider) share is `80%`
 - The node share is `10%`
-- The ixo.world share is `10%`
+- The xco.world share is `10%`
 
 ### Fee for Service
 
 If a fee-for-service payment template ID was provided during project creation, the fee-for-service applies whenever a claimer's claim gets approved (claim status set to approved `= 1`) during `MsgCreateEvaluation` handling. It is paid by the project, with the claimer as the contract recipient.
 
-In contrast with the `OracleFee`, the claimer gets the full `FeeForService` (0% percentage sent to a node or ixo.world).
+In contrast with the `OracleFee`, the claimer gets the full `FeeForService` (0% percentage sent to a node or xco.world).

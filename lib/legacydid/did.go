@@ -28,10 +28,10 @@ var (
 	// IsValidDid adapted from the above link but assumes no sub-namespaces
 	// TODO: ValidDid needs to be updated once we no longer want to be able
 	//   to consider project accounts as DIDs (especially in treasury module),
-	//   possibly should just be `^did:(ixo:|sov:)([a-zA-Z0-9]){21,22}$`.
+	//   possibly should just be `^did:(xco:|sov:)([a-zA-Z0-9]){21,22}$`.
 )
 
-var DidPrefix = "did:ixo:"
+var DidPrefix = "did:xco:"
 
 type Did = string
 
@@ -52,13 +52,13 @@ func UnmarshalXcoDid(jsonXcoDid string) (XcoDid, error) {
 
 func UnprefixedDid(did Did) string {
 	// Assumes that DID is valid (check IsValidDid regex)
-	// Removes 8 characters (for did:ixo: or did:sov:)
+	// Removes 8 characters (for did:xco: or did:sov:)
 	return did[8:]
 }
 
 func UnprefixedDidFromPubKey(pubKey string) string {
 	// Assumes that PubKey is valid (check IsValidPubKey regex)
-	// Since result is not prefixed (did:ixo:), string returned rather than DID
+	// Since result is not prefixed (did:xco:), string returned rather than DID
 	pubKeyBz := base58.Decode(pubKey)
 	return base58.Encode(pubKeyBz[:16])
 }

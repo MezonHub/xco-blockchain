@@ -47,9 +47,9 @@ xcod_q() {
   xcod q "$@" --output=json | jq .
 }
 
-BOND_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
+BOND_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
 #BOND_DID_FULL='{
-#  "did":"did:ixo:U7GK8p8rVhJMKhBVRCJJ8c",
+#  "did":"did:xco:U7GK8p8rVhJMKhBVRCJJ8c",
 #  "verifyKey":"FmwNAfvV2xEqHwszrVJVBR3JgQ8AFCQEVzo1p6x4L8VW",
 #  "encryptionPublicKey":"domKpTpjrHQtKUnaFLjCuDLe2oHeS4b1sKt7yU9cq7m",
 #  "secret":{
@@ -60,7 +60,7 @@ BOND_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
 #}'
 
 MIGUEL_DID_FULL='{
-  "did":"did:ixo:4XJLBfGtWSGKSz4BeRxdun",
+  "did":"did:xco:4XJLBfGtWSGKSz4BeRxdun",
   "verifyKey":"2vMHhssdhrBCRFiq9vj7TxGYDybW4yYdrYh9JG56RaAt",
   "encryptionPublicKey":"6GBp8qYgjE3ducksUa9Ar26ganhDFcmYfbZE9ezFx5xS",
   "secret":{
@@ -70,9 +70,9 @@ MIGUEL_DID_FULL='{
   }
 }'
 
-FRANCESCO_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
+FRANCESCO_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
 FRANCESCO_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{

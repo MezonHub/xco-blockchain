@@ -41,7 +41,7 @@ ENTRYPOINT [ "starport", "chain", "serve" ]
 FROM --platform=linux/amd64 build-dependencies AS build-binary
 COPY ./ ./
 
-ENV XCOD_HOME="/home/ixo/"
+ENV XCOD_HOME="/home/xco/"
 RUN mkdir -p ${XCOD_HOME}/iid
 
 RUN go mod tidy && go mod vendor
@@ -53,7 +53,7 @@ RUN make install
 # COPY ./.infra/dockerfiles/setups/setup-genisis.sh /setup/setup-genisis.sh
 # RUN /setup/setup-genisis.sh
 
-# RUN curl https://raw.githubusercontent.com/ixofoundation/genesis/master/pandora-4/genesis.json
+# RUN curl https://raw.githubusercontent.com/xcofoundation/genesis/master/pandora-4/genesis.json
 
 ENTRYPOINT ["xcod", "start"]
 
@@ -70,7 +70,7 @@ COPY ./.infra/dockerfiles/setups/setup-devnet.sh /root/setup-devnet.sh
 ENV HOME=/root/
 RUN rm -rf /root/.xcod/ && chmod +x /root/setup-devnet.sh
 
-ONBUILD LABEL world.ixo.blockchain.image.authors="willem.mouton@ixo.world"
+ONBUILD LABEL world.xco.blockchain.image.authors="willem.mouton@xco.world"
 
 ONBUILD WORKDIR /app
 

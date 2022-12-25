@@ -104,7 +104,7 @@ func XcoAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
 			// NOTE: REFER TO THIS FILE FOR MORE INFORMATION: app/ante.md
 			anteDecorators = []sdk.AnteDecorator{
 				projectante.NewSetUpContextDecorator(),
-				// ixoante.NewCheckTxForIncompatibleMsgsDecorator(), // outermost AnteDecorator. SetUpContext must be called first
+				// xcoante.NewCheckTxForIncompatibleMsgsDecorator(), // outermost AnteDecorator. SetUpContext must be called first
 				//ante.NewMempoolFeeDecorator(),
 				authante.NewValidateBasicDecorator(),
 				authante.NewValidateMemoDecorator(options.AccountKeeper),
@@ -112,14 +112,14 @@ func XcoAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
 				projectante.NewSetPubKeyDecorator(options.ProjectKeeper, options.AccountKeeper), // SetPubKeyDecorator must be called before all signature verification decorators
 				authante.NewValidateSigCountDecorator(options.AccountKeeper),
 				projectante.NewDeductFeeDecorator(options.ProjectKeeper, options.AccountKeeper, options.BankKeeper, options.IidKeeper),
-				//ixo.NewSigGasConsumeDecorator(ak, sigGasConsumer, pubKeyGetter),
+				//xco.NewSigGasConsumeDecorator(ak, sigGasConsumer, pubKeyGetter),
 				projectante.NewSigVerificationDecorator(options.AccountKeeper, options.ProjectKeeper, options.SignModeHandler),
 				authante.NewIncrementSequenceDecorator(options.AccountKeeper), // innermost AnteDecorator
 			}
 		} else {
 			anteDecorators = []sdk.AnteDecorator{
 				authante.NewSetUpContextDecorator(),
-				// ixoante.NewCheckTxForIncompatibleMsgsDecorator(),
+				// xcoante.NewCheckTxForIncompatibleMsgsDecorator(),
 				wasmkeeper.NewLimitSimulationGasDecorator(options.wasmConfig.SimulationGasLimit), // after setup context to enforce limits early
 				wasmkeeper.NewCountTXDecorator(options.txCounterStoreKey),
 				authante.NewRejectExtensionOptionsDecorator(),

@@ -28,27 +28,27 @@ yes 12345678 | /app/xcod add-genesis-account $(/app/xcod keys show dev-main -a) 
 # yes $PASSWORD | xcod add-genesis-account “$(xcod keys show francesco -a)” 1000000000000uxco,1000000000000res,1000000000000rez
 # yes $PASSWORD | xcod add-genesis-account “$(xcod keys show shaun -a)” 1000000000000uxco,1000000000000res,1000000000000rez
 # Add pubkey-based genesis accounts
-# MIGUEL_ADDR=“ixo107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx”    # address from did:ixo:4XJLBfGtWSGKSz4BeRxdun’s pubkey
-# FRANCESCO_ADDR=“ixo1cpa6w2wnqyxpxm4rryfjwjnx75kn4xt372dp3y” # address from did:ixo:UKzkhVSHc3qEFva5EY2XHt’s pubkey
-# SHAUN_ADDR=“ixo1d5u5ta7np7vefxa7ttpuy5aurg7q5regm0t2un”     # address from did:ixo:U4tSpzzv91HHqWW1YmFkHJ’s pubkey
+# MIGUEL_ADDR=“xco107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx”    # address from did:xco:4XJLBfGtWSGKSz4BeRxdun’s pubkey
+# FRANCESCO_ADDR=“xco1cpa6w2wnqyxpxm4rryfjwjnx75kn4xt372dp3y” # address from did:xco:UKzkhVSHc3qEFva5EY2XHt’s pubkey
+# SHAUN_ADDR=“xco1d5u5ta7np7vefxa7ttpuy5aurg7q5regm0t2un”     # address from did:xco:U4tSpzzv91HHqWW1YmFkHJ’s pubkey
 # yes $PASSWORD | xcod add-genesis-account “$MIGUEL_ADDR” 1000000000000uxco,1000000000000res,1000000000000rez
 # yes $PASSWORD | xcod add-genesis-account “$FRANCESCO_ADDR” 1000000000000uxco,1000000000000res,1000000000000rez
 # yes $PASSWORD | xcod add-genesis-account “$SHAUN_ADDR” 1000000000000uxco,1000000000000res,1000000000000rez
-# yes $PASSWORD | xcod add-genesis-account “ixo19h3lqj50uhzdrv8mkafnp55nqmz4ghc2sd3m48” 1000000000000uxco,1000000000000res,1000000000000rez
-# Add ixo did
+# yes $PASSWORD | xcod add-genesis-account “xco19h3lqj50uhzdrv8mkafnp55nqmz4ghc2sd3m48” 1000000000000uxco,1000000000000res,1000000000000rez
+# Add xco did
 yes 12345678 | /app/xcod gentx dev-main 10000000000uxco --chain-id devnet-1
 HOME=/root
 /app/xcod collect-gentxs
 
-# XCO_DID=“did:ixo:U4tSpzzv91HHqWW1YmFkHJ”
-# export FROM=\”ixo_did\“: \“\”
-# export TO=“\”ixo_did\“: \“$XCO_DID\“”
-sed -i 's/"ixo_did" : ""/"ixo_did" : ""/;s/"bond_denom" : "stake"/"bond_denom" : "uxco"/;s/"mint_denom" : "stake"/"mint_denom" : "uxco"/;s/stake/uxco/;s/"Reserved_bond_tokens" : "\[\]"/"Reserved_bond_tokens" : "\[\]"/;s/"minimum-gas-prices" : ""/"minimum-gas-prices" : "0.025uxco"/;s/"enable" : "false"/"enable" : "true"/;s/"swagger" : "false"/"swagger" : "true"/;' $HOME/.xcod/config/genesis.json
+# XCO_DID=“did:xco:U4tSpzzv91HHqWW1YmFkHJ”
+# export FROM=\”xco_did\“: \“\”
+# export TO=“\”xco_did\“: \“$XCO_DID\“”
+sed -i 's/"xco_did" : ""/"xco_did" : ""/;s/"bond_denom" : "stake"/"bond_denom" : "uxco"/;s/"mint_denom" : "stake"/"mint_denom" : "uxco"/;s/stake/uxco/;s/"Reserved_bond_tokens" : "\[\]"/"Reserved_bond_tokens" : "\[\]"/;s/"minimum-gas-prices" : ""/"minimum-gas-prices" : "0.025uxco"/;s/"enable" : "false"/"enable" : "true"/;s/"swagger" : "false"/"swagger" : "true"/;' $HOME/.xcod/config/genesis.json
 MAX_VOTING_PERIOD="30s"  # example: "172800s"
 FROM="\"voting_period\": \"172800s\""
 TO="\"voting_period\": \"$MAX_VOTING_PERIOD\""
 sed -i "s/$FROM/$TO/" "$HOME"/.xcod/config/genesis.json
-# sed -i '/ixo_did/c\   \"i xo_did\" : \"did:ixo:aaaaaaaaaaa\",' $HOME/.xcod/config/genesis.json
+# sed -i '/xco_did/c\   \"i xo_did\" : \"did:xco:aaaaaaaaaaa\",' $HOME/.xcod/config/genesis.json
 
 # Set staking token (both bond_denom and mint_denom)
 # export STAKING_TOKEN=“uxco”

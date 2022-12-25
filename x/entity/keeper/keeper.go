@@ -75,7 +75,7 @@ func (k Keeper) CreateEntity(ctx sdk.Context, msg *types.MsgCreateEntity) (types
 	}
 
 	account := k.AccountKeeper.NewAccount(ctx, authtypes.NewBaseAccount(address, pubKey, 0, 0))
-	entityId := fmt.Sprintf("did:ixo:entity:%s:%s", msg.EntityType, base58.Encode(pubKey.Bytes()[:16]))
+	entityId := fmt.Sprintf("did:xco:entity:%s:%s", msg.EntityType, base58.Encode(pubKey.Bytes()[:16]))
 
 	verification := iidtypes.NewVerification(
 		iidtypes.NewVerificationMethod(

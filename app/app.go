@@ -90,7 +90,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/xcohub/xco-blockchain/app/params"
 	"github.com/xcohub/xco-blockchain/client/tx"
-	libixo "github.com/xcohub/xco-blockchain/lib/ixo"
+	libxco "github.com/xcohub/xco-blockchain/lib/xco"
 	"github.com/xcohub/xco-blockchain/x/bonds"
 	bondskeeper "github.com/xcohub/xco-blockchain/x/bonds/keeper"
 	bondstypes "github.com/xcohub/xco-blockchain/x/bonds/types"
@@ -127,7 +127,7 @@ import (
 
 const (
 	appName              = "XcoApp"
-	Bech32MainPrefix     = "ixo"
+	Bech32MainPrefix     = "xco"
 	Bech32PrefixAccAddr  = Bech32MainPrefix
 	Bech32PrefixAccPub   = Bech32MainPrefix + sdk.PrefixPublic
 	Bech32PrefixValAddr  = Bech32MainPrefix + sdk.PrefixValidator + sdk.PrefixOperator
@@ -177,7 +177,7 @@ var (
 			)...,
 		),
 		wasm.AppModuleBasic{},
-		// Custom ixo modules
+		// Custom xco modules
 		bonds.AppModuleBasic{},
 		payments.AppModuleBasic{},
 		project.AppModuleBasic{},
@@ -197,7 +197,7 @@ var (
 		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
 		wasm.ModuleName:                {authtypes.Burner},
 
-		// Custom ixo module accounts
+		// Custom xco module accounts
 		bondstypes.BondsMintBurnAccount:       {authtypes.Minter, authtypes.Burner},
 		bondstypes.BatchesIntermediaryAccount: nil,
 		bondstypes.BondsReserveAccount:        nil,
@@ -217,7 +217,7 @@ var (
 
 var (
 	//NodeDir      = ".xcod"
-	//Bech32Prefix = "ixo"
+	//Bech32Prefix = "xco"
 
 	// If EnabledSpecificProposals is "", and this is "true", then enable all x/wasm proposals.
 	// If EnabledSpecificProposals is "", and this is not "true", then disable all x/wasm proposals.
@@ -285,7 +285,7 @@ type XcoApp struct {
 	ScopedTransferKeeper capabilitykeeper.ScopedKeeper `json:"scoped_transfer_keeper"`
 	scopedWasmKeeper     capabilitykeeper.ScopedKeeper
 
-	// Custom ixo keepers
+	// Custom xco keepers
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	IidKeeper      iidmodulekeeper.Keeper `json:"iid_keeper"`
@@ -328,7 +328,7 @@ func NewXcoApp(
 		// this line is used by starport scaffolding # stargate/app/storeKey
 		wasm.StoreKey,
 		iidtypes.StoreKey,
-		// Custom ixo store keys
+		// Custom xco store keys
 		bondstypes.StoreKey,
 		paymentstypes.StoreKey, projecttypes.StoreKey,
 		entitytypes.StoreKey,
@@ -476,7 +476,7 @@ func NewXcoApp(
 	// we prefer to be more strict in what arguments the modules expect.
 	var skipGenesisInvariants = cast.ToBool(appOpts.Get(crisis.FlagSkipGenesisInvariants))
 
-	// add keepers (for custom ixo modules)
+	// add keepers (for custom xco modules)
 	app.BondsKeeper = bondskeeper.NewKeeper(app.BankKeeper, app.AccountKeeper, app.StakingKeeper, app.IidKeeper,
 		keys[bondstypes.StoreKey], app.GetSubspace(bondstypes.ModuleName), app.appCodec)
 	app.PaymentsKeeper = paymentskeeper.NewKeeper(app.appCodec, keys[paymentstypes.StoreKey],
@@ -554,7 +554,7 @@ func NewXcoApp(
 		authzmodule.NewAppModule(appCodec, app.AuthzKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
 		transferModule,
 
-		// Custom ixo AppModules
+		// Custom xco AppModules
 		// this line is used by starport scaffolding # stargate/app/appModule
 		iidmodule.NewAppModule(app.appCodec, app.IidKeeper, &app.WasmKeeper),
 		bonds.NewAppModule(app.BondsKeeper, app.AccountKeeper),
@@ -577,7 +577,7 @@ func NewXcoApp(
 		govtypes.ModuleName, ibctransfertypes.ModuleName, vestingtypes.ModuleName,
 		authz.ModuleName, feegrant.ModuleName, wasm.ModuleName,
 
-		// Custom ixo modules
+		// Custom xco modules
 		projecttypes.ModuleName,
 		bondstypes.ModuleName,
 		iidtypes.ModuleName,
@@ -585,7 +585,7 @@ func NewXcoApp(
 		tokentypes.ModuleName,
 	)
 	app.mm.SetOrderEndBlockers(
-		// Custom ixo modules
+		// Custom xco modules
 
 		// Standard Cosmos modules
 		crisistypes.ModuleName, govtypes.ModuleName, stakingtypes.ModuleName,
@@ -612,7 +612,7 @@ func NewXcoApp(
 		upgradetypes.ModuleName, paramstypes.ModuleName, vestingtypes.ModuleName, authz.ModuleName,
 		feegrant.ModuleName, wasm.ModuleName,
 
-		// Custom ixo modules
+		// Custom xco modules
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 		iidtypes.ModuleName, bondstypes.ModuleName,
 		paymentstypes.ModuleName, projecttypes.ModuleName, wasm.ModuleName,
@@ -657,7 +657,7 @@ func NewXcoApp(
 	app.MountMemoryStores(memKeys)
 
 	// initialize BaseApp
-	ixoAnteHandler, err := XcoAnteHandler(HandlerOptions{
+	xcoAnteHandler, err := XcoAnteHandler(HandlerOptions{
 		AccountKeeper:     app.AccountKeeper,
 		BankKeeper:        app.BankKeeper,
 		FeegrantKeeper:    app.FeeGrantKeeper,
@@ -667,7 +667,7 @@ func NewXcoApp(
 		txCounterStoreKey: keys[wasm.StoreKey],
 
 		SignModeHandler: encodingConfig.TxConfig.SignModeHandler(),
-		SigGasConsumer:  libixo.XcoSigVerificationGasConsumer,
+		SigGasConsumer:  libxco.XcoSigVerificationGasConsumer,
 	})
 	if err != nil {
 		panic(err)
@@ -675,7 +675,7 @@ func NewXcoApp(
 
 	app.SetInitChainer(app.InitChainer)
 	app.SetBeginBlocker(app.BeginBlocker)
-	app.SetAnteHandler(ixoAnteHandler)
+	app.SetAnteHandler(xcoAnteHandler)
 	app.SetEndBlocker(app.EndBlocker)
 
 	if loadLatest {
@@ -703,8 +703,8 @@ func NewXcoApp(
 }
 
 // MakeCodecs constructs the *std.Codec and *codec.LegacyAmino instances used by
-// ixoapp. It is useful for tests and clients who do not want to construct the
-// full ixoapp.
+// xcoapp. It is useful for tests and clients who do not want to construct the
+// full xcoapp.
 func MakeCodecs() (codec.Codec, *codec.LegacyAmino) {
 	config := MakeTestEncodingConfig()
 	return config.Marshaler, config.Amino
@@ -880,7 +880,7 @@ type KVStoreKey struct {
 // 	// The default Cosmos AnteHandler fetches a signer address' pubkey from the
 // 	// GetPubKey() function after querying the account from the account keeper.
 // 	//
-// 	// In the case of ixo, since signers are DIDs rather than addresses, we get
+// 	// In the case of xco, since signers are DIDs rather than addresses, we get
 // 	// the DID Doc containing the pubkey from the did/project module (depending
 // 	// if signer is a user or a project, respectively).
 // 	//
@@ -895,7 +895,7 @@ type KVStoreKey struct {
 // 	//
 // 	// - did module msgs are signed by did module DIDs
 // 	// - project module msgs are signed by project module DIDs (a.k.a projects)
-// 	// - [[default]] remaining ixo module msgs are signed by did module DIDs
+// 	// - [[default]] remaining xco module msgs are signed by did module DIDs
 // 	//
 // 	// A special case in the project module is the MsgWithdrawFunds message,
 // 	// which is a project module message signed by a did module DID (instead
@@ -907,19 +907,19 @@ type KVStoreKey struct {
 // 	projectPubKeyGetter := project.NewModulePubKeyGetter(app.ProjectKeeper, app.IidKeeper)
 
 // 	// Since we have parameterised pubkey getters, we can use the same default
-// 	// ixo AnteHandler (ixo.NewDefaultAnteHandler) for all three pubkey getters
+// 	// xco AnteHandler (xco.NewDefaultAnteHandler) for all three pubkey getters
 // 	// instead of having to implement three unique AnteHandlers.
 
-// 	defaultXcoAnteHandler := ixotypes.NewDefaultAnteHandler(
-// 		app.AccountKeeper, app.BankKeeper, ixotypes.XcoSigVerificationGasConsumer,
+// 	defaultXcoAnteHandler := xcotypes.NewDefaultAnteHandler(
+// 		app.AccountKeeper, app.BankKeeper, xcotypes.XcoSigVerificationGasConsumer,
 // 		defaultPubKeyGetter, encodingConfig.TxConfig.SignModeHandler(), key, app.IBCKeeper,
 // 		wasmConfig)
-// 	iidAnteHandler := ixotypes.NewDefaultAnteHandler(
-// 		app.AccountKeeper, app.BankKeeper, ixotypes.XcoSigVerificationGasConsumer,
+// 	iidAnteHandler := xcotypes.NewDefaultAnteHandler(
+// 		app.AccountKeeper, app.BankKeeper, xcotypes.XcoSigVerificationGasConsumer,
 // 		iidPubKeyGetter, encodingConfig.TxConfig.SignModeHandler(), key, app.IBCKeeper,
 // 		wasmConfig)
-// 	projectAnteHandler := ixotypes.NewDefaultAnteHandler(
-// 		app.AccountKeeper, app.BankKeeper, ixotypes.XcoSigVerificationGasConsumer,
+// 	projectAnteHandler := xcotypes.NewDefaultAnteHandler(
+// 		app.AccountKeeper, app.BankKeeper, xcotypes.XcoSigVerificationGasConsumer,
 // 		projectPubKeyGetter, encodingConfig.TxConfig.SignModeHandler(), key, app.IBCKeeper,
 // 		wasmConfig)
 
@@ -934,7 +934,7 @@ type KVStoreKey struct {
 // 		BankKeeper:      app.BankKeeper,
 // 		FeegrantKeeper:  app.FeeGrantKeeper,
 // 		SignModeHandler: encodingConfig.TxConfig.SignModeHandler(),
-// 		SigGasConsumer:  ixotypes.XcoSigVerificationGasConsumer,
+// 		SigGasConsumer:  xcotypes.XcoSigVerificationGasConsumer,
 // 	}
 
 // 	cosmosAnteHandler, err := authante.NewAnteHandler(options)
@@ -952,7 +952,7 @@ type KVStoreKey struct {
 // 	// However, in the case of a project, we cannot send tokens to it before its
 // 	// creation since we do not know the project DID (and thus where to send the
 // 	// tokens) until exactly before its creation (when project creation is done
-// 	// through ixo-cellnode). The project however does have an original creator!
+// 	// through xco-cellnode). The project however does have an original creator!
 // 	//
 // 	// Thus, the gas fees in the case of project creation are instead charged
 // 	// to the original creator, which is pointed out in the project doc. For
@@ -964,7 +964,7 @@ type KVStoreKey struct {
 
 // 	// TODO: Routing https://docs.cosmos.network/v0.44/building-modules/msg-services.html#amino-legacymsgs
 // 	return func(ctx sdk.Context, tx sdk.Tx, simulate bool) (_ sdk.Context, err error) {
-// 		// Route message based on ixo module router key
+// 		// Route message based on xco module router key
 // 		// Otherwise, route to Cosmos ante handler
 // 		msg := tx.GetMsgs()[0].(legacytx.LegacyMsg)
 
@@ -1005,7 +1005,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(wasm.ModuleName)
-	// init params keeper and subspaces (for custom ixo modules)
+	// init params keeper and subspaces (for custom xco modules)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 	paramsKeeper.Subspace(iidtypes.ModuleName)
 	paramsKeeper.Subspace(bondstypes.ModuleName)

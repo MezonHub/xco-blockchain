@@ -49,7 +49,7 @@ xcod_q() {
 
 
 MIGUEL_DID_FULL='{
-  "did":"did:ixo:4XJLBfGtWSGKSz4BeRxdun",
+  "did":"did:xco:4XJLBfGtWSGKSz4BeRxdun",
   "verifyKey":"2vMHhssdhrBCRFiq9vj7TxGYDybW4yYdrYh9JG56RaAt",
   "encryptionPublicKey":"6GBp8qYgjE3ducksUa9Ar26ganhDFcmYfbZE9ezFx5xS",
   "secret":{
@@ -59,9 +59,9 @@ MIGUEL_DID_FULL='{
   }
 }'
 
-FRANCESCO_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
+FRANCESCO_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
 FRANCESCO_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{
@@ -80,8 +80,8 @@ echo "Ledgering DID 2/2..."
 ENTITY='{
 "entity_type": "assets",
 "entity_status": 1,
-"owner_did": "did:ixo:4XJLBfGtWSGKSz4BeRxdun",
-"owner_address": "ixo107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"
+"owner_did": "did:xco:4XJLBfGtWSGKSz4BeRxdun",
+"owner_address": "xco107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"
 }'
 # echo $ENTITY | jq
 xcod_tx entity create-entity "$(echo $ENTITY | jq -rc .)" --from miguel

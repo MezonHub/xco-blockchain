@@ -19,7 +19,7 @@ import (
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	"github.com/xcohub/xco-blockchain/x/project/types"
 
-	libixo "github.com/xcohub/xco-blockchain/lib/ixo"
+	libxco "github.com/xcohub/xco-blockchain/lib/xco"
 
 	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
 	iidutil "github.com/xcohub/xco-blockchain/x/iid/util"
@@ -42,8 +42,8 @@ func checkAllMsgs(tx sdk.Tx) (*types.MsgCreateProject, error) {
 	return msg, nil
 }
 
-func pubKeyGetter(keeper projectkeeper.Keeper, iidKeeper iidkeeper.Keeper) libixo.PubKeyGetter {
-	return func(ctx sdk.Context, msg libixo.XcoMsg, sigs []signing.SignatureV2) (pubKey cryptotypes.PubKey, err error) {
+func pubKeyGetter(keeper projectkeeper.Keeper, iidKeeper iidkeeper.Keeper) libxco.PubKeyGetter {
+	return func(ctx sdk.Context, msg libxco.XcoMsg, sigs []signing.SignatureV2) (pubKey cryptotypes.PubKey, err error) {
 
 		// MsgCreateProject: pubkey from msg since project does not exist yet
 		// MsgWithdrawFunds: signer is user DID, so get pubkey from did module
@@ -268,14 +268,14 @@ func (dfd DeductFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bo
 
 	// confirm that fee is the exact amount expected
 	expectedTotalFee := sdk.NewCoins(sdk.NewCoin(
-		libixo.XcoNativeToken, sdk.NewInt(types.MsgCreateProjectTotalFee)))
+		libxco.XcoNativeToken, sdk.NewInt(types.MsgCreateProjectTotalFee)))
 	if !feeTx.GetFee().IsEqual(expectedTotalFee) {
 		return ctx, sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "invalid fee")
 	}
 
 	// Calculate transaction fee and project funding
 	transactionFee := sdk.NewCoins(sdk.NewCoin(
-		libixo.XcoNativeToken, sdk.NewInt(types.MsgCreateProjectTransactionFee)))
+		libxco.XcoNativeToken, sdk.NewInt(types.MsgCreateProjectTransactionFee)))
 	projectFunding := expectedTotalFee.Sub(transactionFee) // panics if negative result
 
 	// deduct the fees

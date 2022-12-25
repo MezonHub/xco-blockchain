@@ -4,7 +4,7 @@ import (
 	"github.com/btcsuite/btcutil/base58"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	libixo "github.com/xcohub/xco-blockchain/lib/ixo"
+	libxco "github.com/xcohub/xco-blockchain/lib/xco"
 	"github.com/xcohub/xco-blockchain/lib/legacydid"
 	"github.com/xcohub/xco-blockchain/x/iid/types"
 	"github.com/spf13/cobra"
@@ -22,7 +22,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				return err
 			}
 
-			ixoDid, err := legacydid.UnmarshalXcoDid(args[0])
+			xcoDid, err := legacydid.UnmarshalXcoDid(args[0])
 			if err != nil {
 				return err
 			}
@@ -32,20 +32,20 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 			// 	return err
 			// }
 			// did
-			did := types.DID(ixoDid.Did)
+			did := types.DID(xcoDid.Did)
 			// verification
 			// signer := clientCtx.GetFromAddress()
 			// pubkey
 
-			pubKey := ixoDid.VerifyKey
+			pubKey := xcoDid.VerifyKey
 
-			clientCtx = clientCtx.WithFromAddress(ixoDid.Address())
+			clientCtx = clientCtx.WithFromAddress(xcoDid.Address())
 
 			// understand the vmType
 
 			auth := types.NewVerification(
 				types.NewVerificationMethod(
-					ixoDid.Did,
+					xcoDid.Did,
 					did,
 					types.NewPublicKeyMultibase(base58.Decode(pubKey), types.DIDVMethodTypeEd25519VerificationKey2018),
 				),
@@ -60,7 +60,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				types.AccordedRights{},
 				types.LinkedResources{},
 				types.LinkedEntities{},
-				ixoDid.Address().String(),
+				xcoDid.Address().String(),
 				types.Contexts{},
 			)
 			// validate
@@ -68,7 +68,7 @@ func NewCreateIidDocumentFormLegacyDidCmd() *cobra.Command {
 				return err
 			}
 			// execute
-			return libixo.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), ixoDid, msg)
+			return libxco.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), xcoDid, msg)
 		},
 	}
 

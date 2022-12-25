@@ -19,14 +19,14 @@ cd ~
 
 
 git clone 
-mkdir /home/ixo/.xcod
-mkdir /home/ixo/.xcod/config
+mkdir /home/xco/.xcod
+mkdir /home/xco/.xcod/config
 
-cp /root/genesis/pandora-4/genesis.json /home/ixo/.xcod/config/genesis.json
+cp /root/genesis/pandora-4/genesis.json /home/xco/.xcod/config/genesis.json
 
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
+chown -R xco:xco /home/xco/.$DAEMONNAME
+chown -R xco:xco /home/xco/.$DAEMONNAME/config/
+chown -R xco:xco /home/xco/.$DAEMONNAME/config/genesis.json
 
 
 su $USERNAME <<EOSU
@@ -35,9 +35,9 @@ EOSU
 
 sleep 5
 
-cp /root/genesis/pandora-4/genesis.json /home/ixo/.xcod/config/genesis.json
+cp /root/genesis/pandora-4/genesis.json /home/xco/.xcod/config/genesis.json
 
-chown -R ixo:ixo /home/ixo/.$DAEMONNAME/config/genesis.json
+chown -R xco:xco /home/xco/.$DAEMONNAME/config/genesis.json
 
 
 echo "---"

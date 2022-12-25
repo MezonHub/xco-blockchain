@@ -9,7 +9,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	xcotypes "github.com/xcohub/xco-blockchain/lib/xco"
 	didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
 	didtypes "github.com/xcohub/xco-blockchain/lib/legacydid"
 	iidkeeper "github.com/xcohub/xco-blockchain/x/iid/keeper"
@@ -212,9 +212,9 @@ func payoutFees(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid dide
 		return err
 	}
 
-	ixoDid := k.GetParams(ctx).XcoDid
+	xcoDid := k.GetParams(ctx).XcoDid
 	amount := getXcoAmount(ctx, k, bk, projectDid, XcoAccountFeesId)
-	err = payoutAndRecon(ctx, k, bk, projectDid, XcoAccountFeesId, iidtypes.DIDFragment(ixoDid), amount)
+	err = payoutAndRecon(ctx, k, bk, projectDid, XcoAccountFeesId, iidtypes.DIDFragment(xcoDid), amount)
 	if err != nil {
 		return err
 	}
@@ -247,9 +247,9 @@ func getXcoAmount(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid di
 	if found {
 		accAddr, _ := getAccountInProjectAccounts(ctx, k, projectDid, accountID)
 		coins := bk.GetAllBalances(ctx, accAddr)
-		return sdk.NewCoin(ixotypes.XcoNativeToken, coins.AmountOf(ixotypes.XcoNativeToken))
+		return sdk.NewCoin(xcotypes.XcoNativeToken, coins.AmountOf(xcotypes.XcoNativeToken))
 	}
-	return sdk.NewCoin(ixotypes.XcoNativeToken, sdk.ZeroInt())
+	return sdk.NewCoin(xcotypes.XcoNativeToken, sdk.ZeroInt())
 }
 
 func (s msgServer) CreateAgent(goCtx context.Context, msg *types.MsgCreateAgent) (*types.MsgCreateAgentResponse, error) {
@@ -405,8 +405,8 @@ func (s msgServer) CreateEvaluation(goCtx context.Context, msg *types.MsgCreateE
 	// If oracle fee present in project fees map, proceed with oracle pay
 	templateId, err := feesMap.GetPayTemplateId(types.OracleFee)
 	if err == nil {
-		// Get ixo address
-		ixoAddr, err := getAccountInProjectAccounts(ctx, k, msg.ProjectDid,
+		// Get xco address
+		xcoAddr, err := getAccountInProjectAccounts(ctx, k, msg.ProjectDid,
 			XcoAccountPayFeesId)
 		if err != nil {
 			return nil, err
@@ -428,13 +428,13 @@ func (s msgServer) CreateEvaluation(goCtx context.Context, msg *types.MsgCreateE
 		if err != nil {
 			return nil, sdkerrors.Wrap(err, "Address not found in iid doc")
 		}
-		// Calculate evaluator pay share (totals to 100) for ixo, node, and oracle
+		// Calculate evaluator pay share (totals to 100) for xco, node, and oracle
 		feePercentage := k.GetParams(ctx).OracleFeePercentage
 		nodeFeeShare := feePercentage.Mul(k.GetParams(ctx).NodeFeePercentage.QuoInt64(100))
-		ixoFeeShare := feePercentage.Sub(nodeFeeShare)
+		xcoFeeShare := feePercentage.Sub(nodeFeeShare)
 		oracleShareLessFees := sdk.NewDec(100).Sub(feePercentage)
 		oraclePayRecipients := paymentstypes.NewDistribution(
-			paymentstypes.NewDistributionShare(ixoAddr, ixoFeeShare),
+			paymentstypes.NewDistributionShare(xcoAddr, xcoFeeShare),
 			paymentstypes.NewDistributionShare(nodeAddr, nodeFeeShare),
 			paymentstypes.NewDistributionShare(senderAddr, oracleShareLessFees))
 
@@ -527,7 +527,7 @@ func (s msgServer) WithdrawFunds(goCtx context.Context, msg *types.MsgWithdrawFu
 		fromAccountId = types.InternalAccountID(recipientDid)
 	}
 
-	amountCoin := sdk.NewCoin(ixotypes.XcoNativeToken, amount)
+	amountCoin := sdk.NewCoin(xcotypes.XcoNativeToken, amount)
 	err = payoutAndRecon(ctx, k, bk, projectDid, fromAccountId, recipientDid, amountCoin)
 	if err != nil {
 		return nil, err
@@ -606,8 +606,8 @@ func payoutAndRecon(ctx sdk.Context, k Keeper, bk bankkeeper.Keeper, projectDid 
 		return nil
 	}
 
-	ixoBalance := getXcoAmount(ctx, k, bk, projectDid, fromAccountId)
-	if ixoBalance.IsLT(amount) {
+	xcoBalance := getXcoAmount(ctx, k, bk, projectDid, fromAccountId)
+	if xcoBalance.IsLT(amount) {
 		return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, "insufficient funds in specified account")
 	}
 

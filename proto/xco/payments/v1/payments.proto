@@ -1,5 +1,5 @@
 syntax = "proto3";
-package ixo.payments.v1;
+package xco.payments.v1;
 
 import "gogoproto/gogo.proto";
 import "google/protobuf/any.proto";

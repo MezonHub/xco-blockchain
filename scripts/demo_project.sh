@@ -42,7 +42,7 @@ xcod_tx() {
   shift
   shift
 
-  NODE="https://devnet.ixo.earth:443/rpc/"
+  NODE="https://devnet.xco.earth:443/rpc/"
 
   # Broadcast the transaction
   xcod tx $cmd \
@@ -59,9 +59,9 @@ xcod_q() {
   true
 }
 
-PROJECT_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
+PROJECT_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
 PROJECT_DID_FULL='{
-  "did":"did:ixo:U7GK8p8rVhJMKhBVRCJJ8c",
+  "did":"did:xco:U7GK8p8rVhJMKhBVRCJJ8c",
   "verifyKey":"FmwNAfvV2xEqHwszrVJVBR3JgQ8AFCQEVzo1p6x4L8VW",
   "encryptionPublicKey":"domKpTpjrHQtKUnaFLjCuDLe2oHeS4b1sKt7yU9cq7m",
   "secret":{
@@ -101,11 +101,11 @@ FEE_FOR_SERVICE_PAYMENT_TEMPLATE='{
   "discounts": []
 }'
 
-MIGUEL_DID="did:ixo:4XJLBfGtWSGKSz4BeRxdun"
-FRANCESCO_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
-SHAUN_DID="did:ixo:U4tSpzzv91HHqWW1YmFkHJ"
+MIGUEL_DID="did:xco:4XJLBfGtWSGKSz4BeRxdun"
+FRANCESCO_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
+SHAUN_DID="did:xco:U4tSpzzv91HHqWW1YmFkHJ"
 FRANCESCO_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{
@@ -115,7 +115,7 @@ FRANCESCO_DID_FULL='{
   }
 }'
 SHAUN_DID_FULL='{
-  "did":"did:ixo:U4tSpzzv91HHqWW1YmFkHJ",
+  "did":"did:xco:U4tSpzzv91HHqWW1YmFkHJ",
   "verifyKey":"FkeDue5it82taeheMprdaPrctfK3DeVV9NnEPYDgwwRG",
   "encryptionPublicKey":"DtdGbZB2nSQvwhs6QoN5Cd8JTxWgfVRAGVKfxj8LA15i",
   "secret":{
@@ -228,7 +228,7 @@ xcod_tx project create-project "$SENDER_DID" "$PROJECT_INFO" "$PROJECT_DID_FULL"
 # xcod_q project get-project-txs $PROJECT_DID
 
 # # Expected withdrawals:
-# # - 500,000 to ixo (a.k.a Shaun) DID (did:ixo:U4tSpzzv91HHqWW1YmFkHJ)
+# # - 500,000 to xco (a.k.a Shaun) DID (did:xco:U4tSpzzv91HHqWW1YmFkHJ)
 # # Expected project account balances:
 # # - InitiatingNodePayFees:        0
 # # - XcoFees:                      0
@@ -239,18 +239,18 @@ xcod_tx project create-project "$SENDER_DID" "$PROJECT_INFO" "$PROJECT_DID_FULL"
 # # - Shaun:        1,000,001,495,000  # 500,000 withdrawal
 
 # echo "InitiatingNodePayFees"
-# xcod_q bank balances "ixo1xvjy68xrrtxnypwev9r8tmjys9wk0zkkspzjmq"
+# xcod_q bank balances "xco1xvjy68xrrtxnypwev9r8tmjys9wk0zkkspzjmq"
 # echo "XcoFees"
-# xcod_q bank balances "ixo1ff9we62w6eyes7wscjup3p40vy4uz0sa7j0ajc"
+# xcod_q bank balances "xco1ff9we62w6eyes7wscjup3p40vy4uz0sa7j0ajc"
 # echo "XcoPayFees"
-# xcod_q bank balances "ixo1udgxtf6yd09mwnnd0ljpmeq4vnyhxdg03uvne3"
-# echo "(project) did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
-# xcod_q bank balances "ixo1rmkak6t606wczsps9ytpga3z4nre4z3nwc04p8"
-# echo "(Miguel) did:ixo:4XJLBfGtWSGKSz4BeRxdun"
+# xcod_q bank balances "xco1udgxtf6yd09mwnnd0ljpmeq4vnyhxdg03uvne3"
+# echo "(project) did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
+# xcod_q bank balances "xco1rmkak6t606wczsps9ytpga3z4nre4z3nwc04p8"
+# echo "(Miguel) did:xco:4XJLBfGtWSGKSz4BeRxdun"
 # MIGUEL_FULL_ADDR="$(xcod q did get-address-from-did $MIGUEL_DID)"
 # MIGUEL_ADDR=${MIGUEL_FULL_ADDR##*: }
 # xcod_q bank balances "$MIGUEL_ADDR"
-# echo "(Shaun) did:ixo:U4tSpzzv91HHqWW1YmFkHJ"
+# echo "(Shaun) did:xco:U4tSpzzv91HHqWW1YmFkHJ"
 # SHAUN_FULL_ADDR="$(xcod q did get-address-from-did $SHAUN_DID)"
 # SHAUN_ADDR=${SHAUN_FULL_ADDR##*: }
 # xcod_q bank balances "$SHAUN_ADDR"
@@ -275,8 +275,8 @@ xcod_tx project withdraw-funds "$MIGUEL_DID_FULL" "$DATA"
 # xcod_q project get-project-txs $PROJECT_DID
 
 # # Expected withdrawals:
-# # - 500,000 to ixo (a.k.a Shaun) DID (did:ixo:U4tSpzzv91HHqWW1YmFkHJ)
-# # - 1,000,000 to shaun DID (did:ixo:U4tSpzzv91HHqWW1YmFkHJ)
+# # - 500,000 to xco (a.k.a Shaun) DID (did:xco:U4tSpzzv91HHqWW1YmFkHJ)
+# # - 1,000,000 to shaun DID (did:xco:U4tSpzzv91HHqWW1YmFkHJ)
 # # Expected project account balances:
 # # - InitiatingNodePayFees:        0
 # # - XcoFees:                      0

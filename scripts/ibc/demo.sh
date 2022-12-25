@@ -19,7 +19,7 @@ RPC_1_HTTP="http://localhost:26659"
 RPC_2_HTTP="http://localhost:26661"
 RPC_1_TCP="tcp://localhost:26659"
 RPC_2_TCP="tcp://localhost:26661"
-PREFIX="ixo"
+PREFIX="xco"
 FAUCET_1="http://localhost:4500"
 FAUCET_2="http://localhost:4502"
 
@@ -95,15 +95,15 @@ starport relayer configure \
   --target-prefix="$PREFIX" \
   --target-faucet="$FAUCET_2"
 
-# Send tokens to relayer on ixo
+# Send tokens to relayer on xco
 # [[update address if need be]]
 # [[can be skipped if faucets working]]
-xcod1_tx bank send alice ixo1q65z2ky63ks52mcztgjr7dm62lwpm46gkg5422 1000000uxco
+xcod1_tx bank send alice xco1q65z2ky63ks52mcztgjr7dm62lwpm46gkg5422 1000000uxco
 
 # Send tokens to relayer on cosmos
 # [[update address if need be]]
 # [[can be skipped if faucets working]]
-xcod2_tx bank send charlie ixo1q65z2ky63ks52mcztgjr7dm62lwpm46gkg5422 1000000uatom
+xcod2_tx bank send charlie xco1q65z2ky63ks52mcztgjr7dm62lwpm46gkg5422 1000000uatom
 
 # Connect the two chains
 starport relayer connect
@@ -111,18 +111,18 @@ starport relayer connect
 # Send tokens from pandora-4.1 to pandora-4.2
 # [[update channel ID if need be]]
 # [[receiver address is arbitrary]]
-xcod1_tx ibc-transfer transfer transfer channel-0 ixo16qeg5rzwhamydtlarc9v6e3ld46x9lxv5tkh4u 123uxco --from=alice
+xcod1_tx ibc-transfer transfer transfer channel-0 xco16qeg5rzwhamydtlarc9v6e3ld46x9lxv5tkh4u 123uxco --from=alice
 
 # Send tokens from pandora-4.2 to pandora-4.1
 # [[update channel ID if need be]]
 # [[receiver address is arbitrary]]
-xcod2_tx ibc-transfer transfer transfer channel-0 ixo1fe3v2dwp6mr25hflwljdddp8vh3cseymp3kmpv 123uatom --from=charlie
+xcod2_tx ibc-transfer transfer transfer channel-0 xco1fe3v2dwp6mr25hflwljdddp8vh3cseymp3kmpv 123uatom --from=charlie
 
 # Query balance on pandora-4.1
-xcod1_q bank balances ixo1fe3v2dwp6mr25hflwljdddp8vh3cseymp3kmpv
+xcod1_q bank balances xco1fe3v2dwp6mr25hflwljdddp8vh3cseymp3kmpv
 
 # Query balance on pandora-4.2
-xcod2_q bank balances ixo16qeg5rzwhamydtlarc9v6e3ld46x9lxv5tkh4u
+xcod2_q bank balances xco16qeg5rzwhamydtlarc9v6e3ld46x9lxv5tkh4u
 
 # Query denom traces on pandora-4.1
 xcod1_q ibc-transfer denom-traces

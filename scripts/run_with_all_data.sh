@@ -30,20 +30,20 @@ yes $PASSWORD | xcod add-genesis-account "$(xcod keys show francesco -a)" 100000
 yes $PASSWORD | xcod add-genesis-account "$(xcod keys show shaun -a)" 1000000000000uxco,1000000000000res,1000000000000rez
 
 # Add pubkey-based genesis accounts
-MIGUEL_ADDR="ixo107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"    # address from did:ixo:4XJLBfGtWSGKSz4BeRxdun's pubkey
-FRANCESCO_ADDR="ixo1cpa6w2wnqyxpxm4rryfjwjnx75kn4xt372dp3y" # address from did:ixo:UKzkhVSHc3qEFva5EY2XHt's pubkey
-SHAUN_ADDR="ixo1d5u5ta7np7vefxa7ttpuy5aurg7q5regm0t2un"     # address from did:ixo:U4tSpzzv91HHqWW1YmFkHJ's pubkey
+MIGUEL_ADDR="xco107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"    # address from did:xco:4XJLBfGtWSGKSz4BeRxdun's pubkey
+FRANCESCO_ADDR="xco1cpa6w2wnqyxpxm4rryfjwjnx75kn4xt372dp3y" # address from did:xco:UKzkhVSHc3qEFva5EY2XHt's pubkey
+SHAUN_ADDR="xco1d5u5ta7np7vefxa7ttpuy5aurg7q5regm0t2un"     # address from did:xco:U4tSpzzv91HHqWW1YmFkHJ's pubkey
 yes $PASSWORD | xcod add-genesis-account "$MIGUEL_ADDR" 1000000000000uxco,1000000000000res,1000000000000rez
 yes $PASSWORD | xcod add-genesis-account "$FRANCESCO_ADDR" 1000000000000uxco,1000000000000res,1000000000000rez
 yes $PASSWORD | xcod add-genesis-account "$SHAUN_ADDR" 1000000000000uxco,1000000000000res,1000000000000rez
-yes $PASSWORD | xcod add-genesis-account "ixo19h3lqj50uhzdrv8mkafnp55nqmz4ghc2sd3m48" 1000000000000uxco,1000000000000res,1000000000000rez
-yes $PASSWORD | xcod add-genesis-account "ixo1ry6cr975sttlzxptakxs2tsygh2z56vgle88jc" 1000000000000uxco,1000000000000res,1000000000000rez
-yes $PASSWORD | xcod add-genesis-account "ixo1ky7wad4d7gjtcy5yklc83geev76cudcevmnhhn" 1000000000000uxco,1000000000000res,1000000000000rez
+yes $PASSWORD | xcod add-genesis-account "xco19h3lqj50uhzdrv8mkafnp55nqmz4ghc2sd3m48" 1000000000000uxco,1000000000000res,1000000000000rez
+yes $PASSWORD | xcod add-genesis-account "xco1ry6cr975sttlzxptakxs2tsygh2z56vgle88jc" 1000000000000uxco,1000000000000res,1000000000000rez
+yes $PASSWORD | xcod add-genesis-account "xco1ky7wad4d7gjtcy5yklc83geev76cudcevmnhhn" 1000000000000uxco,1000000000000res,1000000000000rez
 
-# Add ixo did
-XCO_DID="did:ixo:U4tSpzzv91HHqWW1YmFkHJ"
-FROM="\"ixo_did\": \"\""
-TO="\"ixo_did\": \"$XCO_DID\""
+# Add xco did
+XCO_DID="did:xco:U4tSpzzv91HHqWW1YmFkHJ"
+FROM="\"xco_did\": \"\""
+TO="\"xco_did\": \"$XCO_DID\""
 sed -i "s/$FROM/$TO/" "$HOME"/.xcod/config/genesis.json
 
 # Set staking token (both bond_denom and mint_denom)

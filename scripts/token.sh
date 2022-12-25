@@ -49,7 +49,7 @@ xcod_q() {
 
 
 MIGUEL_DID_FULL='{
-  "did":"did:ixo:4XJLBfGtWSGKSz4BeRxdun",
+  "did":"did:xco:4XJLBfGtWSGKSz4BeRxdun",
   "verifyKey":"2vMHhssdhrBCRFiq9vj7TxGYDybW4yYdrYh9JG56RaAt",
   "encryptionPublicKey":"6GBp8qYgjE3ducksUa9Ar26ganhDFcmYfbZE9ezFx5xS",
   "secret":{
@@ -59,9 +59,9 @@ MIGUEL_DID_FULL='{
   }
 }'
 
-FRANCESCO_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
+FRANCESCO_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
 FRANCESCO_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{
@@ -72,16 +72,16 @@ FRANCESCO_DID_FULL='{
 }'
 
 INST='{
-"minter": "ixo14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn",
+"minter": "xco14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn",
 }'
 
-#xcod tx wasm instantiate 2 '{"minter":"ixo14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn"}' --label abc --from miguel --admin "ixo14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn" $TXFLAG
+#xcod tx wasm instantiate 2 '{"minter":"xco14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn"}' --label abc --from miguel --admin "xco14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn" $TXFLAG
 # echo $ENTITY | jq
 
 echo "Minting 25x abc123/CARBON"
-xcod_tx wasm execute 'ixo1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqg98jca' '{"mint":{"to":"ixo14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn","token_id":"CARBON:abc124","value":"1","uri":"did:ixo:entity12345"}}' --from miguel
+xcod_tx wasm execute 'xco1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqg98jca' '{"mint":{"to":"xco14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn","token_id":"CARBON:abc124","value":"1","uri":"did:xco:entity12345"}}' --from miguel
 echo "Getting balance"
-xcod_q wasm contract-state smart 'ixo1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqg98jca' '{"balance":{"owner":"ixo14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn","token_id":"CARBON:abc124"}}'
+xcod_q wasm contract-state smart 'xco1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqg98jca' '{"balance":{"owner":"xco14nevcuw8sfz5ltsq4f6x4fr56cvlhcklraucvn","token_id":"CARBON:abc124"}}'
 echo "Getting URI (Token Info)"
-xcod_q wasm contract-state smart 'ixo1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqg98jca' '{"token_info":{"token_id":"CARBON:abc124"}}'
+xcod_q wasm contract-state smart 'xco1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqg98jca' '{"token_info":{"token_id":"CARBON:abc124"}}'
 

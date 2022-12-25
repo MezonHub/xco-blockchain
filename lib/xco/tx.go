@@ -1,4 +1,4 @@
-package ixo
+package xco
 
 import (
 	"github.com/cosmos/cosmos-sdk/client"

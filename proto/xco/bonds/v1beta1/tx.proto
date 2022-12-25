@@ -1,9 +1,9 @@
 syntax = "proto3";
-package ixo.bonds.v1beta1;
+package xco.bonds.v1beta1;
 
 import "gogoproto/gogo.proto";
 import "cosmos/base/v1beta1/coin.proto";
-import "ixo/bonds/v1beta1/bonds.proto";
+import "xco/bonds/v1beta1/bonds.proto";
 
 option go_package = "github.com/xcohub/xco-blockchain/x/bonds/types";
 
@@ -47,7 +47,7 @@ message MsgCreateBond {
   string name                                             = 3 [(gogoproto.moretags) = "yaml:\"name\""];
   string description                                      = 4 [(gogoproto.moretags) = "yaml:\"description\""];
   string function_type                                    = 5 [(gogoproto.moretags) = "yaml:\"function_type\""];
-  repeated ixo.bonds.v1beta1.FunctionParam function_parameters              = 6 [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "FunctionParams", (gogoproto.moretags) = "yaml:\"function_parameters\""];
+  repeated xco.bonds.v1beta1.FunctionParam function_parameters              = 6 [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "FunctionParams", (gogoproto.moretags) = "yaml:\"function_parameters\""];
   string creator_did                                      = 7 [(gogoproto.casttype) = "github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment", (gogoproto.moretags) = "yaml:\"creator_did\""];
   string controller_did                                   = 8 [(gogoproto.casttype) = "github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment", (gogoproto.moretags) = "yaml:\"controller_did\""];
   string oracle_did                                       = 9 [(gogoproto.casttype) = "github.com/xcohub/xco-blockchain/x/iid/types.DIDFragment", (gogoproto.moretags) = "yaml:\"oracle_did\""];

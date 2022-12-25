@@ -11,13 +11,13 @@ yes $PASSWORD | xcod keys add miguel
 yes $PASSWORD | xcod add-genesis-account "$(xcod keys show miguel -a)" 1000000000000uxco,1000000000000res,1000000000000rez,1000000000000uxgbp
 
 # Add pubkey-based genesis accounts
-MIGUEL_ADDR="ixo107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"    # address from did:ixo:4XJLBfGtWSGKSz4BeRxdun's pubkey
+MIGUEL_ADDR="xco107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"    # address from did:xco:4XJLBfGtWSGKSz4BeRxdun's pubkey
 yes $PASSWORD | xcod add-genesis-account "$MIGUEL_ADDR" 1000000000000uxco,1000000000000res,1000000000000rez
 
-# Add ixo did
-XCO_DID="did:ixo:U4tSpzzv91HHqWW1YmFkHJ"
-FROM="\"ixo_did\": \"\""
-TO="\"ixo_did\": \"$XCO_DID\""
+# Add xco did
+XCO_DID="did:xco:U4tSpzzv91HHqWW1YmFkHJ"
+FROM="\"xco_did\": \"\""
+TO="\"xco_did\": \"$XCO_DID\""
 sed -i "s/$FROM/$TO/" "$HOME"/.xcod/config/genesis.json
 
 # Set staking token (both bond_denom and mint_denom)

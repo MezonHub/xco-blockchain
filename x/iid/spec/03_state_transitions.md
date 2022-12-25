@@ -40,14 +40,14 @@ cosmos-cashd tx iid create-iid \
 /* gRPC message */
 CreateIidDocument(
     MsgCreateIidDocument(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         [], // controller
         [   // verifications
             {
                 "relationships": ["authentication"],
                 {
-                    "controller": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
-                    "id": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0",
+                    "controller": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+                    "id": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0",
                     "publicKeyHex": "0248a5178d7a90ec187b3c3d533a4385db905f6fcdaac5026859ca5ef7b0b1c3b5",
                     "type": "EcdsaSecp256k1VerificationKey2019"
                 },
@@ -58,7 +58,7 @@ CreateIidDocument(
         [], // Accorded rights
         [], // linked resources
         [], // linked entities       
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -68,12 +68,12 @@ CreateIidDocument(
     "context": [
       "https://www.w3.org/ns/iid/v1"
     ],
-    "id": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+    "id": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
     "controller": [],
     "verificationMethod": [
       {
-        "controller": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
-        "id": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0",
+        "controller": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "id": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0",
         "publicKeyHex": "0248a5178d7a90ec187b3c3d533a4385db905f6fcdaac5026859ca5ef7b0b1c3b5",
         "type": "EcdsaSecp256k1VerificationKey2019"
       }
@@ -83,7 +83,7 @@ CreateIidDocument(
     "LinkedResource": [],
     "LinkedEntity": [],      
     "authentication": [
-      "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0"
+      "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0"
     ],
     "assertionMethod": [],
     "keyAgreement": [],
@@ -118,7 +118,7 @@ The operation will fail if:
 /* gRPC message */
 QueryIidDocument(
     QueryIidDocumentRequest(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e"
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e"
     )
 )
 
@@ -169,9 +169,9 @@ The operation will fail if:
 /* gRPC message */
 UpdateIidDocument(
     MsgUpdateIidDocument(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
-        ["ixo:key:ixo1sl48sj2jjed7enrv3lzzplr9wc2f5js5tzjph8"],
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0"
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        ["xco:key:xco1sl48sj2jjed7enrv3lzzplr9wc2f5js5tzjph8"],
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0"
     )
 )
 ```
@@ -196,18 +196,18 @@ The operation will fail if:
 /* gRPC message */
 AddVerification(
     MsgAddVerification(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         {
             "relationships": ["authentication"],
             {
-                "controller": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
-                "id": "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#cosmos1lvl2s8x4pta5f96appxrwn3mypsvumukvk7ck2",
+                "controller": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+                "id": "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#cosmos1lvl2s8x4pta5f96appxrwn3mypsvumukvk7ck2",
                 "publicKeyHex": "03786095e15eb228f4e15692eda6e0607a313cc081ad54d69aadd15d515e304590",
                 "type": "EcdsaSecp256k1VerificationKey2019"
             },
             [],
         },
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -231,9 +231,9 @@ The operation will fail if:
 /* gRPC message */
 RevokeVerification(
     MsgRevokeVerification(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#cosmos1lvl2s8x4pta5f96appxrwn3mypsvumukvk7ck2",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#cosmos1lvl2s8x4pta5f96appxrwn3mypsvumukvk7ck2",
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -261,10 +261,10 @@ The operation will fail if:
 /* gRPC message */
 SetVerificationRelationships(
     MsgSetVerificationRelationships(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e#xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0",
         ["authentication", "capabilityInvocation"]
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -290,13 +290,13 @@ The operation will fail if:
 /* gRPC message */
 AddService(
     MsgAddService(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         {
             "agent:xyz",
             "iidCommMessaging",
             "https://agent.xyz/1234",
         }
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -320,9 +320,9 @@ The operation will fail if:
 /* gRPC message */
 DeleteService(
     MsgDeleteService(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         "agent:xyz",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -347,9 +347,9 @@ The operation will fail if:
 /* gRPC message */
 AddLinkedResource(
     MsgAddLinkedResource(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
             {
-            "ixo:entity:abc123#****",
+            "xco:entity:abc123#****",
             "entityProfile",
             "Test Clean Cooking Collection",
             "application/json",
@@ -358,7 +358,7 @@ AddLinkedResource(
             "false",
             "right",
             },
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -382,9 +382,9 @@ The operation will fail if:
 /* gRPC message */
 DeleteLinkedResource(
     MsgDeleteLinkedResource(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         "resource id",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -409,15 +409,15 @@ The operation will fail if:
 /* gRPC message */
 AddAccordedRight(
     MsgAddAccordedRight(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
             {
-                "ixo:entity:abc123#mintNFT",
+                "xco:entity:abc123#mintNFT",
                 "mint",
                 "cw721",
                 "msgMintNFT",
-                "#ixo"
+                "#xco"
             },
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -441,9 +441,9 @@ The operation will fail if:
 /* gRPC message */
 DeleteAccordedRight(
     MsgDeleteAccordedRight(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         "right id",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -469,12 +469,12 @@ The operation will fail if:
 /* gRPC message */
 AddLinkedEntity(
     MsgAddLinkedEntity(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
             {
-                "ixo:entity:abc123#123",
+                "xco:entity:abc123#123",
                 "relationship",
             },
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -498,9 +498,9 @@ The operation will fail if:
 /* gRPC message */
 DeleteLinkedEntity(
     MsgDeleteLinkedEntity(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         "enitiy id",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -525,11 +525,11 @@ The operation will fail if:
 /* gRPC message */
 AddController(
     MsgAddController(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
             {
-                "ixo:entity:abc123#123",
+                "xco:entity:abc123#123",
             },
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -553,9 +553,9 @@ The operation will fail if:
 /* gRPC message */
 DeleteController(
     MsgDeleteController(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         "Controller id",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -580,12 +580,12 @@ The operation will fail if:
 /* gRPC message */
 AddIidContext(
     MsgAddIidContext(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
             {
-                "ixo",
+                "xco",
                 "context string"
             },
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 
@@ -609,9 +609,9 @@ The operation will fail if:
 /* gRPC message */
 DeleteIidContext(
     MsgDeleteIidContext(
-        "ixo:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
+        "xco:impacthub-3:900d82bc2bfe45a7ab22a8d11773568e",
         "Context Key",
-        "ixo1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
+        "xco1x5hrv0hngmg8gls5cft7nphqs83njj25pwxpt0" // signer
     )
 )
 

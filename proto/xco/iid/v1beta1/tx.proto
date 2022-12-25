@@ -1,8 +1,8 @@
 syntax = "proto3";
-package ixo.iid.v1beta1;
+package xco.iid.v1beta1;
 
 import "gogoproto/gogo.proto";
-import "ixo/iid/v1beta1/iid.proto";
+import "xco/iid/v1beta1/iid.proto";
 import "google/api/annotations.proto";
 
 option go_package = "github.com/xcohub/xco-blockchain/x/iid/types";

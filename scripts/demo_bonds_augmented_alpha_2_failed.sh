@@ -47,9 +47,9 @@ xcod_q() {
   xcod q "$@" --output=json | jq .
 }
 
-BOND_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
+BOND_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
 #BOND_DID_FULL='{
-#  "did":"did:ixo:U7GK8p8rVhJMKhBVRCJJ8c",
+#  "did":"did:xco:U7GK8p8rVhJMKhBVRCJJ8c",
 #  "verifyKey":"FmwNAfvV2xEqHwszrVJVBR3JgQ8AFCQEVzo1p6x4L8VW",
 #  "encryptionPublicKey":"domKpTpjrHQtKUnaFLjCuDLe2oHeS4b1sKt7yU9cq7m",
 #  "secret":{
@@ -59,11 +59,11 @@ BOND_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
 #  }
 #}'
 
-MIGUEL_ADDR="ixo107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"
-FRANCESCO_ADDR="ixo1cpa6w2wnqyxpxm4rryfjwjnx75kn4xt372dp3y"
-SHAUN_ADDR="ixo1d5u5ta7np7vefxa7ttpuy5aurg7q5regm0t2un"
+MIGUEL_ADDR="xco107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx"
+FRANCESCO_ADDR="xco1cpa6w2wnqyxpxm4rryfjwjnx75kn4xt372dp3y"
+SHAUN_ADDR="xco1d5u5ta7np7vefxa7ttpuy5aurg7q5regm0t2un"
 MIGUEL_DID_FULL='{
-  "did":"did:ixo:4XJLBfGtWSGKSz4BeRxdun",
+  "did":"did:xco:4XJLBfGtWSGKSz4BeRxdun",
   "verifyKey":"2vMHhssdhrBCRFiq9vj7TxGYDybW4yYdrYh9JG56RaAt",
   "encryptionPublicKey":"6GBp8qYgjE3ducksUa9Ar26ganhDFcmYfbZE9ezFx5xS",
   "secret":{
@@ -72,9 +72,9 @@ MIGUEL_DID_FULL='{
     "encryptionPrivateKey":"4oMozrMR6BXRN93MDk6UYoqBVBLiPn9RnZhR3wQd6tBh"
   }
 }'
-FRANCESCO_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
+FRANCESCO_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
 FRANCESCO_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{
@@ -84,7 +84,7 @@ FRANCESCO_DID_FULL='{
   }
 }'
 SHAUN_DID_FULL='{
-  "did":"did:ixo:U4tSpzzv91HHqWW1YmFkHJ",
+  "did":"did:xco:U4tSpzzv91HHqWW1YmFkHJ",
   "verifyKey":"FkeDue5it82taeheMprdaPrctfK3DeVV9NnEPYDgwwRG",
   "encryptionPublicKey":"DtdGbZB2nSQvwhs6QoN5Cd8JTxWgfVRAGVKfxj8LA15i",
   "secret":{

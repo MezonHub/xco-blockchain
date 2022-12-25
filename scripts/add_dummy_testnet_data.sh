@@ -52,12 +52,12 @@ FEE3=$(yes $PASSWORD | xcod keys show fee3 -a)
 FEE4=$(yes $PASSWORD | xcod keys show fee4 -a)
 RESERVE_OUT=$(yes $PASSWORD | xcod keys show reserveOut -a)
 
-BOND1_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
-BOND2_DID="did:ixo:JHcN95bkS4aAWk3TKXapA2"
-BOND3_DID="did:ixo:48PVm1uyF6QVDSPdGRWw4T"
-BOND4_DID="did:ixo:RYLHkfNpbA8Losy68jt4yF"
+BOND1_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
+BOND2_DID="did:xco:JHcN95bkS4aAWk3TKXapA2"
+BOND3_DID="did:xco:48PVm1uyF6QVDSPdGRWw4T"
+BOND4_DID="did:xco:RYLHkfNpbA8Losy68jt4yF"
 #BOND1_DID_FULL='{
-#  "did":"did:ixo:U7GK8p8rVhJMKhBVRCJJ8c",
+#  "did":"did:xco:U7GK8p8rVhJMKhBVRCJJ8c",
 #  "verifyKey":"FmwNAfvV2xEqHwszrVJVBR3JgQ8AFCQEVzo1p6x4L8VW",
 #  "encryptionPublicKey":"domKpTpjrHQtKUnaFLjCuDLe2oHeS4b1sKt7yU9cq7m",
 #  "secret":{
@@ -67,7 +67,7 @@ BOND4_DID="did:ixo:RYLHkfNpbA8Losy68jt4yF"
 #  }
 #}'
 #BOND2_DID_FULL='{
-#  "did":"did:ixo:JHcN95bkS4aAWk3TKXapA2",
+#  "did":"did:xco:JHcN95bkS4aAWk3TKXapA2",
 #  "verifyKey":"ARTUGePyi4rm3ogq3kjp8dEAVq1RR7Z3HWwLze6Ey4qg",
 #  "encryptionPublicKey":"FjLXxW1N68XgBKekfB2isCLHPwbqhLiQLQFhLiiivXqP",
 #  "secret":{
@@ -77,7 +77,7 @@ BOND4_DID="did:ixo:RYLHkfNpbA8Losy68jt4yF"
 #  }
 #}'
 #BOND3_DID_FULL='{
-#  "did":"did:ixo:48PVm1uyF6QVDSPdGRWw4T",
+#  "did":"did:xco:48PVm1uyF6QVDSPdGRWw4T",
 #  "verifyKey":"2hs2cb232Ev97aSQLvrfK4q8ZceBR8cf33UTstWpKU9M",
 #  "encryptionPublicKey":"9k2THnNbTziXGRjn77tvWujffgigRPqPyKZUSdwjmfh2",
 #  "secret":{
@@ -87,7 +87,7 @@ BOND4_DID="did:ixo:RYLHkfNpbA8Losy68jt4yF"
 #  }
 #}'
 #BOND4_DID_FULL='{
-#  "did":"did:ixo:RYLHkfNpbA8Losy68jt4yF",
+#  "did":"did:xco:RYLHkfNpbA8Losy68jt4yF",
 #  "verifyKey":"ENmMCsfNmjYoTRhNgnwXbQAw6p8JKH9DCJfGTPXNfsxW",
 #  "encryptionPublicKey":"5unQBt6JPW1pq9AqoRNhFJmibv8JqeoyyNvN3gF24EaU",
 #  "secret":{
@@ -97,10 +97,10 @@ BOND4_DID="did:ixo:RYLHkfNpbA8Losy68jt4yF"
 #  }
 #}'
 
-PROJECT1_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
-PROJECT2_DID="did:ixo:JHcN95bkS4aAWk3TKXapA2"
+PROJECT1_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
+PROJECT2_DID="did:xco:JHcN95bkS4aAWk3TKXapA2"
 PROJECT1_DID_FULL='{
-  "did":"did:ixo:U7GK8p8rVhJMKhBVRCJJ8c",
+  "did":"did:xco:U7GK8p8rVhJMKhBVRCJJ8c",
   "verifyKey":"FmwNAfvV2xEqHwszrVJVBR3JgQ8AFCQEVzo1p6x4L8VW",
   "encryptionPublicKey":"domKpTpjrHQtKUnaFLjCuDLe2oHeS4b1sKt7yU9cq7m",
   "secret":{
@@ -110,7 +110,7 @@ PROJECT1_DID_FULL='{
   }
 }'
 PROJECT2_DID_FULL='{
-  "did":"did:ixo:JHcN95bkS4aAWk3TKXapA2",
+  "did":"did:xco:JHcN95bkS4aAWk3TKXapA2",
   "verifyKey":"ARTUGePyi4rm3ogq3kjp8dEAVq1RR7Z3HWwLze6Ey4qg",
   "encryptionPublicKey":"FjLXxW1N68XgBKekfB2isCLHPwbqhLiQLQFhLiiivXqP",
   "secret":{
@@ -144,11 +144,11 @@ PROJECT2_INFO='{
   }
 }'
 
-MIGUEL_DID="did:ixo:4XJLBfGtWSGKSz4BeRxdun"
-FRANCESCO_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
-SHAUN_DID="did:ixo:U4tSpzzv91HHqWW1YmFkHJ"
+MIGUEL_DID="did:xco:4XJLBfGtWSGKSz4BeRxdun"
+FRANCESCO_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
+SHAUN_DID="did:xco:U4tSpzzv91HHqWW1YmFkHJ"
 MIGUEL_DID_FULL='{
-  "did":"did:ixo:4XJLBfGtWSGKSz4BeRxdun",
+  "did":"did:xco:4XJLBfGtWSGKSz4BeRxdun",
   "verifyKey":"2vMHhssdhrBCRFiq9vj7TxGYDybW4yYdrYh9JG56RaAt",
   "encryptionPublicKey":"6GBp8qYgjE3ducksUa9Ar26ganhDFcmYfbZE9ezFx5xS",
   "secret":{
@@ -158,7 +158,7 @@ MIGUEL_DID_FULL='{
   }
 }'
 FRANCESCO_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{
@@ -168,7 +168,7 @@ FRANCESCO_DID_FULL='{
   }
 }'
 SHAUN_DID_FULL='{
-  "did":"did:ixo:U4tSpzzv91HHqWW1YmFkHJ",
+  "did":"did:xco:U4tSpzzv91HHqWW1YmFkHJ",
   "verifyKey":"FkeDue5it82taeheMprdaPrctfK3DeVV9NnEPYDgwwRG",
   "encryptionPublicKey":"DtdGbZB2nSQvwhs6QoN5Cd8JTxWgfVRAGVKfxj8LA15i",
   "secret":{
@@ -180,7 +180,7 @@ SHAUN_DID_FULL='{
 
 PAYMENT_RECIPIENTS='[
   {
-    "address": "ixo107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx",
+    "address": "xco107pmtx9wyndup8f9lgj6d7dnfq5kuf3sapg0vx",
     "percentage": "100"
   }
 ]'
@@ -353,8 +353,8 @@ xcod_tx project create-evaluation "tx_hash" "$SENDER_DID" "claim_id" $STATUS "$P
 
 # Adding agents (this creates a project account for the agent in the respective project)
 echo "Adding agent to project 1..."
-SENDER_DID="did:ixo:48PVm1uyF6QVDSPdGRWw4T"
-AGENT_DID="did:ixo:RYLHkfNpbA8Losy68jt4yF"
+SENDER_DID="did:xco:48PVm1uyF6QVDSPdGRWw4T"
+AGENT_DID="did:xco:RYLHkfNpbA8Losy68jt4yF"
 ROLE="SA"
 xcod_tx project create-agent "tx_hash" "$SENDER_DID" "$AGENT_DID" "$ROLE" "$PROJECT1_DID_FULL"
 

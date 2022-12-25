@@ -1,3 +1,3 @@
-package ixo
+package xco
 
 const XcoNativeToken = "uxco"

@@ -11,7 +11,7 @@ import (
 	"github.com/xcohub/xco-blockchain/x/token/types"
 	"github.com/xcohub/xco-blockchain/x/token/types/contracts/cw20"
 	"github.com/xcohub/xco-blockchain/x/token/types/contracts/cw721"
-	"github.com/xcohub/xco-blockchain/x/token/types/contracts/ixo1155"
+	"github.com/xcohub/xco-blockchain/x/token/types/contracts/xco1155"
 )
 
 type msgServer struct {
@@ -84,7 +84,7 @@ func (s msgServer) SetupMinter(goCtx context.Context, msg *types.MsgSetupMinter)
 		codeId = params.GetXco1155ContractCode()
 		label = fmt.Sprintf("%s-cw1155-contract", msg.MinterDid.String())
 		contractType = types.ContractType_XCO1155
-		encodedInitiateMessage, err = ixo1155.InstantiateMsg{
+		encodedInitiateMessage, err = xco1155.InstantiateMsg{
 			Minter: minterAddress.String(),
 		}.Marshal()
 	default:
@@ -195,9 +195,9 @@ func (s msgServer) MintToken(goCtx context.Context, msg *types.MsgMint) (*types.
 		if tokenMinter.ContractType != types.ContractType_XCO1155 {
 			return &types.MsgMintResponse{}, sdkerrors.ErrInvalidType.Wrap("selected contract is not a cw1155 contract type")
 		}
-		encodedMintMessage, err = ixo1155.Mint{
+		encodedMintMessage, err = xco1155.Mint{
 			To:      ownerAddress.String(),
-			TokenId: ixo1155.TokenId(msg.OwnerDid.Did()),
+			TokenId: xco1155.TokenId(msg.OwnerDid.Did()),
 			Value:   mintInfo.Cw1155.Value,
 			Msg:     []byte{},
 		}.Marshal()

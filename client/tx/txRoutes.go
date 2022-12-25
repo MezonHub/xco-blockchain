@@ -13,14 +13,14 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
 	"github.com/gorilla/mux"
 	"github.com/xcohub/xco-blockchain/compatibility"
-	ixotypes "github.com/xcohub/xco-blockchain/lib/ixo"
+	xcotypes "github.com/xcohub/xco-blockchain/lib/xco"
 	didexported "github.com/xcohub/xco-blockchain/lib/legacydid"
 	projecttypes "github.com/xcohub/xco-blockchain/x/project/types"
 )
 
 var (
 	approximationGasAdjustment = float64(1.5)
-	expectedMinGasPrices       = "0.025" + ixotypes.XcoNativeToken
+	expectedMinGasPrices       = "0.025" + xcotypes.XcoNativeToken
 )
 
 func RegisterTxRoutes(clientCtx client.Context, r *mux.Router) {
@@ -64,19 +64,19 @@ func SignDataRequest(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
-		// all messages must be of type ixo.XcoMsg
-		ixoMsg, ok := msg.(ixotypes.XcoMsg)
+		// all messages must be of type xco.XcoMsg
+		xcoMsg, ok := msg.(xcotypes.XcoMsg)
 		if !ok {
-			rest.WriteErrorResponse(w, http.StatusBadRequest, "msg must be ixo.XcoMsg")
+			rest.WriteErrorResponse(w, http.StatusBadRequest, "msg must be xco.XcoMsg")
 			return
 		}
 
 		output := SignDataResponse{}
 
-		switch ixoMsg.Type() {
+		switch xcoMsg.Type() {
 		case projecttypes.TypeMsgCreateProject:
 			var stdSignMsg legacytx.StdSignMsg
-			stdSignMsg = ixoMsg.(*projecttypes.MsgCreateProject).ToStdSignMsg(
+			stdSignMsg = xcoMsg.(*projecttypes.MsgCreateProject).ToStdSignMsg(
 				projecttypes.MsgCreateProjectTotalFee)
 			stdSignMsg.ChainID = clientCtx.ChainID
 
@@ -89,7 +89,7 @@ func SignDataRequest(clientCtx client.Context) http.HandlerFunc {
 
 			// Set gas adjustment and fees
 			gasAdjustment := approximationGasAdjustment
-			fees := sdk.NewCoins(sdk.NewCoin(ixotypes.XcoNativeToken, sdk.OneInt()))
+			fees := sdk.NewCoins(sdk.NewCoin(xcotypes.XcoNativeToken, sdk.OneInt()))
 
 			chainId := clientCtx.ChainID
 			txf := clienttx.Factory{}.

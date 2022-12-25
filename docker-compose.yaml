@@ -2,7 +2,7 @@ version: "3.7"
 services:
   # nginx:
     # image: nginx
-    # container_name: ixo_nginx
+    # container_name: xco_nginx
     # restart: unless-stopped
     # ports:
     #   - "80:8081"
@@ -10,10 +10,10 @@ services:
     #   - .infra/nginx/devel.conf:/etc/nginx/conf.d/devel.conf
     # links:
     #   - xco-blockchain
-    #   - ixo-swagger
+    #   - xco-swagger
 
-  # ixo-swagger:
-  #   container_name: ixo_swagger
+  # xco-swagger:
+  #   container_name: xco_swagger
   #   image: swaggerapi/swagger-ui
   #   restart: unless-stopped
   #   environment:
@@ -25,14 +25,14 @@ services:
   #     - "./docs/static/openapi.yml:/api-docs/swagger.yaml"
 
   xco-blockchain:
-    container_name: ixo_blockchain
+    container_name: xco_blockchain
     platform: linux/amd64
     build:
       context: .
       dockerfile: .infra/dockerfiles/Dockerfile
       target: build-devel
     tty: true
-    image: ixo-chain:devel
+    image: xco-chain:devel
     restart: unless-stopped
     volumes:
       - "./:/app"

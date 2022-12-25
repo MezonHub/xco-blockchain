@@ -52,13 +52,13 @@ xcod_q() {
   xcod q "$@" --output=json | jq .
 }
 
-XCO_DID="did:ixo:4XJLBfGtWSGKSz4BeRxdun"
-ORACLE_DID="did:ixo:UKzkhVSHc3qEFva5EY2XHt"
-PROJECT_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
-BOND_DID="did:ixo:U7GK8p8rVhJMKhBVRCJJ8c"
+XCO_DID="did:xco:4XJLBfGtWSGKSz4BeRxdun"
+ORACLE_DID="did:xco:UKzkhVSHc3qEFva5EY2XHt"
+PROJECT_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
+BOND_DID="did:xco:U7GK8p8rVhJMKhBVRCJJ8c"
 
 XCO_DID_FULL='{
-  "did":"did:ixo:4XJLBfGtWSGKSz4BeRxdun",
+  "did":"did:xco:4XJLBfGtWSGKSz4BeRxdun",
   "verifyKey":"2vMHhssdhrBCRFiq9vj7TxGYDybW4yYdrYh9JG56RaAt",
   "encryptionPublicKey":"6GBp8qYgjE3ducksUa9Ar26ganhDFcmYfbZE9ezFx5xS",
   "secret":{
@@ -68,7 +68,7 @@ XCO_DID_FULL='{
   }
 }'
 ORACLE_DID_FULL='{
-  "did":"did:ixo:UKzkhVSHc3qEFva5EY2XHt",
+  "did":"did:xco:UKzkhVSHc3qEFva5EY2XHt",
   "verifyKey":"Ftsqjc2pEvGLqBtgvVx69VXLe1dj2mFzoi4kqQNGo3Ej",
   "encryptionPublicKey":"8YScf3mY4eeHoxDT9MRxiuGX5Fw7edWFnwHpgWYSn1si",
   "secret":{
@@ -78,7 +78,7 @@ ORACLE_DID_FULL='{
   }
 }'
 PROJECT_DID_FULL='{
-  "did":"did:ixo:U7GK8p8rVhJMKhBVRCJJ8c",
+  "did":"did:xco:U7GK8p8rVhJMKhBVRCJJ8c",
   "verifyKey":"FmwNAfvV2xEqHwszrVJVBR3JgQ8AFCQEVzo1p6x4L8VW",
   "encryptionPublicKey":"domKpTpjrHQtKUnaFLjCuDLe2oHeS4b1sKt7yU9cq7m",
   "secret":{
@@ -143,7 +143,7 @@ DID_9=$(echo "$DID_9_FULL" | cut -d \" -f 4)
 DID_10=$(echo "$DID_10_FULL" | cut -d \" -f 4)
 OWNER_DID=$(echo "$OWNER_DID_FULL" | cut -d \" -f 4)
 
-# Ledger oracle and ixo DIDs 
+# Ledger oracle and xco DIDs 
 xcod_tx did add-did-doc "$ORACLE_DID_FULL" --broadcast-mode block
 xcod_tx did add-did-doc "$XCO_DID_FULL" --broadcast-mode block
 
@@ -193,8 +193,8 @@ xcod_tx did add-did-doc "$DID_10_FULL"
 xcod_tx did add-did-doc "$OWNER_DID_FULL" --broadcast-mode block
 
 
-# Fund ixo DID for gas fees (commented out since ixo DID is funded at genesis)
-# echo "Funding ixo DID..."
+# Fund xco DID for gas fees (commented out since xco DID is funded at genesis)
+# echo "Funding xco DID..."
 # yes $PASSWORD | xcod_tx bank send miguel "$(xcod_q did get-address-from-did $XCO_DID)" 10000000000uxco --broadcast-mode=block
 
 # Fund Owner with 300xGBP (300000000uxgbp)

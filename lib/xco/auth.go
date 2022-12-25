@@ -1,4 +1,4 @@
-package ixo
+package xco
 
 import (
 	"bufio"
@@ -55,8 +55,8 @@ type PubKeyGetter func(ctx sdk.Context, msg XcoMsg, sigs []signing.SignatureV2) 
 // ) sdk.AnteHandler {
 
 // 	// Refer to inline documentation in app/app.go for introduction to why we
-// 	// need a custom ixo AnteHandler. Below, we will discuss the differences
-// 	// between the default Cosmos AnteHandler and our custom ixo AnteHandler.
+// 	// need a custom xco AnteHandler. Below, we will discuss the differences
+// 	// between the default Cosmos AnteHandler and our custom xco AnteHandler.
 // 	//
 // 	// It is clear below that our custom AnteHandler is not completely custom.
 // 	// It uses various functions from the Cosmos ante module. However, it also
@@ -108,20 +108,20 @@ type PubKeyGetter func(ctx sdk.Context, msg XcoMsg, sigs []signing.SignatureV2) 
 // 	)
 // }
 
-func GenerateOrBroadcastTxCLI(clientCtx client.Context, flagSet *pflag.FlagSet, ixoDid exported.XcoDid, msg sdk.Msg) error {
+func GenerateOrBroadcastTxCLI(clientCtx client.Context, flagSet *pflag.FlagSet, xcoDid exported.XcoDid, msg sdk.Msg) error {
 	txf := tx.NewFactoryCLI(clientCtx, flagSet)
-	return GenerateOrBroadcastTxWithFactory(clientCtx, txf, ixoDid, msg)
+	return GenerateOrBroadcastTxWithFactory(clientCtx, txf, xcoDid, msg)
 }
 
-func GenerateOrBroadcastTxWithFactory(clientCtx client.Context, txf tx.Factory, ixoDid exported.XcoDid, msg sdk.Msg) error {
+func GenerateOrBroadcastTxWithFactory(clientCtx client.Context, txf tx.Factory, xcoDid exported.XcoDid, msg sdk.Msg) error {
 	if clientCtx.GenerateOnly {
 		return tx.GenerateTx(clientCtx, txf, msg) // like old PrintUnsignedStdTx
 	}
 
-	return BroadcastTx(clientCtx, txf, ixoDid, msg)
+	return BroadcastTx(clientCtx, txf, xcoDid, msg)
 }
 
-func BroadcastTx(clientCtx client.Context, txf tx.Factory, ixoDid exported.XcoDid, msg sdk.Msg) error {
+func BroadcastTx(clientCtx client.Context, txf tx.Factory, xcoDid exported.XcoDid, msg sdk.Msg) error {
 	txf, err := prepareFactory(clientCtx, txf)
 	if err != nil {
 		return err
@@ -163,7 +163,7 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, ixoDid exported.XcoDi
 		}
 	}
 
-	err = Sign(txf, clientCtx, tx, true, ixoDid)
+	err = Sign(txf, clientCtx, tx, true, xcoDid)
 	if err != nil {
 		return err
 	}
@@ -190,9 +190,9 @@ func checkMultipleSigners(mode signing.SignMode, tx authsigning.Tx) error {
 	return nil
 }
 
-func Sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, overwriteSig bool, ixoDid exported.XcoDid) error {
+func Sign(txf tx.Factory, clientCtx client.Context, txBuilder client.TxBuilder, overwriteSig bool, xcoDid exported.XcoDid) error {
 	var privateKey ed25519.PrivKey
-	privateKey.Key = append(base58.Decode(ixoDid.Secret.SignKey), base58.Decode(ixoDid.VerifyKey)...)
+	privateKey.Key = append(base58.Decode(xcoDid.Secret.SignKey), base58.Decode(xcoDid.VerifyKey)...)
 
 	signMode := txf.SignMode()
 	if signMode == signing.SignMode_SIGN_MODE_UNSPECIFIED {
@@ -297,7 +297,7 @@ func XcoSigVerificationGasConsumer(
 }
 
 func SignAndBroadcastTxFromStdSignMsg(clientCtx client.Context,
-	msg sdk.Msg, ixoDid exported.XcoDid, flagSet *pflag.FlagSet) (*sdk.TxResponse, error) {
+	msg sdk.Msg, xcoDid exported.XcoDid, flagSet *pflag.FlagSet) (*sdk.TxResponse, error) {
 
 	txf := tx.NewFactoryCLI(clientCtx, flagSet)
 	txf = txf.WithFees(fees).WithGasPrices("").WithGas(0)
@@ -324,7 +324,7 @@ func SignAndBroadcastTxFromStdSignMsg(clientCtx client.Context,
 		}
 	}
 
-	err = Sign(txf, clientCtx, tx, true, ixoDid)
+	err = Sign(txf, clientCtx, tx, true, xcoDid)
 	if err != nil {
 		return nil, err
 	}

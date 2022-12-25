@@ -1,8 +1,8 @@
 syntax = "proto3";
-package ixo.token.v1beta1;
+package xco.token.v1beta1;
 
 import "gogoproto/gogo.proto";
-import "ixo/token/v1beta1/token.proto";
+import "xco/token/v1beta1/token.proto";
 
 option go_package = "github.com/xcohub/xco-blockchain/x/token/types";
 
